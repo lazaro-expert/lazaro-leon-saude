@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="1200" height="630">
+  <rect width="1200" height="630" fill="#00244A"/>
+
+  <!-- Padrão Metatron sutil -->
+  <g opacity="0.08" stroke="#C49A1B" stroke-width="0.8" fill="none">
+    <polygon points="600,180 820,240 820,390 600,450 380,390 380,240"/>
+    <polygon points="600,60 980,180 980,450 600,570 220,450 220,180"/>
+    <circle cx="600" cy="315" r="150"/>
+    <circle cx="600" cy="315" r="260"/>
+    <line x1="600" y1="60" x2="600" y2="570"/>
+    <line x1="220" y1="180" x2="980" y2="450"/>
+    <line x1="220" y1="450" x2="980" y2="180"/>
+    <line x1="380" y1="240" x2="820" y2="390"/>
+    <line x1="380" y1="390" x2="820" y2="240"/>
+    <circle cx="600" cy="60" r="3" fill="#C49A1B"/>
+    <circle cx="980" cy="180" r="3" fill="#C49A1B"/>
+    <circle cx="980" cy="450" r="3" fill="#C49A1B"/>
+    <circle cx="600" cy="570" r="3" fill="#C49A1B"/>
+    <circle cx="220" cy="450" r="3" fill="#C49A1B"/>
+    <circle cx="220" cy="180" r="3" fill="#C49A1B"/>
+  </g>
+
+  <text x="90" y="110" font-family="Sora, sans-serif" font-size="32" font-weight="700" fill="#FFFDF3" letter-spacing="2">LL'EXPERT</text>
+  <rect x="90" y="130" width="48" height="2" fill="#C49A1B"/>
+
+  <text x="90" y="260" font-family="Inter, sans-serif" font-size="16" font-weight="400" fill="#C49A1B" letter-spacing="3">ARQUITETURA DIGITAL E IA</text>
+
+  <text x="90" y="330" font-family="Sora, sans-serif" font-size="54" font-weight="600" fill="#FFFDF3" letter-spacing="-1">Arquitetura digital e IA</text>
+  <text x="90" y="395" font-family="Sora, sans-serif" font-size="54" font-weight="600" fill="#FFFDF3" letter-spacing="-1">para clínicas premium</text>
+  <text x="90" y="460" font-family="Sora, sans-serif" font-size="54" font-weight="600" fill="#C49A1B" letter-spacing="-1">operarem com excelência.</text>
+
+  <text x="90" y="540" font-family="Inter, sans-serif" font-size="18" font-weight="300" fill="rgba(255,253,243,0.6)">Automação inteligente, inteligência de vendas e controladoria.</text>
+
+  <circle cx="1080" cy="90" r="4" fill="#C49A1B"/>
+  <circle cx="1110" cy="90" r="4" fill="#C49A1B" opacity="0.6"/>
+  <circle cx="1140" cy="90" r="4" fill="#C49A1B" opacity="0.3"/>
+</svg>

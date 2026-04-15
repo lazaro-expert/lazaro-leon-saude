@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Como Funciona - LL'EXPERT | Implementacao de IA para Clinicas</title>
+    <meta name="description" content="Do diagnostico ao sistema rodando em semanas. Processo de implementacao de IA e automacao para clinicas premium sem equipe tecnica.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Como Funciona - LL'EXPERT | Implementacao de IA para Clinicas">
+    <meta property="og:description" content="Do diagnostico ao sistema rodando em semanas. Processo de implementacao de IA e automacao para clinicas premium sem equipe tecnica.">
+    <meta property="og:url" content="https://lazaleon.com.br/saude/como-funciona.html">
+    <meta property="og:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --floral-white: #FFFDF3;
+            --off-white: #FFFFFF;
+            --prussian-blue: #00244A;
+            --goldenrod: #C49A1B;
+            --text-body: rgba(0, 36, 74, 0.75);
+            --text-muted: rgba(0, 36, 74, 0.5);
+            --gold-light: rgba(196, 154, 27, 0.12);
+            --gold-border: rgba(196, 154, 27, 0.3);
+            --shadow-default: 0 1px 3px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.04);
+            --shadow-hover: 0 2px 6px rgba(0,0,0,0.04), 0 12px 28px rgba(0,0,0,0.06);
+            --radius-card: 12px;
+            --radius-btn: 8px;
+            --radius-small: 6px;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            color: var(--prussian-blue);
+            background: var(--floral-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ========== NAVBAR ========== */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 1.15rem 2rem;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: rgba(255, 253, 243, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid transparent;
+            transition: padding 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.8rem 2rem;
+            box-shadow: var(--shadow-default);
+            border-bottom: 1px solid rgba(196, 154, 27, 0.1);
+        }
+
+        .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--prussian-blue);
+            letter-spacing: -0.02em;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: var(--text-body);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links li a:hover {
+            color: var(--prussian-blue);
+        }
+
+        .nav-links li a.active {
+            color: var(--prussian-blue);
+            font-weight: 600;
+        }
+
+        .nav-cta {
+            background: var(--prussian-blue) !important;
+            color: #ffffff !important;
+            padding: 0.6rem 1.4rem !important;
+            border-radius: var(--radius-btn) !important;
+            font-weight: 600 !important;
+            font-size: 0.85rem !important;
+            transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.2s ease !important;
+        }
+
+        .nav-cta:hover {
+            background: #001a38 !important;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 15px rgba(0, 36, 74, 0.2);
+            color: #ffffff !important;
+        }
+
+        /* ========== HAMBURGER ========== */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            padding: 6px;
+            background: none;
+            border: none;
+        }
+
+        .hamburger span {
+            width: 22px;
+            height: 1.5px;
+            background: var(--prussian-blue);
+            border-radius: 4px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.open span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.open span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== MOBILE MENU ========== */
+        .mobile-menu {
+            display: none;
+            position: fixed;
+            top: 62px; left: 0; right: 0;
+            background: rgba(255, 253, 243, 0.97);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(196, 154, 27, 0.1);
+            padding: 24px;
+            z-index: 999;
+            box-shadow: var(--shadow-default);
+        }
+
+        .mobile-menu.open {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .mobile-menu a {
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--text-body);
+            transition: color 0.3s ease;
+        }
+
+        .mobile-menu a.active {
+            color: var(--prussian-blue);
+            font-weight: 600;
+        }
+
+        .mobile-menu .nav-cta {
+            display: inline-block;
+            text-align: center;
+            margin-top: 8px;
+        }
+
+        /* ========== HERO ========== */
+        .hero {
+            position: relative;
+            padding: 160px 64px 100px;
+            background: var(--prussian-blue);
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg-svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+            opacity: 0.04;
+            pointer-events: none;
+        }
+
+        .hero-inner {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            color: var(--goldenrod);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 4vw, 2.75rem);
+            font-weight: 700;
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            color: #ffffff;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.7;
+            max-width: 640px;
+            margin: 0 auto;
+        }
+
+        .hero-pill {
+            display: inline-block;
+            margin-top: 32px;
+            padding: 10px 28px;
+            border: 1px solid rgba(196, 154, 27, 0.35);
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: rgba(255, 255, 255, 0.6);
+            letter-spacing: 0.02em;
+        }
+
+        /* ========== TIMELINE OVERVIEW ========== */
+        .timeline-section {
+            padding: 80px 64px;
+            background: var(--off-white);
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--prussian-blue);
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .timeline-container {
+            max-width: 760px;
+            margin: 0 auto;
+        }
+
+        .timeline-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin-bottom: 16px;
+        }
+
+        .timeline-circle {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: var(--prussian-blue);
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Sora', sans-serif;
+            font-size: 1rem;
+            font-weight: 700;
+            flex-shrink: 0;
+            box-shadow: 0 0 0 6px rgba(0, 36, 74, 0.06);
+        }
+
+        .timeline-line {
+            height: 2px;
+            flex: 1;
+            max-width: 120px;
+            background: var(--goldenrod);
+            opacity: 0.4;
+            border-radius: 50px;
+        }
+
+        .timeline-labels {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0;
+            max-width: 680px;
+            margin: 0 auto;
+        }
+
+        .timeline-label {
+            flex: 1;
+            max-width: 160px;
+            text-align: center;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            color: var(--text-body);
+            padding: 10px 4px 0;
+        }
+
+        /* ========== STEP SECTIONS ========== */
+        .step-section {
+            padding: 80px 64px;
+        }
+
+        .step-bg-floral { background: var(--floral-white); }
+        .step-bg-white { background: var(--off-white); }
+
+        .step-inner {
+            max-width: 880px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 80px 1fr;
+            gap: 32px;
+            align-items: flex-start;
+        }
+
+        .step-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 3.2rem;
+            font-weight: 700;
+            color: var(--goldenrod);
+            line-height: 1;
+            letter-spacing: -0.03em;
+        }
+
+        .step-card {
+            background: var(--off-white);
+            border-radius: var(--radius-card);
+            padding: 40px 36px;
+            box-shadow: var(--shadow-default);
+            transition: box-shadow 0.4s ease;
+        }
+
+        .step-bg-white .step-card {
+            background: var(--floral-white);
+        }
+
+        .step-card:hover {
+            box-shadow: var(--shadow-hover);
+        }
+
+        .step-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            color: var(--prussian-blue);
+            margin-bottom: 14px;
+        }
+
+        .step-card > p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 300;
+            color: var(--text-body);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .step-list {
+            list-style: none;
+            margin-bottom: 24px;
+        }
+
+        .step-list li {
+            position: relative;
+            padding-left: 22px;
+            margin-bottom: 11px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--prussian-blue);
+            line-height: 1.6;
+        }
+
+        .step-list li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 9px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: var(--goldenrod);
+        }
+
+        .step-duration {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--gold-light);
+            border-radius: 50px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 500;
+            color: var(--goldenrod);
+        }
+
+        .step-duration svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* ========== NAO PRECISA SECTION ========== */
+        .nao-section {
+            padding: 80px 64px;
+            background: var(--off-white);
+        }
+
+        .nao-list {
+            max-width: 620px;
+            margin: 0 auto;
+            list-style: none;
+        }
+
+        .nao-list li {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            padding: 18px 0;
+            border-bottom: 1px solid rgba(0, 36, 74, 0.06);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 400;
+            color: rgba(0, 36, 74, 0.7);
+        }
+
+        .nao-list li:last-child {
+            border-bottom: none;
+        }
+
+        .nao-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background: rgba(0, 36, 74, 0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .nao-icon svg {
+            width: 13px;
+            height: 13px;
+            stroke: rgba(0, 36, 74, 0.25);
+        }
+
+        /* ========== CTA FINAL ========== */
+        .cta-section {
+            padding: 80px 64px;
+            background: var(--prussian-blue);
+            position: relative;
+        }
+
+        .cta-frame {
+            max-width: 680px;
+            margin: 0 auto;
+            border: 1px solid var(--gold-border);
+            border-radius: var(--radius-card);
+            padding: 56px 48px;
+            text-align: center;
+        }
+
+        .cta-frame h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+            font-weight: 600;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+            line-height: 1.35;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 14px 36px;
+            background: var(--floral-white);
+            color: var(--prussian-blue);
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: var(--radius-btn);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-small {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.55);
+            margin-top: 18px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1A2A3A;
+            padding: 56px 64px 32px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-separator {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            border: none;
+            height: 1px;
+            background: #C49A1B;
+            opacity: 0.2;
+        }
+
+        .footer-brand .footer-logo {
+            display: inline-block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-brand .footer-logo:hover {
+            color: #C49A1B;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-inner .footer-brand { justify-self: start; }
+        .footer-inner .footer-social { justify-self: center; }
+        .footer-inner .footer-links { justify-self: end; }
+
+        .footer-social {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #C49A1B;
+            background: rgba(196,154,27,0.08);
+            transform: translateY(-2px);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .footer-links { display: flex; gap: 24px; align-items: center; }
+        .footer-links a { font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); transition: color 0.3s ease; font-size: 0.82rem; text-decoration: none; }
+        .footer-links a:hover { color: #ffffff; }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        /* ========== ANIMATIONS ========== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.1s; }
+        .reveal-delay-2 { transition-delay: 0.2s; }
+        .reveal-delay-3 { transition-delay: 0.3s; }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            nav {
+                padding: 16px 24px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .hero {
+                padding: 130px 24px 70px;
+            }
+
+            .hero-bg-svg {
+                width: 350px;
+                height: 350px;
+            }
+
+            .timeline-section {
+                padding: 60px 24px;
+            }
+
+            .timeline-visual {
+                flex-wrap: nowrap;
+                overflow-x: auto;
+                padding: 0 8px;
+            }
+
+            .timeline-circle {
+                width: 42px;
+                height: 42px;
+                font-size: 0.9rem;
+            }
+
+            .timeline-line {
+                max-width: 50px;
+            }
+
+            .timeline-labels {
+                gap: 0;
+            }
+
+            .timeline-label {
+                font-size: 0.7rem;
+                max-width: 85px;
+            }
+
+            .step-section {
+                padding: 60px 24px;
+            }
+
+            .step-inner {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+
+            .step-number {
+                font-size: 2.4rem;
+            }
+
+            .step-card {
+                padding: 28px 22px;
+            }
+
+            .nao-section {
+                padding: 60px 24px;
+            }
+
+            .cta-section {
+                padding: 60px 24px;
+            }
+
+            .cta-frame {
+                padding: 40px 24px;
+            }
+
+            footer { padding: 40px 24px 24px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-inner .footer-brand, .footer-inner .footer-social, .footer-inner .footer-links { justify-self: center; }
+            .footer-brand { text-align: center; }
+        }
+    </style>
+</head>
+<body id="top">
+
+    <!-- NAVBAR -->
+    <nav id="navbar">
+        <a href="index.html" class="nav-logo">LL'EXPERT</a>
+        <ul class="nav-links">
+            <li><a href="sistema.html">O Sistema</a></li>
+            <li><a href="como-funciona.html" class="active">Como Funciona</a></li>
+            <li><a href="https://wa.me/48991505476" target="_blank" class="nav-cta">Falar com Lazaro</a></li>
+        </ul>
+        <div class="hamburger" id="hamburger" aria-label="Menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div class="mobile-menu" id="mobileMenu">
+        <a href="sistema.html">O Sistema</a>
+        <a href="como-funciona.html" class="active">Como Funciona</a>
+        <a href="https://wa.me/48991505476" target="_blank" class="nav-cta">Falar com Lazaro</a>
+    </div>
+
+    <!-- HERO -->
+    <section class="hero">
+        <!-- Metatron SVG background -->
+        <svg class="hero-bg-svg" viewBox="0 0 500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="250" cy="250" r="200" stroke="white" stroke-width="0.5"/>
+            <circle cx="250" cy="250" r="150" stroke="white" stroke-width="0.5"/>
+            <circle cx="250" cy="250" r="100" stroke="white" stroke-width="0.5"/>
+            <circle cx="250" cy="50" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="250" cy="450" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="50" cy="250" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="450" cy="250" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="110" cy="110" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="390" cy="110" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="110" cy="390" r="50" stroke="white" stroke-width="0.5"/>
+            <circle cx="390" cy="390" r="50" stroke="white" stroke-width="0.5"/>
+            <line x1="250" y1="50" x2="450" y2="250" stroke="white" stroke-width="0.3"/>
+            <line x1="450" y1="250" x2="250" y2="450" stroke="white" stroke-width="0.3"/>
+            <line x1="250" y1="450" x2="50" y2="250" stroke="white" stroke-width="0.3"/>
+            <line x1="50" y1="250" x2="250" y2="50" stroke="white" stroke-width="0.3"/>
+            <line x1="110" y1="110" x2="390" y2="390" stroke="white" stroke-width="0.3"/>
+            <line x1="390" y1="110" x2="110" y2="390" stroke="white" stroke-width="0.3"/>
+            <line x1="250" y1="50" x2="110" y2="390" stroke="white" stroke-width="0.3"/>
+            <line x1="250" y1="50" x2="390" y2="390" stroke="white" stroke-width="0.3"/>
+            <line x1="250" y1="450" x2="110" y2="110" stroke="white" stroke-width="0.3"/>
+            <line x1="250" y1="450" x2="390" y2="110" stroke="white" stroke-width="0.3"/>
+        </svg>
+        <div class="hero-inner">
+            <p class="hero-eyebrow reveal">COMO FUNCIONA</p>
+            <h1 class="reveal reveal-delay-1">Do diagnostico ao sistema rodando. Sem voce precisar entender de tecnologia.</h1>
+            <p class="reveal reveal-delay-2">O processo foi desenhado pra clinicas que nao tem equipe de TI. Voce foca nos pacientes, nos cuidamos da arquitetura.</p>
+            <div class="hero-pill reveal reveal-delay-3">4 etapas, sem fricao</div>
+        </div>
+    </section>
+
+    <!-- TIMELINE OVERVIEW -->
+    <section class="timeline-section">
+        <h2 class="section-title reveal">4 etapas. Da primeira conversa ao sistema operando.</h2>
+        <div class="timeline-container reveal">
+            <div class="timeline-visual">
+                <div class="timeline-circle">1</div>
+                <div class="timeline-line"></div>
+                <div class="timeline-circle">2</div>
+                <div class="timeline-line"></div>
+                <div class="timeline-circle">3</div>
+                <div class="timeline-line"></div>
+                <div class="timeline-circle">4</div>
+            </div>
+            <div class="timeline-labels">
+                <div class="timeline-label">Diagnostico</div>
+                <div class="timeline-label">Arquitetura</div>
+                <div class="timeline-label">Implementacao</div>
+                <div class="timeline-label">Operacao</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 1 -->
+    <section class="step-section step-bg-floral">
+        <div class="step-inner reveal">
+            <div class="step-number">01</div>
+            <div class="step-card">
+                <h3>Diagnostico da Operacao</h3>
+                <p>Mapeamos cada ponto da operacao: como os leads chegam, como sao atendidos, onde a equipe perde tempo, onde o dinheiro escapa. Sem achismo - com dados.</p>
+                <ul class="step-list">
+                    <li>Fluxo de atendimento atual (WhatsApp, telefone, redes)</li>
+                    <li>Processo de agendamento e follow-up</li>
+                    <li>Metricas de conversao da equipe</li>
+                    <li>Investimento em marketing vs retorno real</li>
+                </ul>
+                <div class="step-duration">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    1 a 2 semanas
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 2 -->
+    <section class="step-section step-bg-white">
+        <div class="step-inner reveal">
+            <div class="step-number">02</div>
+            <div class="step-card">
+                <h3>Desenho da Arquitetura</h3>
+                <p>Com o diagnostico em maos, projetamos o sistema sob medida. Definimos quais modulos entram, como se conectam e qual a ordem de implementacao.</p>
+                <ul class="step-list">
+                    <li>Blueprint do sistema personalizado</li>
+                    <li>Integracao com ferramentas que voce ja usa</li>
+                    <li>Fluxos de automacao desenhados</li>
+                    <li>Cronograma de implementacao</li>
+                </ul>
+                <div class="step-duration">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    1 semana
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 3 -->
+    <section class="step-section step-bg-floral">
+        <div class="step-inner reveal">
+            <div class="step-number">03</div>
+            <div class="step-card">
+                <h3>Implementacao e Treinamento</h3>
+                <p>Instalamos o sistema, treinamos a equipe e ajustamos tudo ate rodar sem fricao. Voce nao precisa entender de tecnologia - nos fazemos isso por voce.</p>
+                <ul class="step-list">
+                    <li>Configuracao dos 3 modulos (Closer, Raio-X, Controladoria)</li>
+                    <li>Treinamento da equipe no novo fluxo</li>
+                    <li>Testes com leads reais</li>
+                    <li>Ajustes finos ate tudo rodar sozinho</li>
+                </ul>
+                <div class="step-duration">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    2 a 3 semanas
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- STEP 4 -->
+    <section class="step-section step-bg-white">
+        <div class="step-inner reveal">
+            <div class="step-number">04</div>
+            <div class="step-card">
+                <h3>Operacao e Otimizacao Continua</h3>
+                <p>O sistema roda. Voce acompanha os resultados. Nos otimizamos com base nos dados reais. Cada mes o sistema fica mais inteligente.</p>
+                <ul class="step-list">
+                    <li>Dashboards com metricas em tempo real</li>
+                    <li>Relatorios automaticos semanais</li>
+                    <li>Suporte e otimizacao continua</li>
+                    <li>IA que aprende e melhora com cada interacao</li>
+                </ul>
+                <div class="step-duration">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                    Continuo
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- O QUE VOCE NAO PRECISA FAZER -->
+    <section class="nao-section">
+        <h2 class="section-title reveal">O que voce NAO precisa fazer</h2>
+        <ul class="nao-list reveal">
+            <li>
+                <span class="nao-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Entender de programacao ou tecnologia
+            </li>
+            <li>
+                <span class="nao-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Treinar a equipe em sistemas complexos
+            </li>
+            <li>
+                <span class="nao-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Comprar equipamentos ou softwares separados
+            </li>
+            <li>
+                <span class="nao-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Gerenciar servidores ou banco de dados
+            </li>
+            <li>
+                <span class="nao-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </span>
+                Ficar monitorando o sistema manualmente
+            </li>
+        </ul>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="cta-section">
+        <div class="cta-frame reveal">
+            <h2>Quer entender como isso se aplica a clinicas premium?</h2>
+            <a href="https://wa.me/48991505476" target="_blank" class="cta-btn">Falar com Lazaro &rarr;</a>
+            <p class="cta-small">Conversa individual, sem compromisso.</p>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <hr class="footer-separator">
+        <div class="footer-inner">
+            <div class="footer-brand">
+                <a href="#top" class="footer-logo" aria-label="Voltar ao topo">LL'EXPERT</a>
+                <div class="footer-tagline">Tecnologia e IA para Clinicas Premium</div>
+            </div>
+            <div class="footer-social">
+                <a href="https://www.linkedin.com/in/soulazaroleon/" target="_blank" aria-label="LinkedIn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+                </a>
+                <a href="https://www.instagram.com/soulazaroleon/" target="_blank" aria-label="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="../privacidade.html">Privacidade</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2026 LL'EXPERT. Todos os direitos reservados.
+        </div>
+    </footer>
+
+    <script>
+        // NAVBAR SCROLL
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 20) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // HAMBURGER
+        const hamburger = document.getElementById('hamburger');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        hamburger.addEventListener('click', () => {
+            hamburger.classList.toggle('open');
+            mobileMenu.classList.toggle('open');
+        });
+
+        // SCROLL REVEAL
+        const reveals = document.querySelectorAll('.reveal');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.12,
+            rootMargin: '0px 0px -40px 0px'
+        });
+
+        reveals.forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>

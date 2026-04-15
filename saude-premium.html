@@ -1,0 +1,1197 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arquitetura Digital para Clínicas Premium | LL'EXPERT - Lázaro Leon</title>
+    <meta name="description" content="Sistema de IA integrado para clínicas premium. Feche os 3 vazamentos invisíveis que impedem clínicas premium de escalar sem depender 100% do dono.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Arquitetura Digital para Clínicas Premium | LL'EXPERT - Lázaro Leon">
+    <meta property="og:description" content="Sistema de IA integrado para clínicas premium. Feche os 3 vazamentos invisíveis que impedem clínicas premium de escalar sem depender 100% do dono.">
+    <meta property="og:url" content="https://lazaleon.com.br/saude/saude-premium.html">
+    <meta property="og:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --floral-white: #FFFDF3;
+            --off-white: #FFFFFF;
+            --goldenrod: #C49A1B;
+            --prussian-blue: #00244A;
+            --transition: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--floral-white);
+            color: var(--prussian-blue);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 22px 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(0, 36, 74, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom-color: rgba(196, 154, 27, 0.18);
+        }
+
+        .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--floral-white);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(255, 253, 243, 0.8);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: opacity var(--transition);
+        }
+
+        .nav-links li a:hover { opacity: 0.55; }
+
+        .nav-links li a.nav-active {
+            color: var(--floral-white);
+            font-weight: 500;
+            border-bottom: 1px solid var(--goldenrod);
+            padding-bottom: 2px;
+        }
+
+        .nav-cta {
+            background: var(--goldenrod) !important;
+            color: var(--prussian-blue) !important;
+            border-radius: 2px !important;
+            padding: 10px 26px !important;
+            letter-spacing: 0.07em !important;
+            font-weight: 500 !important;
+        }
+
+        .nav-cta:hover { opacity: 0.82 !important; }
+
+        /* ─── HAMBURGER ─── */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--floral-white);
+            margin: 5px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            background: rgba(0, 36, 74, 0.97);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .mobile-overlay.open { display: flex; }
+
+        .mobile-overlay a {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--floral-white);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity var(--transition);
+        }
+
+        .mobile-overlay a:hover { opacity: 0.55; }
+
+        .mobile-overlay .mobile-cta {
+            margin-top: 12px;
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            padding: 14px 40px;
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+        }
+
+        /* ─── METATRON BACKGROUND ─── */
+        .metatron-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .metatron-bg canvas { display: block; }
+
+        /* ─── HERO ─── */
+        #hero {
+            position: relative;
+            background: var(--prussian-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 180px 60px 120px;
+            min-height: 100vh;
+        }
+
+        .hero-frame {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--goldenrod);
+            letter-spacing: 0.28em;
+            text-transform: uppercase;
+            margin-bottom: 28px;
+        }
+
+        .hero-headline {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.2rem, 3.8vw, 3.4rem);
+            font-weight: 600;
+            color: var(--floral-white);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 28px;
+        }
+
+        .hero-subheadline {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.02rem, 1.4vw, 1.25rem);
+            font-weight: 400;
+            color: rgba(255, 253, 243, 0.68);
+            letter-spacing: 0.02em;
+            line-height: 1.75;
+            margin-bottom: 48px;
+            max-width: 680px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-rule {
+            width: 56px;
+            height: 1px;
+            background: var(--goldenrod);
+            margin: 0 auto 36px;
+        }
+
+        .btn-primary {
+            display: inline-block;
+            border-radius: 2px;
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            padding: 18px 52px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .btn-primary:hover {
+            background: #d4a820;
+            transform: translateY(-2px);
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid var(--goldenrod);
+            border-radius: 2px;
+            padding: 18px 52px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--floral-white);
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+        }
+
+        .btn-solid {
+            display: inline-block;
+            border-radius: 2px;
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            padding: 18px 52px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: background var(--transition), transform var(--transition);
+        }
+
+        .btn-solid:hover {
+            background: #d4a820;
+            transform: translateY(-2px);
+        }
+
+        /* ─── GLOBAL SECTION ─── */
+        .section {
+            padding: 120px 64px;
+        }
+
+        .section--floral { background: var(--floral-white); }
+        .section--white { background: var(--off-white); }
+        .section--dark { background: var(--prussian-blue); }
+
+        .section-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--goldenrod);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 600;
+            color: var(--prussian-blue);
+            margin-bottom: 40px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .section-body p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.08rem;
+            font-weight: 400;
+            color: rgba(0, 36, 74, 0.82);
+            line-height: 1.85;
+            margin-bottom: 20px;
+            max-width: 680px;
+        }
+
+        .section-body p:last-child {
+            margin-bottom: 0;
+        }
+
+        .section-body p strong {
+            font-weight: 500;
+            color: var(--prussian-blue);
+        }
+
+        /* ─── LEAK CARDS ─── */
+        .leak-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 56px;
+        }
+
+        .leak-card {
+            border: 1px solid rgba(196, 154, 27, 0.25);
+            border-radius: 2px;
+            padding: 44px 36px;
+            background: var(--floral-white);
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .leak-card:hover {
+            box-shadow: 0 16px 48px rgba(0, 36, 74, 0.07);
+            transform: translateY(-4px);
+        }
+
+        .leak-icon {
+            width: 48px;
+            height: 48px;
+            margin-bottom: 28px;
+            color: var(--goldenrod);
+        }
+
+        .leak-card h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            margin-bottom: 20px;
+            letter-spacing: -0.01em;
+        }
+
+        .leak-card p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 400;
+            color: rgba(0, 36, 74, 0.75);
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .leak-card p:last-child { margin-bottom: 0; }
+
+        .leak-card .leak-highlight {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--prussian-blue);
+            border-left: 2px solid var(--goldenrod);
+            padding-left: 16px;
+            margin-top: 20px;
+        }
+
+        /* ─── SOLUTION BLOCKS ─── */
+        .solution-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 48px;
+            margin-top: 56px;
+        }
+
+        .solution-block {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 48px;
+            align-items: start;
+            padding: 48px;
+            border: 1px solid rgba(196, 154, 27, 0.18);
+            border-radius: 2px;
+            background: var(--off-white);
+            transition: box-shadow var(--transition);
+        }
+
+        .solution-block:hover {
+            box-shadow: 0 12px 40px rgba(0, 36, 74, 0.05);
+        }
+
+        .solution-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 400;
+            color: var(--goldenrod);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .solution-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            letter-spacing: -0.01em;
+            line-height: 1.3;
+        }
+
+        .solution-text p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 400;
+            color: rgba(0, 36, 74, 0.78);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .solution-text p:last-child { margin-bottom: 0; }
+
+        .solution-text p strong {
+            font-weight: 500;
+            color: var(--prussian-blue);
+        }
+
+        /* ─── PARA QUEM ─── */
+        .fit-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            margin-top: 56px;
+        }
+
+        .fit-col h3 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            margin-bottom: 28px;
+        }
+
+        .fit-list {
+            list-style: none;
+        }
+
+        .fit-list li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgba(0, 36, 74, 0.82);
+            line-height: 1.7;
+            padding: 14px 0;
+            border-bottom: 1px solid rgba(196, 154, 27, 0.12);
+            display: flex;
+            align-items: flex-start;
+            gap: 14px;
+        }
+
+        .fit-list li:last-child { border-bottom: none; }
+
+        .fit-icon {
+            flex-shrink: 0;
+            width: 20px;
+            height: 20px;
+            margin-top: 2px;
+        }
+
+        .fit-icon--yes { color: #2d8a4e; }
+        .fit-icon--no { color: rgba(0, 36, 74, 0.35); }
+
+        /* ─── TESTIMONIALS ─── */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
+            margin-top: 56px;
+        }
+
+        .testimonial-card {
+            border: 1px solid rgba(196, 154, 27, 0.2);
+            border-radius: 2px;
+            padding: 44px 36px;
+            background: var(--off-white);
+        }
+
+        .testimonial-quote-icon {
+            color: var(--goldenrod);
+            margin-bottom: 24px;
+            opacity: 0.5;
+        }
+
+        .testimonial-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            font-style: italic;
+            color: rgba(0, 36, 74, 0.55);
+            line-height: 1.8;
+            margin-bottom: 28px;
+        }
+
+        .testimonial-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: rgba(0, 36, 74, 0.45);
+        }
+
+        /* ─── BIO ─── */
+        .bio-content {
+            max-width: 680px;
+        }
+
+        .bio-content p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: rgba(0, 36, 74, 0.8);
+            line-height: 1.85;
+            margin-bottom: 20px;
+        }
+
+        .bio-content p:last-child { margin-bottom: 0; }
+
+        /* ─── CTA SECTION ─── */
+        #cta-final {
+            position: relative;
+            background: var(--prussian-blue);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 60px;
+        }
+
+        .cta-frame {
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--goldenrod);
+            border-radius: 2px;
+            padding: 88px 80px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .cta-text {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+            font-weight: 400;
+            color: var(--floral-white);
+            line-height: 1.55;
+            margin-bottom: 48px;
+        }
+
+        .cta-small {
+            margin-top: 20px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: rgba(255, 253, 243, 0.5);
+            letter-spacing: 0.02em;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1A2A3A;
+            padding: 56px 64px 32px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-separator {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            border: none;
+            height: 1px;
+            background: #C49A1B;
+            opacity: 0.2;
+        }
+
+        .footer-brand .footer-logo {
+            display: inline-block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-brand .footer-logo:hover {
+            color: #C49A1B;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-inner .footer-brand { justify-self: start; }
+        .footer-inner .footer-social { justify-self: center; }
+        .footer-inner .footer-links { justify-self: end; }
+
+        .footer-social {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #C49A1B;
+            background: rgba(196,154,27,0.08);
+            transform: translateY(-2px);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .footer-links { display: flex; gap: 24px; align-items: center; }
+        .footer-links a { font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); transition: color 0.3s ease; font-size: 0.82rem; text-decoration: none; }
+        .footer-links a:hover { color: #ffffff; }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        /* ─── FADE-IN SCROLL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.85s ease, transform 0.85s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-1 { transition-delay: 0.12s; }
+        .reveal-delay-2 { transition-delay: 0.24s; }
+        .reveal-delay-3 { transition-delay: 0.36s; }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1100px) {
+            .leak-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+            .testimonial-grid { grid-template-columns: 1fr; max-width: 560px; margin-left: auto; margin-right: auto; }
+            .solution-block { grid-template-columns: 1fr; gap: 24px; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            #hero { padding: 120px 24px 80px; min-height: auto; }
+            .section { padding: 80px 24px; }
+            .hero-headline { font-size: 1.85rem; }
+            .hero-subheadline { font-size: 1rem; }
+            .section-title { font-size: 1.7rem; }
+            .btn-primary, .btn-outline, .btn-solid { font-size: 0.78rem; padding: 16px 40px; }
+            .leak-grid { grid-template-columns: 1fr; margin-top: 36px; }
+            .leak-card { padding: 32px 28px; }
+            .fit-grid { grid-template-columns: 1fr; gap: 36px; }
+            .testimonial-grid { grid-template-columns: 1fr; margin-top: 36px; }
+            .testimonial-card { padding: 32px 28px; }
+            .solution-block { grid-template-columns: 1fr; gap: 20px; padding: 32px 28px; }
+            .solution-grid { margin-top: 36px; }
+            #cta-final { padding: 80px 24px; }
+            .cta-frame { padding: 48px 28px; }
+            footer { padding: 40px 24px 24px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-inner .footer-brand, .footer-inner .footer-social, .footer-inner .footer-links { justify-self: center; }
+            .footer-brand { text-align: center; }
+            .section-body p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body id="top">
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">LL'EXPERT</a>
+    <ul class="nav-links">
+        <li><a href="index.html">Para Experts</a></li>
+        <li><a href="saude-premium.html" class="nav-active">Para Cl&iacute;nicas</a></li>
+        <li><a href="https://wa.me/48991505476" target="_blank" class="nav-cta">Falar com L&aacute;zaro</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileMenu">
+    <a href="index.html" onclick="toggleMobile()">Para Experts</a>
+    <a href="saude-premium.html" onclick="toggleMobile()">Para Cl&iacute;nicas</a>
+    <a href="https://wa.me/48991505476" target="_blank" class="mobile-cta" onclick="toggleMobile()">Falar com L&aacute;zaro</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+    <div class="metatron-bg">
+        <canvas id="metatron-hero"></canvas>
+    </div>
+
+    <div class="hero-frame reveal">
+        <p class="hero-eyebrow">PARA CL&Iacute;NICAS PREMIUM</p>
+        <h1 class="hero-headline">
+            A cl&iacute;nica que cresce e a cl&iacute;nica que sobrevive s&atilde;o separadas por 3 vazamentos invis&iacute;veis.
+        </h1>
+        <p class="hero-subheadline">Agenda cheia n&atilde;o &eacute; sin&ocirc;nimo de caixa saud&aacute;vel. Se a opera&ccedil;&atilde;o depende 100% de voc&ecirc;, o crescimento tem prazo de validade.</p>
+        <div class="hero-rule"></div>
+        <a href="#cenario" class="btn-outline">Descobrir os 3 vazamentos &rarr;</a>
+    </div>
+</section>
+
+<!-- ─── SECTION 1: O CENÁRIO ─── -->
+<section id="cenario" class="section section--floral">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="eyebrow">O CEN&Aacute;RIO</p>
+            <h2 class="section-title">A profissional mais cara da cl&iacute;nica &eacute; quase sempre a pr&oacute;pria dona.</h2>
+        </div>
+        <div class="section-body reveal">
+            <p>Agenda lotada. Equipe que s&oacute; funciona quando voc&ecirc; est&aacute; olhando. 87 mensagens no WhatsApp quando volta de um feriado.</p>
+            <p>A receita &eacute; alta. Mas o custo de manter tudo rodando &eacute; voc&ecirc;.</p>
+            <p><strong>Voc&ecirc; n&atilde;o precisa de mais leads. Precisa de arquitetura.</strong></p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── SECTION 2: OS 3 VAZAMENTOS ─── -->
+<section id="vazamentos" class="section section--white">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="eyebrow">DIAGN&Oacute;STICO</p>
+            <h2 class="section-title">Os 3 vazamentos que a maioria das cl&iacute;nicas premium ignora.</h2>
+        </div>
+
+        <div class="leak-grid">
+            <!-- Card 1 -->
+            <div class="leak-card reveal reveal-delay-1">
+                <svg class="leak-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="4" y="8" width="40" height="28" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M4 36L18 26L24 30L30 24L44 36" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <circle cx="14" cy="18" r="3" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M16 36L24 44L32 36" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                </svg>
+                <h3>Triagem Invis&iacute;vel</h3>
+                <p>Lead chega &agrave;s 23h de domingo. Recebe &ldquo;estamos fechados&rdquo;. Vai para a concorrente que respondeu em 2 minutos.</p>
+                <p class="leak-highlight">Cada lead perdido fora do hor&aacute;rio &eacute; uma consulta de R$ 800+ que nunca aconteceu.</p>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="leak-card reveal reveal-delay-2">
+                <svg class="leak-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <rect x="12" y="4" width="24" height="40" rx="2" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="12" y1="12" x2="36" y2="12" stroke="currentColor" stroke-width="1.5"/>
+                    <line x1="12" y1="36" x2="36" y2="36" stroke="currentColor" stroke-width="1.5"/>
+                    <path d="M18 22C20 18 22 26 24 22C26 18 28 26 30 22" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <circle cx="24" cy="40" r="1.5" fill="currentColor"/>
+                </svg>
+                <h3>Raio-X de Vendas Cego</h3>
+                <p>A recepcionista atende 40 liga&ccedil;&otilde;es por dia. Quantas ela converte? Quantas ela perde? A cl&iacute;nica n&atilde;o sabe.</p>
+                <p class="leak-highlight">Sem ouvir as liga&ccedil;&otilde;es, voc&ecirc; treina no escuro e perde no sil&ecirc;ncio.</p>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="leak-card reveal reveal-delay-3">
+                <svg class="leak-icon" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <polyline points="4,40 4,8" stroke="currentColor" stroke-width="1.5"/>
+                    <polyline points="4,40 44,40" stroke="currentColor" stroke-width="1.5"/>
+                    <rect x="10" y="28" width="6" height="12" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <rect x="20" y="20" width="6" height="20" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <rect x="30" y="14" width="6" height="26" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <path d="M8 24L16 16L26 20L38 8" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                    <circle cx="38" cy="8" r="2.5" stroke="currentColor" stroke-width="1.5"/>
+                </svg>
+                <h3>Controladoria de Caixa no Escuro</h3>
+                <p>Voc&ecirc; investe R$ 15 mil em tr&aacute;fego por m&ecirc;s. Sabe qual campanha pagou o feriado da &uacute;ltima semana?</p>
+                <p class="leak-highlight">Se n&atilde;o consegue ligar o post do Instagram &agrave; paciente que sentou na cadeira, est&aacute; jogando dinheiro no escuro.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── SECTION 3: A SOLUÇÃO ─── -->
+<section id="solucao" class="section section--floral">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="eyebrow">A ARQUITETURA</p>
+            <h2 class="section-title">Um sistema que fecha os 3 vazamentos.<br>Sem voc&ecirc; precisar virar a gestora de TI.</h2>
+        </div>
+
+        <div class="solution-grid">
+            <!-- Solution 1 -->
+            <div class="solution-block reveal">
+                <div>
+                    <p class="solution-label">VAZAMENTO 1 &rarr; SOLU&Ccedil;&Atilde;O</p>
+                    <h3 class="solution-name">Closer Invis&iacute;vel 24h</h3>
+                </div>
+                <div class="solution-text">
+                    <p>Um agente de IA no WhatsApp que responde em 3 segundos. Qualifica a paciente. E entrega o lead quente para a equipe na segunda-feira de manh&atilde;.</p>
+                    <p><strong>A paciente VIP que mandou mensagem &agrave;s 2h da manh&atilde;? Atendida. Qualificada. Pronta para agendar.</strong></p>
+                </div>
+            </div>
+
+            <!-- Solution 2 -->
+            <div class="solution-block reveal">
+                <div>
+                    <p class="solution-label">VAZAMENTO 2 &rarr; SOLU&Ccedil;&Atilde;O</p>
+                    <h3 class="solution-name">Raio-X de Vendas</h3>
+                </div>
+                <div class="solution-text">
+                    <p>Grava&ccedil;&atilde;o e transcri&ccedil;&atilde;o autom&aacute;tica de todas as liga&ccedil;&otilde;es. IA analisa o pitch da equipe e mostra exatamente onde as vendas est&atilde;o morrendo.</p>
+                    <p><strong>Treinamento baseado em dados reais, n&atilde;o em achismo.</strong></p>
+                </div>
+            </div>
+
+            <!-- Solution 3 -->
+            <div class="solution-block reveal">
+                <div>
+                    <p class="solution-label">VAZAMENTO 3 &rarr; SOLU&Ccedil;&Atilde;O</p>
+                    <h3 class="solution-name">Controladoria Direta</h3>
+                </div>
+                <div class="solution-text">
+                    <p>Tracking UTM at&eacute; a convers&atilde;o real. Voc&ecirc; v&ecirc; qual post do Instagram trouxe a paciente que pagou R$ 12 mil no procedimento.</p>
+                    <p><strong>Cada real investido em marketing, rastreado at&eacute; o resultado na cadeira.</strong></p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── SECTION 4: PARA QUEM É ─── -->
+<section id="para-quem" class="section section--white">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="eyebrow">PARA QUEM</p>
+            <h2 class="section-title">Isso foi desenhado para voc&ecirc; se...</h2>
+        </div>
+
+        <div class="fit-grid reveal">
+            <!-- Yes Column -->
+            <div class="fit-col">
+                <h3>Faz sentido se voc&ecirc;...</h3>
+                <ul class="fit-list">
+                    <li>
+                        <svg class="fit-icon fit-icon--yes" viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Tem cl&iacute;nica com agenda consolidada e faturamento acima de R$ 100 mil/m&ecirc;s
+                    </li>
+                    <li>
+                        <svg class="fit-icon fit-icon--yes" viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Sente que a opera&ccedil;&atilde;o depende demais de voc&ecirc;
+                    </li>
+                    <li>
+                        <svg class="fit-icon fit-icon--yes" viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        J&aacute; tentou chatbots gen&eacute;ricos e ficou com vergonha do resultado
+                    </li>
+                    <li>
+                        <svg class="fit-icon fit-icon--yes" viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        Quer escalar sem perder o padr&atilde;o premium
+                    </li>
+                    <li>
+                        <svg class="fit-icon fit-icon--yes" viewBox="0 0 20 20" fill="none"><path d="M4 10.5L8 14.5L16 6.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        N&atilde;o quer virar gestora de TI &mdash; quer que funcione
+                    </li>
+                </ul>
+            </div>
+
+            <!-- No Column -->
+            <div class="fit-col">
+                <h3>N&atilde;o faz sentido se voc&ecirc;...</h3>
+                <ul class="fit-list">
+                    <li>
+                        <svg class="fit-icon fit-icon--no" viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        Est&aacute; come&ccedil;ando agora e ainda n&atilde;o tem fluxo de pacientes
+                    </li>
+                    <li>
+                        <svg class="fit-icon fit-icon--no" viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        Quer solu&ccedil;&atilde;o milagrosa sem investir em estrutura
+                    </li>
+                    <li>
+                        <svg class="fit-icon fit-icon--no" viewBox="0 0 20 20" fill="none"><path d="M5 5L15 15M15 5L5 15" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                        Prefere manter tudo como est&aacute;
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- PROVA SOCIAL - oculta até ter depoimentos reais
+<section id="resultados" class="section section--floral">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="eyebrow">RESULTADOS</p>
+            <h2 class="section-title">O que muda quando os vazamentos param.</h2>
+        </div>
+
+        <div class="testimonial-grid">
+            <div class="testimonial-card reveal reveal-delay-1">
+                <svg class="testimonial-quote-icon" width="32" height="24" viewBox="0 0 32 24" fill="none">
+                    <path d="M0 24V14.4C0 10.4 0.8 7.2 2.4 4.8C4.08 2.4 6.72 0.64 10.32 0L12 3.6C9.84 4.24 8.16 5.28 6.96 6.72C5.84 8.16 5.2 9.84 5.04 11.76H10V24H0ZM20 24V14.4C20 10.4 20.8 7.2 22.4 4.8C24.08 2.4 26.72 0.64 30.32 0L32 3.6C29.84 4.24 28.16 5.28 26.96 6.72C25.84 8.16 25.2 9.84 25.04 11.76H30V24H20Z" fill="currentColor"/>
+                </svg>
+                <p class="testimonial-text">Depoimento em breve &mdash; resultados sendo documentados.</p>
+                <p class="testimonial-name">Dra. _____, Dermatologista</p>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-2">
+                <svg class="testimonial-quote-icon" width="32" height="24" viewBox="0 0 32 24" fill="none">
+                    <path d="M0 24V14.4C0 10.4 0.8 7.2 2.4 4.8C4.08 2.4 6.72 0.64 10.32 0L12 3.6C9.84 4.24 8.16 5.28 6.96 6.72C5.84 8.16 5.2 9.84 5.04 11.76H10V24H0ZM20 24V14.4C20 10.4 20.8 7.2 22.4 4.8C24.08 2.4 26.72 0.64 30.32 0L32 3.6C29.84 4.24 28.16 5.28 26.96 6.72C25.84 8.16 25.2 9.84 25.04 11.76H30V24H20Z" fill="currentColor"/>
+                </svg>
+                <p class="testimonial-text">Depoimento em breve &mdash; resultados sendo documentados.</p>
+                <p class="testimonial-name">Dra. _____, Cirurgi&atilde; Pl&aacute;stica</p>
+            </div>
+
+            <div class="testimonial-card reveal reveal-delay-3">
+                <svg class="testimonial-quote-icon" width="32" height="24" viewBox="0 0 32 24" fill="none">
+                    <path d="M0 24V14.4C0 10.4 0.8 7.2 2.4 4.8C4.08 2.4 6.72 0.64 10.32 0L12 3.6C9.84 4.24 8.16 5.28 6.96 6.72C5.84 8.16 5.2 9.84 5.04 11.76H10V24H0ZM20 24V14.4C20 10.4 20.8 7.2 22.4 4.8C24.08 2.4 26.72 0.64 30.32 0L32 3.6C29.84 4.24 8.16 5.28 26.96 6.72C25.84 8.16 25.2 9.84 25.04 11.76H30V24H20Z" fill="currentColor"/>
+                </svg>
+                <p class="testimonial-text">Depoimento em breve &mdash; resultados sendo documentados.</p>
+                <p class="testimonial-name">Dra. _____, Nutricionista</p>
+            </div>
+        </div>
+    </div>
+</section>
+-->
+
+<!-- ─── SECTION 6: QUEM É LÁZARO ─── -->
+<section id="quem" class="section section--white">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="eyebrow">QUEM EST&Aacute; POR TR&Aacute;S</p>
+            <h2 class="section-title">L&aacute;zaro Leon</h2>
+        </div>
+        <div class="bio-content reveal">
+            <p>L&aacute;zaro Leon &eacute; Arquiteto de Solu&ccedil;&otilde;es Digitais. Combina estrat&eacute;gia, tecnologia e IA para transformar a opera&ccedil;&atilde;o de cl&iacute;nicas premium em sistemas que rodam sem o dono precisar carregar tudo.</p>
+            <p>N&atilde;o vende sistema. N&atilde;o vende consultoria gen&eacute;rica. Projeta e implementa a l&oacute;gica que faz o neg&oacute;cio funcionar quando voc&ecirc; n&atilde;o est&aacute; olhando.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CTA FINAL ─── -->
+<section id="cta-final">
+    <div class="metatron-bg">
+        <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%">
+            <defs>
+                <pattern id="mp-cta" x="0" y="0" width="400" height="400" patternUnits="userSpaceOnUse">
+                    <circle cx="200" cy="200" r="80"      fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="200" cy="120" r="80"      fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="269.28" cy="160" r="80"   fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="269.28" cy="240" r="80"   fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="200" cy="280" r="80"      fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="130.72" cy="240" r="80"   fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="130.72" cy="160" r="80"   fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <circle cx="200" cy="200" r="160"     fill="none" stroke="#C49A1B" stroke-width="0.45"/>
+                    <line x1="200" y1="40"    x2="200" y2="360"        stroke="#C49A1B" stroke-width="0.4"/>
+                    <line x1="61.44" y1="120" x2="338.56" y2="280"    stroke="#C49A1B" stroke-width="0.4"/>
+                    <line x1="61.44" y1="280" x2="338.56" y2="120"    stroke="#C49A1B" stroke-width="0.4"/>
+                    <polygon points="200,120 269.28,160 269.28,240 200,280 130.72,240 130.72,160" fill="none" stroke="#C49A1B" stroke-width="0.55"/>
+                    <line x1="200" y1="120"    x2="269.28" y2="240"   stroke="#C49A1B" stroke-width="0.35"/>
+                    <line x1="200" y1="120"    x2="130.72" y2="240"   stroke="#C49A1B" stroke-width="0.35"/>
+                    <line x1="269.28" y1="160" x2="130.72" y2="240"   stroke="#C49A1B" stroke-width="0.35"/>
+                    <line x1="269.28" y1="160" x2="130.72" y2="160"   stroke="#C49A1B" stroke-width="0.35"/>
+                    <line x1="269.28" y1="240" x2="130.72" y2="160"   stroke="#C49A1B" stroke-width="0.35"/>
+                    <line x1="200" y1="280"    x2="269.28" y2="160"   stroke="#C49A1B" stroke-width="0.35"/>
+                    <line x1="200" y1="280"    x2="130.72" y2="160"   stroke="#C49A1B" stroke-width="0.35"/>
+                </pattern>
+            </defs>
+            <rect width="100%" height="100%" fill="url(#mp-cta)" opacity="0.042"/>
+        </svg>
+    </div>
+
+    <div class="cta-frame reveal">
+        <p class="cta-text">
+            Cl&iacute;nicas premium faturam bem. Mas quanto mais poderiam faturar se os 3 vazamentos parassem?
+        </p>
+        <a href="https://wa.me/48991505476" class="btn-solid" target="_blank">Falar com L&aacute;zaro &rarr;</a>
+        <p class="cta-small">Conversa individual, sem compromisso. Sem script de vendas.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <hr class="footer-separator">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#top" class="footer-logo" aria-label="Voltar ao topo">LL'EXPERT</a>
+            <div class="footer-tagline">Tecnologia e IA para Clinicas Premium</div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/soulazaroleon/" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/soulazaroleon/" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="privacidade.html">Privacidade</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 LL'EXPERT. Todos os direitos reservados.
+    </div>
+</footer>
+
+<script>
+    // Mobile menu
+    function toggleMobile() {
+        document.getElementById('hamburger').classList.toggle('open');
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Navbar scroll - starts transparent over dark hero, gains solid dark bg on scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        navbar.classList.toggle('scrolled', window.scrollY > 36);
+    });
+
+    // Scroll reveal with IntersectionObserver
+    var reveals = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+        });
+    }, { threshold: 0.08 });
+    reveals.forEach(function(el) { io.observe(el); });
+
+    // Hero reveal immediately
+    var heroReveal = document.querySelector('#hero .reveal');
+    if (heroReveal) heroReveal.classList.add('visible');
+
+    // ─── Mesh with Pulse (same as main site) ───
+    function drawMesh(canvasId, opts) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        var section = canvas.closest('section');
+
+        var time = 0;
+        function animate() {
+            time += 0.014;
+            var pulse = 0.15 + 0.85 * (0.5 + 0.5 * Math.sin(time));
+
+            var rect = section.getBoundingClientRect();
+            var w = rect.width;
+            var h = rect.height;
+            var dpr = window.devicePixelRatio || 1;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            var sp = opts.spacing;
+            var vy = sp * Math.sqrt(3) / 2;
+            var pts = [];
+            var rows = Math.ceil(h / vy) + 6;
+            var cols = Math.ceil(w / sp) + 6;
+            for (var r = -3; r < rows; r++) {
+                for (var c = -3; c < cols; c++) {
+                    pts.push({
+                        x: c * sp + (r % 2 !== 0 ? sp / 2 : 0),
+                        y: r * vy
+                    });
+                }
+            }
+
+            ctx.strokeStyle = opts.color;
+            ctx.lineWidth = opts.lineWidth;
+            var maxD = sp * 1.1;
+            for (var i = 0; i < pts.length; i++) {
+                for (var j = i + 1; j < pts.length; j++) {
+                    var dx = pts[i].x - pts[j].x;
+                    var dy = pts[i].y - pts[j].y;
+                    var d = dx * dx + dy * dy;
+                    if (d <= maxD * maxD) {
+                        ctx.globalAlpha = opts.lineOpacity * pulse;
+                        ctx.beginPath();
+                        ctx.moveTo(pts[i].x, pts[i].y);
+                        ctx.lineTo(pts[j].x, pts[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            ctx.lineWidth = opts.dotStroke;
+            for (var k = 0; k < pts.length; k++) {
+                ctx.globalAlpha = opts.dotOpacity * pulse;
+                ctx.beginPath();
+                ctx.arc(pts[k].x, pts[k].y, opts.dotRadius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    drawMesh('metatron-hero', {
+        spacing: 65,
+        color: '#C49A1B',
+        lineWidth: 0.8,
+        lineOpacity: 0.18,
+        dotOpacity: 0.28,
+        dotRadius: 2.5,
+        dotStroke: 1.1
+    });
+</script>
+</body>
+</html>

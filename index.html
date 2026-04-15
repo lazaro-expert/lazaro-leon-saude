@@ -1,0 +1,1508 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LL'EXPERT - Lázaro Leon | Arquitetura Digital e IA para Clínicas Premium</title>
+    <meta name="description" content="Arquitetura digital e IA para clínicas premium. Atendimento autônomo, raio-x de vendas e controladoria de marketing num único sistema.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="LL'EXPERT - Tecnologia e IA para Clínicas Premium">
+    <meta property="og:description" content="Arquitetura digital e IA para clínicas premium operarem com excelência.">
+    <meta property="og:url" content="https://lazaleon.com.br">
+    <meta property="og:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <!-- Google Analytics - substitua G-XXXXXXXXXX pelo seu ID real -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-XXXXXXXXXX');
+    </script>
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --floral-white: #FFFDF3;
+            --off-white: #FFFFFF;
+            --goldenrod: #C49A1B;
+            --prussian-blue: #00244A;
+            --transition: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--floral-white);
+            color: var(--prussian-blue);
+            overflow-x: hidden;
+        }
+
+        /* ─── NAVBAR ─── */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 22px 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 253, 243, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom-color: rgba(220, 163, 30, 0.18);
+        }
+
+        .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: opacity var(--transition);
+        }
+
+        .nav-links li a:hover { opacity: 0.55; }
+
+        .nav-cta {
+            background: var(--prussian-blue) !important;
+            color: var(--floral-white) !important;
+            border-radius: 2px !important;
+            padding: 10px 26px !important;
+            letter-spacing: 0.07em !important;
+        }
+
+        .nav-cta:hover { opacity: 0.82 !important; }
+
+        /* ─── HAMBURGER ─── */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--prussian-blue);
+            margin: 5px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            background: rgba(255,253,243,0.97);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .mobile-overlay.open { display: flex; }
+
+        .mobile-overlay a {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity var(--transition);
+        }
+
+        .mobile-overlay a:hover { opacity: 0.55; }
+
+        .mobile-overlay .mobile-cta {
+            margin-top: 12px;
+            background: var(--prussian-blue);
+            color: var(--floral-white);
+            padding: 14px 40px;
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+        }
+
+        /* ─── METATRON BACKGROUND ─── */
+        .metatron-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .metatron-bg canvas { display: block; }
+
+        /* ─── HERO ─── */
+        #hero {
+            position: relative;
+            background: var(--floral-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 160px 60px 60px;
+        }
+
+        .hero-photo-bridge {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: center;
+            pointer-events: none;
+            margin-bottom: 40px;
+        }
+
+        .hero-photo-bridge img,
+        .hero-photo-bridge .photo-bridge-placeholder {
+            width: 100%;
+            max-width: 600px;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            object-position: center top;
+            border: none;
+            border-radius: 12px;
+            display: block;
+            pointer-events: auto;
+            position: relative;
+            z-index: 2;
+            box-shadow: 0 8px 40px rgba(0,36,74,0.12);
+        }
+
+        .photo-bridge-placeholder {
+            background: rgba(220,163,30,0.04);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .photo-bridge-label {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.3);
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        .hero-frame {
+            position: relative;
+            z-index: 1;
+            max-width: 860px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-headline {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.2rem, 3.8vw, 3.6rem);
+            font-weight: 600;
+            color: var(--prussian-blue);
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .hero-subheadline {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.05rem, 1.5vw, 1.35rem);
+            font-weight: 400;
+            color: rgba(0,36,74,0.68);
+            letter-spacing: 0.02em;
+            line-height: 1.7;
+            margin-bottom: 44px;
+        }
+
+        .hero-rule {
+            width: 56px;
+            height: 1px;
+            background: var(--goldenrod);
+            margin: 0 auto 32px;
+        }
+
+        .btn-outline {
+            display: inline-block;
+            border: 1px solid var(--prussian-blue);
+            border-radius: 2px;
+            padding: 14px 40px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .btn-outline:hover {
+            background: var(--prussian-blue);
+            color: var(--floral-white);
+        }
+
+        /* ─── TRAJETÓRIA ─── */
+        #trajetória {
+            position: relative;
+            background: var(--off-white);
+            padding: 60px 64px 120px;
+        }
+
+        .traj-single {
+            position: relative;
+            z-index: 1;
+            max-width: 760px;
+            margin: 0 auto;
+            width: 100%;
+        }
+
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 400;
+            color: var(--goldenrod);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            font-weight: 600;
+            color: var(--prussian-blue);
+            margin-bottom: 36px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .text-wrapper {
+            position: relative;
+        }
+
+        .text-clip {
+            max-height: 155px;
+            overflow: hidden;
+            transition: max-height 0.75s cubic-bezier(0.4,0,0.2,1);
+        }
+
+        .text-clip.open { max-height: 3000px; }
+
+        .text-fade-mask {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            height: 90px;
+            background: linear-gradient(transparent, var(--off-white));
+            transition: opacity 0.4s ease;
+            pointer-events: none;
+        }
+
+        .text-clip.open + .text-fade-mask { opacity: 0; }
+
+        .traj-body p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.86);
+            line-height: 1.9;
+            margin-bottom: 20px;
+        }
+
+        .expand-btn {
+            margin-top: 22px;
+            background: none;
+            border: none;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 400;
+            color: var(--goldenrod);
+            cursor: pointer;
+            letter-spacing: 0.05em;
+            padding: 0;
+            transition: opacity var(--transition);
+        }
+
+        .expand-btn:hover { opacity: 0.65; }
+
+        /* ─── ARQUITETURA DIGITAL ─── */
+        #arquitetura {
+            background: var(--floral-white);
+            padding: 120px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 72px;
+        }
+
+        .cards-row {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            border: 1px solid var(--goldenrod);
+            border-radius: 2px;
+            padding: 44px 32px 32px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--goldenrod);
+            transition: width 0.6s ease;
+        }
+
+        .service-card:hover::before {
+            width: 100%;
+        }
+
+        .service-card:hover {
+            box-shadow: 0 8px 32px rgba(196,154,27,0.08), 0 0 0 1px rgba(196,154,27,0.15);
+            transform: translateY(-4px);
+        }
+
+        .service-card:hover .card-icon {
+            transform: scale(1.1) rotate(3deg);
+        }
+
+        .service-card:hover .card-name {
+            color: var(--goldenrod);
+        }
+
+        .card-icon {
+            width: 30px;
+            height: 30px;
+            color: var(--goldenrod);
+            margin-bottom: 28px;
+            transition: transform var(--transition);
+        }
+
+        .card-name {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            letter-spacing: 0.01em;
+            line-height: 1.35;
+            margin-bottom: 18px;
+            transition: color var(--transition);
+        }
+
+        .card-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.82);
+            line-height: 1.85;
+            margin-bottom: 22px;
+        }
+
+        .chevron-btn {
+            background: none;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--goldenrod);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.72rem;
+            letter-spacing: 0.06em;
+            padding: 0;
+            margin-bottom: 14px;
+            transition: opacity var(--transition);
+        }
+
+        .chevron-btn:hover { opacity: 0.65; }
+
+        .chevron-icon {
+            display: inline-block;
+            transition: transform var(--transition);
+        }
+
+        .chevron-btn.open .chevron-icon { transform: rotate(180deg); }
+
+        .card-extra {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .card-extra.open { max-height: 300px; }
+
+        .card-extra-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.78);
+            line-height: 1.85;
+            padding-bottom: 18px;
+        }
+
+        .card-footer {
+            margin-top: auto;
+            padding-top: 22px;
+            border-top: 1px solid rgba(220,163,30,0.25);
+            text-align: right;
+        }
+
+        .card-footer a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.76rem;
+            color: var(--goldenrod);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: opacity var(--transition);
+        }
+
+        .card-footer a:hover { opacity: 0.65; }
+
+        .service-card-featured {
+            background: linear-gradient(180deg, rgba(196,154,27,0.06) 0%, rgba(255,255,255,0.4) 100%);
+            border: 1.5px solid var(--goldenrod);
+            box-shadow: 0 4px 24px rgba(196,154,27,0.08);
+        }
+
+        .service-card-featured:hover {
+            box-shadow: 0 12px 40px rgba(196,154,27,0.15), 0 0 0 1px rgba(196,154,27,0.25) !important;
+        }
+
+        .card-tag {
+            position: absolute;
+            top: 16px;
+            right: 16px;
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 500;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            padding: 4px 10px;
+            border-radius: 100px;
+        }
+
+        /* ─── CONTEÚDO ─── */
+        #conteudo {
+            background: var(--off-white);
+            padding: 120px 64px;
+        }
+
+        .conteudo-head {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto 56px;
+        }
+
+        .conteudo-head a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.76rem;
+            color: var(--goldenrod);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: opacity var(--transition);
+        }
+
+        .conteudo-head a:hover { opacity: 0.65; }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 36px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .article-card {
+            border: 1px solid var(--goldenrod);
+            border-radius: 2px;
+            overflow: hidden;
+            display: block;
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .article-card:hover {
+            box-shadow: 0 12px 40px rgba(196,154,27,0.1);
+            transform: translateY(-6px);
+        }
+
+        .article-img {
+            aspect-ratio: 16/9;
+            border-bottom: 1px solid rgba(196,154,27,0.2);
+            overflow: hidden;
+        }
+
+        .article-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+
+        .article-card:hover .article-img img {
+            transform: scale(1.03);
+        }
+
+        .article-body { padding: 30px 32px 24px; }
+
+        .article-footer {
+            margin-top: 20px;
+            padding-top: 18px;
+            border-top: 1px solid rgba(220,163,30,0.25);
+            text-align: right;
+        }
+
+        .article-cta {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.76rem;
+            color: var(--goldenrod);
+            letter-spacing: 0.04em;
+            transition: opacity var(--transition);
+        }
+
+        .article-card:hover .article-cta { opacity: 0.65; }
+
+        .article-cat {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.62rem;
+            font-weight: 400;
+            color: var(--goldenrod);
+            letter-spacing: 0.22em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .article-title {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 500;
+            color: var(--prussian-blue);
+            line-height: 1.3;
+            margin-bottom: 12px;
+        }
+
+        .article-desc {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.75);
+            line-height: 1.8;
+        }
+
+        /* ─── VAMOS CONVERSAR ─── */
+        #conversar {
+            position: relative;
+            background: var(--floral-white);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 120px 60px;
+        }
+
+        .conversar-frame {
+            position: relative;
+            z-index: 1;
+            border: 1px solid var(--goldenrod);
+            border-radius: 2px;
+            padding: 88px 80px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .conversar-text {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.3rem, 2.2vw, 1.9rem);
+            font-weight: 400;
+            color: var(--prussian-blue);
+            line-height: 1.55;
+            margin-bottom: 48px;
+        }
+
+        .btn-solid {
+            display: inline-block;
+            border-radius: 2px;
+            background: var(--prussian-blue);
+            color: var(--floral-white);
+            padding: 18px 52px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            text-decoration: none;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: background var(--transition), color var(--transition);
+        }
+
+        .btn-solid:hover {
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1A2A3A;
+            padding: 56px 64px 32px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-separator {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            border: none;
+            height: 1px;
+            background: #C49A1B;
+            opacity: 0.2;
+        }
+
+        .footer-brand .footer-logo {
+            display: inline-block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-brand .footer-logo:hover {
+            color: #C49A1B;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-inner .footer-brand { justify-self: start; }
+        .footer-inner .footer-social { justify-self: center; }
+        .footer-inner .footer-links { justify-self: end; }
+
+        .footer-social {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #C49A1B;
+            background: rgba(196,154,27,0.08);
+            transform: translateY(-2px);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .footer-links a {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        @keyframes framePulse {
+            0%, 100% { border-color: rgba(196,154,27,0.15); box-shadow: 0 0 0 rgba(196,154,27,0); }
+            50% { border-color: rgba(196,154,27,0.35); box-shadow: 0 0 20px rgba(196,154,27,0.06); }
+        }
+
+        /* ─── FADE-IN SCROLL ─── */
+        .reveal {
+            opacity: 0;
+            transform: translateY(22px);
+            transition: opacity 0.85s ease, transform 0.85s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 1100px) {
+            .cards-row { grid-template-columns: 1fr; max-width: 520px; margin: 0 auto; }
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            #hero { padding: 100px 24px 70px; }
+            #trajetória, #arquitetura, #conteudo, #conversar { padding: 100px 24px 80px; }
+            .hero-photo-bridge { margin-bottom: 24px; }
+            .hero-photo-bridge .photo-bridge-placeholder { max-width: 90%; }
+            .hero-frame { padding: 48px 16px; }
+            .hero-headline { font-size: 1.85rem; }
+            .hero-subheadline { font-size: 1.1rem; }
+            .btn-outline { font-size: 0.85rem; padding: 16px 44px; }
+            .conversar-frame { padding: 48px 28px; }
+            .bio-content { padding: 80px 24px !important; }
+            #trajetória { min-height: 400px !important; }
+            #cenario { padding: 80px 24px !important; }
+            .cenario-grid { grid-template-columns: 1fr !important; }
+            #oquefazemos { padding: 80px 24px !important; }
+            #oquefazemos .reveal div[style*="grid-template-columns"] { grid-template-columns: 1fr !important; }
+            .sistema-preview-grid { grid-template-columns: 1fr !important; }
+            #sistema-preview { padding: 80px 24px !important; }
+            .articles-grid { grid-template-columns: 1fr; }
+            .conteudo-head { flex-direction: column; align-items: flex-start; gap: 14px; }
+            footer { padding: 40px 24px 24px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-inner .footer-brand, .footer-inner .footer-social, .footer-inner .footer-links { justify-self: center; }
+            .footer-brand { text-align: center; }
+        }
+    </style>
+</head>
+<body id="top">
+
+<!-- ─── NAVBAR ─── -->
+<nav id="navbar">
+    <a href="#top" class="nav-logo">LL'EXPERT</a>
+    <ul class="nav-links">
+        <li><a href="#cenario">Cenário</a></li>
+        <li><a href="#oquefazemos">O Que Fazemos</a></li>
+        <li><a href="#sistema-preview">O Nexus</a></li>
+        <li><a href="#arquitetura">Serviços</a></li>
+        <li><a href="#conversar" class="nav-cta">Contato</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileMenu">
+    <a href="#cenario" onclick="toggleMobile()">Cenário</a>
+    <a href="#oquefazemos" onclick="toggleMobile()">O Que Fazemos</a>
+    <a href="#sistema-preview" onclick="toggleMobile()">O Nexus</a>
+    <a href="#arquitetura" onclick="toggleMobile()">Serviços</a>
+    <a href="#conversar" class="mobile-cta" onclick="toggleMobile()">Contato</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="hero">
+    <div class="metatron-bg">
+        <canvas id="metatron-hero"></canvas>
+    </div>
+
+    <div class="hero-frame reveal">
+        <h1 class="hero-headline">
+            Arquitetura digital e IA para<br>clínicas premium operarem<br>com excelência.
+        </h1>
+        <p class="hero-subheadline">Atendimento autônomo, raio-x de vendas e controladoria de marketing num único sistema.</p>
+        <div class="hero-rule"></div>
+        <a href="#arquitetura" class="btn-outline">Ver como funciona</a>
+    </div>
+</section>
+
+<!-- ─── O CENÁRIO ─── -->
+<section id="cenario" style="background:#00244A;padding:100px 64px;position:relative;overflow:hidden;">
+    <!-- Malha interativa no cenario -->
+    <div class="metatron-bg" style="pointer-events:none;"><canvas id="metatron-cenario"></canvas></div>
+
+    <div style="max-width:900px;margin:0 auto;position:relative;z-index:1;">
+        <p class="eyebrow reveal" style="color:#C49A1B;">O CENÁRIO</p>
+        <h2 class="section-title reveal" style="color:#FFFDF3;margin-bottom:28px;">O mercado da saúde premium está mudando.</h2>
+        <p class="reveal" style="font-family:'Inter',sans-serif;font-size:1.05rem;color:rgba(255,253,243,0.65);line-height:1.85;margin-bottom:48px;">
+            Clínicas que faturam bem já entenderam: mais leads não resolve o problema. O diferencial hoje está na inteligência operacional - na forma como cada paciente é atendido, qualificado e acompanhado.
+        </p>
+
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:56px;" class="cenario-grid">
+            <div class="cenario-card reveal" style="background:rgba(255,253,243,0.03);border:1px solid rgba(196,154,27,0.1);border-radius:12px;padding:36px 32px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-1px;left:0;width:0;height:2px;background:linear-gradient(90deg,#C49A1B,rgba(196,154,27,0.2));transition:width 0.6s ease;" class="card-line"></div>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round" style="margin-bottom:16px;opacity:0.7;"><circle cx="14" cy="14" r="11"/><line x1="14" y1="3" x2="14" y2="25"/><path d="M3 14h22"/></svg>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#FFFDF3;margin-bottom:10px;letter-spacing:-0.02em;">Operação dependente do dono</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(255,253,243,0.5);line-height:1.75;">A maioria das clínicas premium tem uma dona que carrega tudo: marketing, gestão, atendimento, decisões. Isso tem um teto.</p>
+            </div>
+            <div class="cenario-card reveal" style="background:rgba(255,253,243,0.03);border:1px solid rgba(196,154,27,0.1);border-radius:12px;padding:36px 32px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-1px;left:0;width:0;height:2px;background:linear-gradient(90deg,#C49A1B,rgba(196,154,27,0.2));transition:width 0.6s ease;" class="card-line"></div>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round" style="margin-bottom:16px;opacity:0.7;"><path d="M4 24l6-8 4 4 6-10 4 6"/></svg>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#FFFDF3;margin-bottom:10px;letter-spacing:-0.02em;">Leads perdidos fora do horário</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(255,253,243,0.5);line-height:1.75;">Pacientes mandam mensagem fora do expediente e recebem silêncio. Cada lead ignorado é uma consulta que foi pra concorrente.</p>
+            </div>
+            <div class="cenario-card reveal" style="background:rgba(255,253,243,0.03);border:1px solid rgba(196,154,27,0.1);border-radius:12px;padding:36px 32px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-1px;left:0;width:0;height:2px;background:linear-gradient(90deg,#C49A1B,rgba(196,154,27,0.2));transition:width 0.6s ease;" class="card-line"></div>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round" style="margin-bottom:16px;opacity:0.7;"><rect x="4" y="4" width="20" height="20" rx="3"/><path d="M4 11h20"/><path d="M11 4v20"/></svg>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#FFFDF3;margin-bottom:10px;letter-spacing:-0.02em;">Marketing sem rastreio real</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(255,253,243,0.5);line-height:1.75;">Investe-se alto em tráfego mas sem saber qual campanha trouxe qual paciente. O dinheiro entra e escoa sem controle.</p>
+            </div>
+            <div class="cenario-card reveal" style="background:rgba(255,253,243,0.03);border:1px solid rgba(196,154,27,0.1);border-radius:12px;padding:36px 32px;transition:all 0.5s cubic-bezier(0.4,0,0.2,1);position:relative;overflow:hidden;">
+                <div style="position:absolute;top:-1px;left:0;width:0;height:2px;background:linear-gradient(90deg,#C49A1B,rgba(196,154,27,0.2));transition:width 0.6s ease;" class="card-line"></div>
+                <svg width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round" style="margin-bottom:16px;opacity:0.7;"><path d="M14 3l3 8h8l-6.5 5 2.5 8L14 18l-7 6 2.5-8L3 11h8z"/></svg>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#FFFDF3;margin-bottom:10px;letter-spacing:-0.02em;">Pacientes que somem sem retornar</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(255,253,243,0.5);line-height:1.75;">Depois do primeiro atendimento, a comunicação se perde. Sem follow-up estruturado, pacientes ideais vão para a concorrência ou esquecem a próxima consulta.</p>
+            </div>
+        </div>
+
+        <div class="reveal" style="border-left:2px solid rgba(196,154,27,0.3);padding-left:28px;max-width:700px;">
+            <p style="font-family:'Inter',sans-serif;font-size:0.98rem;color:rgba(255,253,243,0.6);line-height:1.85;">É nesse cenário que a LL'EXPERT atua. Projetamos a arquitetura que conecta atendimento, vendas e marketing num sistema inteligente - para clínicas premium crescerem sem depender 100% do dono.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── O QUE FAZEMOS ─── -->
+<section id="oquefazemos" style="background:#FFFDF3;padding:100px 64px;position:relative;overflow:hidden;">
+    <div class="metatron-bg" style="pointer-events:none;"><canvas id="metatron-oquefazemos"></canvas></div>
+    <div style="max-width:900px;margin:0 auto;text-align:center;">
+        <p class="eyebrow reveal">O QUE FAZEMOS</p>
+        <h2 class="section-title reveal" style="margin-bottom:28px;">Arquitetura digital para clínicas<br>que precisam de inteligência operacional.</h2>
+        <p class="reveal" style="font-family:'Inter',sans-serif;font-size:1.02rem;color:rgba(0,36,74,0.6);line-height:1.85;max-width:660px;margin:0 auto 56px;">
+            A LL'EXPERT projeta e implementa a base que faz uma clínica premium funcionar com consistência: atendimento autônomo, raio-x de vendas e controladoria de marketing.
+        </p>
+    </div>
+
+    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:1000px;margin:0 auto;">
+        <div class="reveal" style="text-align:center;padding:36px 24px;">
+            <div style="width:48px;height:48px;border:1px solid rgba(196,154,27,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="12" y1="2" x2="12" y2="22"/><path d="M2 12h20"/><path d="M12 2c3 3.5 4.7 7.5 4.7 10S15 19.5 12 22c-3-2.5-4.7-6.5-4.7-10S9 5.5 12 2z"/></svg>
+            </div>
+            <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#00244A;margin-bottom:10px;letter-spacing:-0.02em;">Atendimento Autônomo</h3>
+            <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(0,36,74,0.55);line-height:1.75;">IA que atende, qualifica e responde pacientes 24h com a linguagem de clínicas premium.</p>
+        </div>
+        <div class="reveal" style="text-align:center;padding:36px 24px;">
+            <div style="width:48px;height:48px;border:1px solid rgba(196,154,27,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round"><rect x="3" y="3" width="18" height="18" rx="2"/><line x1="3" y1="9" x2="21" y2="9"/><line x1="9" y1="3" x2="9" y2="21"/></svg>
+            </div>
+            <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#00244A;margin-bottom:10px;letter-spacing:-0.02em;">Raio-X de Vendas</h3>
+            <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(0,36,74,0.55);line-height:1.75;">Gravação e análise automática de cada contato. Você vê onde perde e onde ganha.</p>
+        </div>
+        <div class="reveal" style="text-align:center;padding:36px 24px;">
+            <div style="width:48px;height:48px;border:1px solid rgba(196,154,27,0.25);border-radius:12px;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#C49A1B" stroke-width="1.2" stroke-linecap="round"><path d="M12 2l2 7h7l-5.5 4 2 7L12 16l-5.5 4 2-7L3 9h7z"/></svg>
+            </div>
+            <h3 style="font-family:'Sora',sans-serif;font-size:1rem;font-weight:600;color:#00244A;margin-bottom:10px;letter-spacing:-0.02em;">Controladoria de Marketing</h3>
+            <p style="font-family:'Inter',sans-serif;font-size:0.88rem;color:rgba(0,36,74,0.55);line-height:1.75;">Cada real investido em marketing rastreado até a paciente na cadeira.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ─── O SISTEMA (PREVIEW) ─── -->
+<section id="sistema-preview" style="background:#FFFDF3;padding:100px 64px;position:relative;overflow:hidden;">
+    <div class="metatron-bg" style="pointer-events:none;"><canvas id="metatron-sistema"></canvas></div>
+    <div style="max-width:1000px;margin:0 auto;position:relative;z-index:1;">
+        <div class="reveal" style="text-align:center;max-width:720px;margin:0 auto 56px;">
+            <p class="eyebrow">O NEXUS</p>
+            <h2 class="section-title">3 módulos integrados que transformam a operação da clínica.</h2>
+            <p style="font-family:'Inter',sans-serif;font-size:1rem;color:rgba(0,36,74,0.6);line-height:1.85;margin-top:20px;">Um ecossistema único onde IA, dados e automação trabalham juntos para eliminar os vazamentos invisíveis que impedem clínicas premium de escalar.</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:24px;" class="sistema-preview-grid">
+            <div class="reveal" style="background:#FFFFFF;border:1px solid rgba(196,154,27,0.15);border-radius:12px;padding:32px;transition:all 0.4s ease;">
+                <div style="width:44px;height:44px;border:1px solid rgba(196,154,27,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C49A1B" stroke-width="1.3" stroke-linecap="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+                </div>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:600;color:#00244A;margin-bottom:10px;letter-spacing:-0.02em;">Closer Invisível 24h</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.9rem;color:rgba(0,36,74,0.6);line-height:1.75;">Agente de IA que atende no WhatsApp em 3 segundos, qualifica o lead e entrega pronto para a equipe humana.</p>
+            </div>
+
+            <div class="reveal" style="background:#FFFFFF;border:1px solid rgba(196,154,27,0.15);border-radius:12px;padding:32px;transition:all 0.4s ease;">
+                <div style="width:44px;height:44px;border:1px solid rgba(196,154,27,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C49A1B" stroke-width="1.3" stroke-linecap="round"><path d="M3 12h3l3-8 6 16 3-8h3"/></svg>
+                </div>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:600;color:#00244A;margin-bottom:10px;letter-spacing:-0.02em;">Raio-X de Vendas</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.9rem;color:rgba(0,36,74,0.6);line-height:1.75;">Gravação e análise automática de cada ligação. A IA identifica onde a venda morre e mostra exatamente o que melhorar.</p>
+            </div>
+
+            <div class="reveal" style="background:#FFFFFF;border:1px solid rgba(196,154,27,0.15);border-radius:12px;padding:32px;transition:all 0.4s ease;">
+                <div style="width:44px;height:44px;border:1px solid rgba(196,154,27,0.25);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:20px;">
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#C49A1B" stroke-width="1.3" stroke-linecap="round"><path d="M3 3v18h18"/><path d="M7 14l4-4 4 4 5-5"/></svg>
+                </div>
+                <h3 style="font-family:'Sora',sans-serif;font-size:1.05rem;font-weight:600;color:#00244A;margin-bottom:10px;letter-spacing:-0.02em;">Controladoria Direta</h3>
+                <p style="font-family:'Inter',sans-serif;font-size:0.9rem;color:rgba(0,36,74,0.6);line-height:1.75;">Tracking UTM até a cadeira. Cada real investido em marketing rastreado até o procedimento realizado.</p>
+            </div>
+        </div>
+
+        <div class="reveal" style="text-align:center;margin-top:48px;">
+            <a href="sistema.html" style="font-family:'Inter',sans-serif;font-size:0.85rem;color:var(--goldenrod);text-decoration:none;letter-spacing:0.04em;border-bottom:1px solid rgba(196,154,27,0.3);padding-bottom:2px;transition:all 0.3s ease;" onmouseover="this.style.borderBottomColor='#C49A1B'" onmouseout="this.style.borderBottomColor='rgba(196,154,27,0.3)'">Ver o sistema completo →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ─── SERVIÇOS ─── -->
+<section id="arquitetura">
+    <div class="metatron-bg" style="pointer-events:none;"><canvas id="metatron-servicos"></canvas></div>
+    <div class="section-header reveal">
+        <p class="eyebrow">Serviços</p>
+        <h2 class="section-title">Como trabalhamos</h2>
+    </div>
+
+    <div class="cards-row">
+        <div class="service-card service-card-featured reveal">
+            <div class="card-tag">Principal</div>
+            <svg class="card-icon" viewBox="0 0 32 32" fill="none">
+                <circle cx="16" cy="16" r="12" stroke="currentColor" stroke-width="1"/>
+                <circle cx="16" cy="16" r="4"  stroke="currentColor" stroke-width="1"/>
+                <line x1="16" y1="4"  x2="16" y2="12" stroke="currentColor" stroke-width="1"/>
+                <line x1="16" y1="20" x2="16" y2="28" stroke="currentColor" stroke-width="1"/>
+                <line x1="4"  y1="16" x2="12" y2="16" stroke="currentColor" stroke-width="1"/>
+                <line x1="20" y1="16" x2="28" y2="16" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <h3 class="card-name">Implementação Nexus</h3>
+            <p class="card-desc">Sistema de IA integrado à operação de clínicas premium. Atendimento, vendas e controladoria num único ecossistema.</p>
+            <div class="card-footer">
+                <a href="nexus.html">Conhecer o Nexus →</a>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <svg class="card-icon" viewBox="0 0 32 32" fill="none">
+                <rect x="4" y="4" width="24" height="24" stroke="currentColor" stroke-width="1"/>
+                <line x1="4" y1="12" x2="28" y2="12" stroke="currentColor" stroke-width="1"/>
+                <line x1="16" y1="4" x2="16" y2="28" stroke="currentColor" stroke-width="1"/>
+                <circle cx="16" cy="20" r="3.5" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <h3 class="card-name">Diagnóstico Operacional</h3>
+            <p class="card-desc">Análise completa de clínicas premium. Mapeamos onde estão os vazamentos e entregamos o plano de ação.</p>
+            <div class="card-footer">
+                <a href="como-funciona.html">Conhecer →</a>
+            </div>
+        </div>
+
+        <div class="service-card reveal">
+            <svg class="card-icon" viewBox="0 0 32 32" fill="none">
+                <rect x="4" y="6" width="24" height="20" rx="2" stroke="currentColor" stroke-width="1"/>
+                <path d="M4 12h24" stroke="currentColor" stroke-width="1"/>
+                <circle cx="10" cy="9" r="1.5" stroke="currentColor" stroke-width="1"/>
+                <circle cx="16" cy="9" r="1.5" stroke="currentColor" stroke-width="1"/>
+                <path d="M10 17h4M10 21h8M18 17h4" stroke="currentColor" stroke-width="1"/>
+            </svg>
+            <h3 class="card-name">Gestão Contínua</h3>
+            <p class="card-desc">Acompanhamento e otimização contínua do sistema. O foco da clínica é a medicina, o nosso é o crescimento.</p>
+            <div class="card-footer">
+                <a href="saude-premium.html">Conhecer →</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ─── QUEM ESTÁ POR TRÁS ─── -->
+<section id="trajetória" style="position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;">
+    <!-- Geometria pulsando - fundo de toda a secao -->
+    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;"><canvas id="metatron-bio"></canvas></div>
+    <!-- Foto como background - por cima da geometria -->
+    <div style="position:absolute;inset:0;background:url('bio-lazaro-saude.png') center center / cover no-repeat;z-index:1;"></div>
+    <!-- Gradient overlay - revela a geometria do lado esquerdo e suaviza a foto -->
+    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,253,243,0.95) 0%, rgba(255,253,243,0.88) 30%, rgba(255,253,243,0.5) 55%, rgba(255,253,243,0.0) 80%);z-index:2;"></div>
+
+    <div style="position:relative;z-index:3;max-width:540px;padding:100px 64px;margin-left:8%;" class="bio-content">
+        <p class="eyebrow reveal">Quem está por trás</p>
+        <h2 class="section-title reveal" style="margin-bottom:20px;font-size:clamp(1.8rem,2.8vw,2.4rem);">Lázaro Leon</h2>
+        <div class="reveal" style="width:40px;height:1px;background:var(--goldenrod);margin-bottom:28px;"></div>
+        <p class="reveal" style="font-family:'Inter',sans-serif;font-size:0.95rem;color:rgba(0,36,74,0.8);line-height:1.85;margin-bottom:18px;">
+            Fundador da LL'EXPERT. Trabalho na interseção entre estratégia, marketing e tecnologia para estruturar projetos digitais que funcionam com clareza e consistência.
+        </p>
+        <p class="reveal" style="font-family:'Inter',sans-serif;font-size:0.95rem;color:rgba(0,36,74,0.8);line-height:1.85;margin-bottom:18px;">
+            Trabalho especificamente com clínicas premium - dermatologistas, cirurgiãs, nutricionistas - que já conquistaram reputação mas precisam de estrutura pra escalar sem depender 100% da profissional.
+        </p>
+        <p class="reveal" style="font-family:'Inter',sans-serif;font-size:0.95rem;color:rgba(0,36,74,0.8);line-height:1.85;margin-bottom:28px;">
+            Hoje, integro Inteligência Artificial como parte do processo - não como ferramenta da moda, mas como braço técnico que acelera a execução e eleva a qualidade do que entregamos.
+        </p>
+        <div class="reveal" style="display:flex;gap:24px;">
+            <a href="https://www.linkedin.com/in/soulazaroleon/" target="_blank" style="font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--goldenrod);transition:opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">LinkedIn →</a>
+            <a href="https://www.instagram.com/soulazaroleon/" target="_blank" style="font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--goldenrod);transition:opacity 0.3s;" onmouseover="this.style.opacity='0.7'" onmouseout="this.style.opacity='1'">Instagram →</a>
+        </div>
+    </div>
+</section>
+
+<!-- ─── CONTEÚDO ─── -->
+<section id="conteudo">
+    <div class="conteudo-head reveal">
+        <div>
+            <p class="eyebrow">Publicações</p>
+            <h2 class="section-title">Conteúdo</h2>
+        </div>
+        <a href="artigos.html" style="font-family:'Inter',sans-serif;font-size:0.82rem;color:var(--goldenrod);letter-spacing:0.04em;">Ver todos os artigos →</a>
+    </div>
+
+    <div class="articles-grid">
+        <a href="artigos/presença-digital-de-verdade.html" class="article-card reveal" style="text-decoration:none;color:inherit;">
+            <div class="article-img"><img src="artigos/cover-presença-digital.png" alt="Presenca digital de verdade"></div>
+            <div class="article-body">
+                <p class="article-cat">Posicionamento</p>
+                <h3 class="article-title">O que significa ter presença digital de verdade quando você carrega bagagem</h3>
+                <div class="article-footer"><span class="article-cta">Ler artigo →</span></div>
+            </div>
+        </a>
+        <a href="artigos/ia-braco-tecnico-negocio.html" class="article-card reveal" style="text-decoration:none;color:inherit;">
+            <div class="article-img"><img src="artigos/cover-ia-braco-tecnico.jpg" alt="IA braço técnico"></div>
+            <div class="article-body">
+                <p class="article-cat">Inteligência Artificial</p>
+                <h3 class="article-title">Inteligência Artificial em projetos: braço técnico ou brinquedo de modinha?</h3>
+                <div class="article-footer"><span class="article-cta">Ler artigo →</span></div>
+            </div>
+        </a>
+    </div>
+</section>
+
+<!-- ─── VAMOS CONVERSAR ─── -->
+<section id="conversar" style="position:relative;overflow:hidden;">
+    <div class="metatron-bg" style="pointer-events:none;"><canvas id="metatron-cta"></canvas></div>
+
+    <div class="conversar-frame reveal" style="border-radius:12px;border:1px solid var(--goldenrod);animation:framePulse 4s ease-in-out infinite;">
+        <p class="conversar-text">
+            Quer entender como a LL'EXPERT pode estruturar a operação de clínicas premium?
+        </p>
+        <a href="https://wa.me/48991505476" class="btn-solid" target="_blank" style="border-radius:8px;">Falar com Lázaro →</a>
+        <p style="font-family:'Inter',sans-serif;font-size:0.78rem;color:rgba(0,36,74,0.4);margin-top:16px;">Sem compromisso. Sem script de vendas.</p>
+    </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+    <hr class="footer-separator">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#top" class="footer-logo" aria-label="Voltar ao topo">LL'EXPERT</a>
+            <div class="footer-tagline">Tecnologia e IA para Clínicas Premium</div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/soulazaroleon/" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/soulazaroleon/" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="privacidade.html">Privacidade</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap;">
+            <span>&copy; 2026 LL'EXPERT. Todos os direitos reservados.</span>
+            <span style="color:rgba(255,255,255,0.15);">·</span>
+            <span>
+                Projetado e desenvolvido pela LL'EXPERT.
+                <a href="https://wa.me/48991505476?text=Ol%C3%A1!%20Gostaria%20de%20um%20site%20como%20esse." target="_blank" style="color:rgba(196,154,27,0.7);text-decoration:none;border-bottom:1px solid rgba(196,154,27,0.2);padding-bottom:1px;transition:all 0.3s ease;margin-left:4px;" onmouseover="this.style.color='#C49A1B';this.style.borderBottomColor='rgba(196,154,27,0.6)'" onmouseout="this.style.color='rgba(196,154,27,0.7)';this.style.borderBottomColor='rgba(196,154,27,0.2)'">Faça o seu.</a>
+            </span>
+        </div>
+    </div>
+</footer>
+
+<script>
+    // Mobile menu
+    function toggleMobile() {
+        document.getElementById('hamburger').classList.toggle('open');
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Navbar scroll
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+        navbar.classList.toggle('scrolled', window.scrollY > 36);
+    });
+
+    // Trajetória expand
+    let trajOpen = false;
+    function toggleTrajetória() {
+        trajOpen = !trajOpen;
+        document.getElementById('traj-clip').classList.toggle('open', trajOpen);
+        document.getElementById('traj-btn').textContent = trajOpen ? 'Ver menos ↑' : 'Ver mais →';
+    }
+
+    // Card expand
+    function toggleCard(btn) {
+        btn.classList.toggle('open');
+        btn.nextElementSibling.classList.toggle('open');
+    }
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    reveals.forEach(el => io.observe(el));
+
+    // Hero reveal immediately
+    document.querySelector('#hero .reveal').classList.add('visible');
+
+    // ─── Interactive Mesh ───
+    function drawMesh(canvasId, opts) {
+        const canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+        const section = canvas.closest('section');
+
+        let time = 0;
+        let mouseX = -1000, mouseY = -1000;
+        const mouseRadius = 180;
+
+        if (canvasId === 'metatron-hero' || canvasId === 'metatron-cenario' || canvasId === 'metatron-cta') {
+            section.addEventListener('mousemove', (e) => {
+                const r = section.getBoundingClientRect();
+                mouseX = e.clientX - r.left;
+                mouseY = e.clientY - r.top;
+            });
+            section.addEventListener('mouseleave', () => { mouseX = -1000; mouseY = -1000; });
+        }
+
+        let scrollY = 0;
+        window.addEventListener('scroll', () => { scrollY = window.pageYOffset; });
+
+        function animate() {
+            time += opts.speed;
+
+            const rect = section.getBoundingClientRect();
+            const w = rect.width;
+            const h = rect.height;
+            const dpr = window.devicePixelRatio || 1;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            canvas.width = Math.round(w * dpr);
+            canvas.height = Math.round(h * dpr);
+            const ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            const scrollOffset = scrollY * 0.15;
+            const sp = opts.spacing;
+            const vy = sp * Math.sqrt(3) / 2;
+            const pts = [];
+            const rows = Math.ceil(h / vy) + 6;
+            const cols = Math.ceil(w / sp) + 6;
+            for (let r = -3; r < rows; r++) {
+                for (let c = -3; c < cols; c++) {
+                    const baseX = c * sp + (r % 2 !== 0 ? sp / 2 : 0);
+                    const baseY = r * vy;
+                    const waveX = Math.sin(time * 0.4 + baseY * 0.008 + baseX * 0.003 + scrollOffset * 0.01) * 3.5;
+                    const waveY = Math.cos(time * 0.3 + baseX * 0.006 + baseY * 0.004 + scrollOffset * 0.008) * 3;
+
+                    let mx = 0, my = 0;
+                    const dx = baseX - mouseX;
+                    const dy = baseY - mouseY;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    if (dist < mouseRadius && dist > 0) {
+                        const force = (1 - dist / mouseRadius) * 18;
+                        mx = (dx / dist) * force;
+                        my = (dy / dist) * force;
+                    }
+
+                    pts.push({
+                        x: baseX + waveX + mx,
+                        y: baseY + waveY + my,
+                        mouseDist: dist,
+                        phase: (baseX + baseY) * 0.01
+                    });
+                }
+            }
+
+            ctx.strokeStyle = opts.color;
+            const maxD = sp * 1.15;
+            for (let i = 0; i < pts.length; i++) {
+                for (let j = i + 1; j < pts.length; j++) {
+                    const dx = pts[i].x - pts[j].x;
+                    const dy = pts[i].y - pts[j].y;
+                    const d = dx * dx + dy * dy;
+                    if (d <= maxD * maxD) {
+                        const lineDist = Math.sqrt(d) / maxD;
+                        const localPulse = 0.3 + 0.7 * (0.5 + 0.5 * Math.sin(time * 0.6 + pts[i].phase));
+                        const mouseBoost = (pts[i].mouseDist < mouseRadius || pts[j].mouseDist < mouseRadius) ? 1.8 : 1;
+                        ctx.globalAlpha = Math.min(opts.lineOpacity * localPulse * (1 - lineDist * 0.4) * mouseBoost, 0.5);
+                        ctx.lineWidth = opts.lineWidth * (1 - lineDist * 0.3) * (mouseBoost > 1 ? 1.3 : 1);
+                        ctx.beginPath();
+                        ctx.moveTo(pts[i].x, pts[i].y);
+                        ctx.lineTo(pts[j].x, pts[j].y);
+                        ctx.stroke();
+                    }
+                }
+            }
+
+            for (const p of pts) {
+                const localPulse = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(time * 0.8 + p.phase * 1.5));
+                const mouseBoost = p.mouseDist < mouseRadius ? 1.6 : 1;
+                const radius = p.mouseDist < mouseRadius ? opts.dotRadius * (1 + (1 - p.mouseDist / mouseRadius) * 0.8) : opts.dotRadius;
+                ctx.globalAlpha = Math.min(opts.dotOpacity * localPulse * mouseBoost, 0.6);
+                ctx.lineWidth = opts.dotStroke;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, radius, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+
+            ctx.setTransform(1, 0, 0, 1, 0, 0);
+            requestAnimationFrame(animate);
+        }
+        animate();
+    }
+
+    // ─── Interactive mesh in Cenário ───
+    drawMesh('metatron-cenario', {
+        spacing: 80,
+        color: '#C49A1B',
+        lineWidth: 0.5,
+        lineOpacity: 0.18,
+        dotOpacity: 0.22,
+        dotRadius: 1.2,
+        dotStroke: 0.7,
+        speed: 0.006
+    });
+
+    // ─── Floating icons in O Que Fazemos ───
+    document.querySelectorAll('#oquefazemos div[style*="width:48px"]').forEach((icon, i) => {
+        let t = i * 2;
+        function floatIcon() {
+            t += 0.015;
+            const y = Math.sin(t) * 3;
+            icon.style.transform = 'translateY(' + y + 'px)';
+            requestAnimationFrame(floatIcon);
+        }
+        floatIcon();
+    });
+
+    // ─── Parallax on bio photo ───
+    const bioPhoto = document.querySelector('.bio-grid img');
+    if (bioPhoto) {
+        window.addEventListener('scroll', () => {
+            const rect = bioPhoto.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const offset = (rect.top - window.innerHeight / 2) * 0.03;
+                bioPhoto.style.transform = 'translateY(' + offset + 'px)';
+            }
+        });
+    }
+
+    // ─── Cenário cards: glow + line animation ───
+    document.querySelectorAll('.cenario-card').forEach(card => {
+        const line = card.querySelector('.card-line');
+        card.addEventListener('mouseenter', () => {
+            card.style.borderColor = 'rgba(196,154,27,0.3)';
+            card.style.transform = 'translateY(-4px)';
+            card.style.boxShadow = '0 8px 32px rgba(196,154,27,0.1)';
+            if (line) line.style.width = '100%';
+        });
+        card.addEventListener('mouseleave', () => {
+            card.style.borderColor = 'rgba(196,154,27,0.1)';
+            card.style.transform = 'translateY(0)';
+            card.style.boxShadow = 'none';
+            card.style.background = 'rgba(255,253,243,0.03)';
+            if (line) line.style.width = '0';
+        });
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            card.style.background = 'radial-gradient(circle at ' + x + 'px ' + y + 'px, rgba(196,154,27,0.08), rgba(255,253,243,0.03) 70%)';
+        });
+    });
+
+    // ─── Subtle line separator animation on light sections ───
+    document.querySelectorAll('#oquefazemos, #arquitetura, #conteudo').forEach(section => {
+        const divider = document.createElement('div');
+        divider.style.cssText = 'position:absolute;bottom:0;left:50%;transform:translateX(-50%);width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(196,154,27,0.15),transparent);transition:width 1.2s ease;';
+        section.style.position = 'relative';
+        section.appendChild(divider);
+        const obs = new IntersectionObserver((entries) => {
+            if (entries[0].isIntersecting) divider.style.width = '60%';
+        }, { threshold: 0.3 });
+        obs.observe(section);
+    });
+
+    // ─── Sistema Preview mesh ───
+    drawMesh('metatron-sistema', {
+        spacing: 110,
+        color: '#C49A1B',
+        lineWidth: 0.8,
+        lineOpacity: 0.18,
+        dotOpacity: 0.22,
+        dotRadius: 1.4,
+        dotStroke: 0.8,
+        speed: 0.005
+    });
+
+    // ─── Echo mesh in O Que Fazemos (pulsing, interactive) ───
+    drawMesh('metatron-oquefazemos', {
+        spacing: 110,
+        color: '#C49A1B',
+        lineWidth: 0.8,
+        lineOpacity: 0.18,
+        dotOpacity: 0.22,
+        dotRadius: 1.4,
+        dotStroke: 0.8,
+        speed: 0.005
+    });
+
+    // ─── Serviços mesh (pulsing) ───
+    drawMesh('metatron-servicos', {
+        spacing: 110,
+        color: '#C49A1B',
+        lineWidth: 0.8,
+        lineOpacity: 0.18,
+        dotOpacity: 0.22,
+        dotRadius: 1.4,
+        dotStroke: 0.8,
+        speed: 0.004
+    });
+
+    // ─── Bio section mesh (whole section, slightly thicker) ───
+    drawMesh('metatron-bio', {
+        spacing: 70,
+        color: '#C49A1B',
+        lineWidth: 0.9,
+        lineOpacity: 0.22,
+        dotOpacity: 0.28,
+        dotRadius: 1.6,
+        dotStroke: 0.9,
+        speed: 0.006
+    });
+
+    // ─── Interactive mesh in CTA section ───
+    drawMesh('metatron-cta', {
+        spacing: 70,
+        color: '#C49A1B',
+        lineWidth: 0.5,
+        lineOpacity: 0.08,
+        dotOpacity: 0.1,
+        dotRadius: 1,
+        dotStroke: 0.6,
+        speed: 0.005
+    });
+
+    // ─── Article image parallax ───
+    document.querySelectorAll('.article-img img').forEach(img => {
+        window.addEventListener('scroll', () => {
+            const rect = img.getBoundingClientRect();
+            if (rect.top < window.innerHeight && rect.bottom > 0) {
+                const offset = (rect.top - window.innerHeight / 2) * 0.03;
+                img.style.transform = 'scale(1.05) translateY(' + offset + 'px)';
+            }
+        });
+    });
+
+    // ─── Geometric background behind bio photo rotation ───
+    const bioGeo = document.querySelector('.bio-geo svg');
+    if (bioGeo) {
+        let geoAngle = 0;
+        function rotateGeo() {
+            geoAngle += 0.008;
+            bioGeo.style.transform = 'rotate(' + geoAngle + 'deg)';
+            requestAnimationFrame(rotateGeo);
+        }
+        rotateGeo();
+    }
+
+    drawMesh('metatron-hero', {
+        spacing: 55,
+        color: '#C49A1B',
+        lineWidth: 0.6,
+        lineOpacity: 0.2,
+        dotOpacity: 0.28,
+        dotRadius: 1.4,
+        dotStroke: 0.8,
+        speed: 0.008
+    });
+</script>
+</body>
+</html>

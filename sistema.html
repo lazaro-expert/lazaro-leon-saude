@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>O Sistema - LL'EXPERT | IA e Automacao para Clinicas Premium</title>
+    <meta name="description" content="3 modulos integrados: Closer Invisivel 24h, Raio-X de Vendas e Controladoria Direta. Arquitetura completa de IA para clinicas premium.">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="O Sistema - LL'EXPERT | IA e Automacao para Clinicas Premium">
+    <meta property="og:description" content="3 modulos integrados: Closer Invisivel 24h, Raio-X de Vendas e Controladoria Direta. Arquitetura completa de IA para clinicas premium.">
+    <meta property="og:url" content="https://lazaleon.com.br/saude/sistema.html">
+    <meta property="og:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:image" content="https://lazaleon.com.br/saude/og-image.svg">
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-floral: #FFFDF3;
+            --bg-white: #FFFFFF;
+            --prussian: #00244A;
+            --goldenrod: #C49A1B;
+            --goldenrod-light: rgba(196, 154, 27, 0.08);
+            --goldenrod-hover: #D4A91F;
+            --text-primary: #00244A;
+            --text-body: #3D4F63;
+            --text-light: #6B7D8D;
+            --shadow-default: 0 1px 3px rgba(0,0,0,0.04), 0 6px 16px rgba(0,0,0,0.04);
+            --shadow-hover: 0 2px 6px rgba(0,0,0,0.04), 0 12px 28px rgba(0,0,0,0.06);
+            --transition: 0.3s ease;
+            --radius-card: 12px;
+            --radius-btn: 8px;
+            --radius-highlight: 10px;
+            --radius-small: 6px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            font-weight: 400;
+            background-color: var(--bg-floral);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Sora', sans-serif;
+            letter-spacing: -0.02em;
+        }
+
+        a { text-decoration: none; color: inherit; }
+
+        /* METATRON SVG PATTERN */
+        .metatron-bg {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .metatron-bg svg {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 900px;
+            height: 900px;
+            opacity: 0.04;
+        }
+
+        /* NAVBAR */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 18px 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: var(--bg-floral);
+            transition: background var(--transition), backdrop-filter var(--transition), box-shadow var(--transition), padding var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            padding: 14px 64px;
+            background: rgba(255, 253, 243, 0.92);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            box-shadow: var(--shadow-default);
+            border-bottom: 1px solid rgba(196, 154, 27, 0.12);
+        }
+
+        .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--prussian);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 400;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: color var(--transition);
+            position: relative;
+        }
+
+        .nav-links li a:hover { color: var(--prussian); }
+
+        .nav-links li a.nav-active {
+            color: var(--prussian);
+            font-weight: 500;
+        }
+
+        .nav-links li a.nav-active::after {
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: var(--goldenrod);
+            border-radius: 1px;
+        }
+
+        .nav-cta {
+            background: var(--prussian) !important;
+            color: #ffffff !important;
+            border-radius: var(--radius-btn) !important;
+            padding: 10px 24px !important;
+            font-weight: 500 !important;
+            font-size: 0.88rem !important;
+            transition: background var(--transition), transform var(--transition) !important;
+        }
+
+        .nav-cta:hover {
+            background: #003366 !important;
+            transform: translateY(-1px);
+        }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--prussian);
+            margin: 5px 0;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            background: rgba(255, 253, 243, 0.98);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .mobile-overlay.open { display: flex; }
+
+        .mobile-overlay a {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--prussian);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        .mobile-overlay a:hover { color: var(--goldenrod); }
+
+        .mobile-overlay .mobile-cta {
+            margin-top: 12px;
+            background: var(--prussian);
+            color: #ffffff;
+            padding: 14px 40px;
+            border-radius: var(--radius-btn);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 500;
+        }
+
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; }
+            nav.scrolled { padding: 12px 24px; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+        }
+
+        /* HERO */
+        #hero {
+            position: relative;
+            background: var(--prussian);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 160px 60px 120px;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .hero-frame {
+            position: relative;
+            z-index: 1;
+            max-width: 780px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--goldenrod);
+            letter-spacing: 0.14em;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+        }
+
+        .hero-headline {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2.2rem, 3.8vw, 3.2rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+        }
+
+        .hero-subheadline {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1.05rem, 1.4vw, 1.18rem);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.75);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 40px;
+        }
+
+        .hero-btn {
+            display: inline-block;
+            background: var(--bg-floral);
+            color: var(--prussian);
+            padding: 16px 44px;
+            border-radius: var(--radius-btn);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+        }
+
+        .hero-btn:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+        }
+
+        /* SECTIONS */
+        .section {
+            position: relative;
+            padding: 100px 64px;
+        }
+
+        .section--floral { background: var(--bg-floral); }
+        .section--white { background: var(--bg-white); }
+        .section--prussian {
+            background: var(--prussian);
+            overflow: hidden;
+        }
+
+        .section-inner {
+            max-width: 1080px;
+            margin: 0 auto;
+        }
+
+        .module-number {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 600;
+            color: var(--prussian);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .module-number::after {
+            content: '';
+            display: inline-block;
+            width: 32px;
+            height: 2px;
+            background: var(--goldenrod);
+            border-radius: 1px;
+        }
+
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--goldenrod);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.9rem, 3vw, 2.6rem);
+            font-weight: 700;
+            color: var(--prussian);
+            margin-bottom: 16px;
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1rem, 1.3vw, 1.1rem);
+            font-weight: 300;
+            color: var(--text-body);
+            line-height: 1.7;
+            max-width: 600px;
+            margin-bottom: 48px;
+        }
+
+        /* MODULE LAYOUT */
+        .module-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 56px;
+            align-items: start;
+        }
+
+        .module-desc p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 400;
+            color: var(--text-body);
+            line-height: 1.8;
+            margin-bottom: 18px;
+        }
+
+        .module-desc p:last-child { margin-bottom: 0; }
+
+        .module-features {
+            list-style: none;
+        }
+
+        .module-features li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: var(--text-primary);
+            line-height: 1.6;
+            padding: 14px 16px;
+            margin-bottom: 8px;
+            background: var(--bg-floral);
+            border-radius: var(--radius-small);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .section--white .module-features li {
+            background: var(--bg-floral);
+        }
+
+        .section--floral .module-features li {
+            background: var(--bg-white);
+        }
+
+        .module-features li:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-1px);
+        }
+
+        .feature-icon {
+            flex-shrink: 0;
+            width: 8px;
+            height: 8px;
+            margin-top: 7px;
+            background: var(--goldenrod);
+            border-radius: 50%;
+        }
+
+        .highlight-box {
+            margin-top: 48px;
+            padding: 24px 28px;
+            border-left: 3px solid var(--goldenrod);
+            border-radius: var(--radius-highlight);
+            background: var(--goldenrod-light);
+        }
+
+        .highlight-box p {
+            font-family: 'Inter', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            line-height: 1.7;
+        }
+
+        .highlight-box p strong {
+            color: var(--goldenrod);
+        }
+
+        /* INTEGRATION SECTION */
+        .integration-visual {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0;
+            margin: 56px 0 48px;
+            flex-wrap: wrap;
+        }
+
+        .integration-node {
+            width: 200px;
+            height: 200px;
+            border: 1px solid rgba(196, 154, 27, 0.25);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 24px;
+            background: rgba(255, 253, 243, 0.6);
+            box-shadow: var(--shadow-default);
+            position: relative;
+            transition: box-shadow var(--transition), transform var(--transition);
+        }
+
+        .integration-node:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-2px);
+        }
+
+        .integration-node span {
+            font-family: 'Sora', sans-serif;
+            font-size: 0.88rem;
+            font-weight: 600;
+            color: var(--bg-floral);
+            letter-spacing: -0.01em;
+        }
+
+        .integration-connector {
+            width: 48px;
+            height: 2px;
+            background: linear-gradient(90deg, var(--goldenrod), rgba(196, 154, 27, 0.3));
+        }
+
+        .integration-text {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.02rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            line-height: 1.8;
+            max-width: 720px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .integration-title {
+            color: #ffffff;
+        }
+
+        .integration-eyebrow {
+            color: var(--goldenrod);
+        }
+
+        /* CTA FINAL */
+        #cta-final {
+            position: relative;
+            background: var(--prussian);
+            padding: 100px 64px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .cta-frame {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid var(--goldenrod);
+            border-radius: var(--radius-card);
+            padding: 64px 48px;
+            background: rgba(196, 154, 27, 0.06);
+            backdrop-filter: blur(8px);
+        }
+
+        .cta-text {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.3rem, 2.2vw, 1.8rem);
+            font-weight: 700;
+            color: #ffffff;
+            line-height: 1.35;
+            margin-bottom: 32px;
+            letter-spacing: -0.02em;
+        }
+
+        .btn-solid {
+            display: inline-block;
+            border-radius: var(--radius-btn);
+            background: var(--bg-floral);
+            color: var(--prussian);
+            padding: 16px 44px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.92rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background var(--transition), transform var(--transition), box-shadow var(--transition);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .btn-solid:hover {
+            background: #ffffff;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+        }
+
+        .cta-small {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.6);
+            margin-top: 18px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: #1A2A3A;
+            padding: 56px 64px 32px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-separator {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            border: none;
+            height: 1px;
+            background: #C49A1B;
+            opacity: 0.2;
+        }
+
+        .footer-brand .footer-logo {
+            display: inline-block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-brand .footer-logo:hover {
+            color: #C49A1B;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-inner .footer-brand { justify-self: start; }
+        .footer-inner .footer-social { justify-self: center; }
+        .footer-inner .footer-links { justify-self: end; }
+
+        .footer-social {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #C49A1B;
+            background: rgba(196,154,27,0.08);
+            transform: translateY(-2px);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .footer-links { display: flex; gap: 24px; align-items: center; }
+        .footer-links a { font-family: 'Inter', sans-serif; color: rgba(255,255,255,0.5); transition: color 0.3s ease; font-size: 0.82rem; text-decoration: none; }
+        .footer-links a:hover { color: #ffffff; }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        /* SCROLL REVEAL */
+        .reveal {
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .reveal-delay-2 { transition-delay: 0.12s; }
+        .reveal-delay-3 { transition-delay: 0.24s; }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            #hero {
+                padding: 130px 24px 80px;
+                min-height: auto;
+            }
+
+            .section { padding: 72px 24px; }
+
+            .module-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .integration-visual {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            .integration-connector {
+                width: 2px;
+                height: 32px;
+                background: linear-gradient(180deg, var(--goldenrod), rgba(196, 154, 27, 0.2));
+            }
+
+            .integration-node {
+                width: 160px;
+                height: 160px;
+            }
+
+            #cta-final { padding: 72px 24px; }
+
+            .cta-frame { padding: 48px 24px; }
+
+            footer { padding: 40px 24px 24px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-inner .footer-brand, .footer-inner .footer-social, .footer-inner .footer-links { justify-self: center; }
+            .footer-brand { text-align: center; }
+        }
+    </style>
+</head>
+<body id="top">
+
+<!-- NAVBAR -->
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">LL'EXPERT</a>
+    <ul class="nav-links">
+        <li><a href="sistema.html" class="nav-active">O Sistema</a></li>
+        <li><a href="como-funciona.html">Como Funciona</a></li>
+        <li><a href="https://wa.me/48991505476" target="_blank" class="nav-cta">Falar com Lazaro</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
+
+<!-- MOBILE OVERLAY -->
+<div class="mobile-overlay" id="mobileMenu">
+    <a href="sistema.html">O Sistema</a>
+    <a href="como-funciona.html">Como Funciona</a>
+    <a href="https://wa.me/48991505476" target="_blank" class="mobile-cta">FALAR COM LAZARO</a>
+</div>
+
+<!-- HERO -->
+<section id="hero">
+    <div class="metatron-bg">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C49A1B" stroke-width="0.5">
+                <!-- Outer circle -->
+                <circle cx="300" cy="300" r="280"/>
+                <!-- Inner circles of Metatron's Cube -->
+                <circle cx="300" cy="300" r="140"/>
+                <circle cx="300" cy="160" r="140"/>
+                <circle cx="300" cy="440" r="140"/>
+                <circle cx="421" cy="230" r="140"/>
+                <circle cx="421" cy="370" r="140"/>
+                <circle cx="179" cy="230" r="140"/>
+                <circle cx="179" cy="370" r="140"/>
+                <!-- Connecting lines -->
+                <line x1="300" y1="160" x2="421" y2="230"/>
+                <line x1="421" y1="230" x2="421" y2="370"/>
+                <line x1="421" y1="370" x2="300" y2="440"/>
+                <line x1="300" y1="440" x2="179" y2="370"/>
+                <line x1="179" y1="370" x2="179" y2="230"/>
+                <line x1="179" y1="230" x2="300" y2="160"/>
+                <line x1="300" y1="160" x2="300" y2="440"/>
+                <line x1="179" y1="230" x2="421" y2="370"/>
+                <line x1="421" y1="230" x2="179" y2="370"/>
+                <!-- Inner hexagon -->
+                <line x1="300" y1="160" x2="421" y2="370"/>
+                <line x1="300" y1="160" x2="179" y2="370"/>
+                <line x1="300" y1="440" x2="421" y2="230"/>
+                <line x1="300" y1="440" x2="179" y2="230"/>
+                <line x1="179" y1="230" x2="421" y2="230"/>
+                <line x1="179" y1="370" x2="421" y2="370"/>
+                <!-- Center point -->
+                <circle cx="300" cy="300" r="3" fill="#C49A1B"/>
+            </g>
+        </svg>
+    </div>
+    <div class="hero-frame reveal">
+        <p class="hero-eyebrow">O SISTEMA</p>
+        <h1 class="hero-headline">3 modulos. 1 arquitetura.<br>Clinicas premium rodando sem o dono.</h1>
+        <p class="hero-subheadline">Cada modulo fecha um vazamento especifico. Integrados, eles transformam a operacao inteira.</p>
+        <a href="#closer" class="hero-btn">Conhecer os modulos</a>
+    </div>
+</section>
+
+<!-- MODULE 1: CLOSER INVISIVEL -->
+<section id="closer" class="section section--floral">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="module-number">MODULO 01</p>
+            <h2 class="section-title">Closer Invisivel 24h</h2>
+            <p class="section-subtitle">Agente de IA no WhatsApp que transforma leads perdidos em consultas agendadas.</p>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-desc reveal">
+                <p>Lead chega as 23h de domingo. Na maioria das clinicas, recebe "estamos fechados" ou silencio. Em clinicas premium com Nexus, recebe atendimento em 3 segundos.</p>
+                <p>O Closer Invisivel e um agente de IA treinado com a linguagem de clinicas premium. Ele nao soa como robo. Soa como a melhor recepcionista da clinica - so que nunca dorme.</p>
+            </div>
+
+            <div class="reveal reveal-delay-2">
+                <ul class="module-features">
+                    <li><span class="feature-icon"></span>Responde leads 24h em menos de 3 segundos</li>
+                    <li><span class="feature-icon"></span>Qualifica a paciente (procedimento, urgencia, perfil)</li>
+                    <li><span class="feature-icon"></span>Filtra curiosos e encaminha leads quentes</li>
+                    <li><span class="feature-icon"></span>Entrega resumo pronto pra equipe na segunda de manha</li>
+                    <li><span class="feature-icon"></span>Aprende e melhora com cada interacao</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box reveal reveal-delay-3">
+            <p><strong>Resultado:</strong> leads que antes iam pra concorrente agora acordam com consulta agendada.</p>
+        </div>
+    </div>
+</section>
+
+<!-- MODULE 2: RAIO-X DE VENDAS -->
+<section id="raiox" class="section section--white">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="module-number">MODULO 02</p>
+            <h2 class="section-title">Raio-X de Vendas</h2>
+            <p class="section-subtitle">Gravacao, transcricao e analise de todas as ligacoes da clinica.</p>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-desc reveal">
+                <p>A recepcionista atende 40 ligacoes por dia. Quantas ela converte? Quantas ela perde? Em que momento exato a paciente desiste? A clinica nao sabe. E o que nao se mede, nao se melhora.</p>
+                <p>O Raio-X grava, transcreve e analisa cada ligacao com IA. Voce ve exatamente onde a venda morre - e treina em cima de dados, nao de achismo.</p>
+            </div>
+
+            <div class="reveal reveal-delay-2">
+                <ul class="module-features">
+                    <li><span class="feature-icon"></span>Gravacao automatica de todas as ligacoes (VoIP)</li>
+                    <li><span class="feature-icon"></span>Transcricao completa com IA</li>
+                    <li><span class="feature-icon"></span>Analise automatica do pitch da equipe</li>
+                    <li><span class="feature-icon"></span>Identifica padroes de perda e conversao</li>
+                    <li><span class="feature-icon"></span>Dashboards com metricas reais de vendas por telefone</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box reveal reveal-delay-3">
+            <p><strong>Resultado:</strong> voce treina a equipe com precisao cirurgica. A taxa de conversao sobe sem contratar mais ninguem.</p>
+        </div>
+    </div>
+</section>
+
+<!-- MODULE 3: CONTROLADORIA DIRETA -->
+<section id="controladoria" class="section section--floral">
+    <div class="section-inner">
+        <div class="reveal">
+            <p class="module-number">MODULO 03</p>
+            <h2 class="section-title">Controladoria Direta</h2>
+            <p class="section-subtitle">Tracking UTM ate a conversao real. Cada real rastreado ate o resultado na cadeira.</p>
+        </div>
+
+        <div class="module-grid">
+            <div class="module-desc reveal">
+                <p>Voce investe R$ 15 mil em trafego por mes. Sabe qual campanha pagou o feriado da semana passada? Sabe qual post do Instagram trouxe a paciente que fez o procedimento de R$ 12 mil?</p>
+                <p>A Controladoria conecta o clique no anuncio a paciente sentada na cadeira. Voce para de adivinhar e comeca a decidir com dados.</p>
+            </div>
+
+            <div class="reveal reveal-delay-2">
+                <ul class="module-features">
+                    <li><span class="feature-icon"></span>Tracking UTM integrado do clique a conversao</li>
+                    <li><span class="feature-icon"></span>Atribuicao real: qual campanha gerou qual receita</li>
+                    <li><span class="feature-icon"></span>Dashboard de ROI por canal, campanha e periodo</li>
+                    <li><span class="feature-icon"></span>Integracao com WhatsApp e sistema de agendamento</li>
+                    <li><span class="feature-icon"></span>Relatorios automaticos semanais</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="highlight-box reveal reveal-delay-3">
+            <p><strong>Resultado:</strong> cada real investido em marketing tem nome, sobrenome e retorno medido.</p>
+        </div>
+    </div>
+</section>
+
+<!-- INTEGRATION -->
+<section class="section section--prussian">
+    <div class="metatron-bg" style="opacity:0.5;">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C49A1B" stroke-width="0.5" opacity="0.08">
+                <circle cx="300" cy="300" r="280"/>
+                <circle cx="300" cy="300" r="140"/>
+                <circle cx="300" cy="160" r="140"/>
+                <circle cx="300" cy="440" r="140"/>
+                <circle cx="421" cy="230" r="140"/>
+                <circle cx="421" cy="370" r="140"/>
+                <circle cx="179" cy="230" r="140"/>
+                <circle cx="179" cy="370" r="140"/>
+                <line x1="300" y1="160" x2="421" y2="230"/>
+                <line x1="421" y1="230" x2="421" y2="370"/>
+                <line x1="421" y1="370" x2="300" y2="440"/>
+                <line x1="300" y1="440" x2="179" y2="370"/>
+                <line x1="179" y1="370" x2="179" y2="230"/>
+                <line x1="179" y1="230" x2="300" y2="160"/>
+                <circle cx="300" cy="300" r="3" fill="#C49A1B"/>
+            </g>
+        </svg>
+    </div>
+    <div class="section-inner">
+        <div class="reveal" style="text-align:center;">
+            <p class="eyebrow integration-eyebrow">ARQUITETURA INTEGRADA</p>
+            <h2 class="section-title integration-title">Os 3 modulos nao funcionam isolados.<br>Funcionam como sistema.</h2>
+        </div>
+
+        <div class="integration-visual reveal reveal-delay-2">
+            <div class="integration-node">
+                <span>Closer<br>Invisivel</span>
+            </div>
+            <div class="integration-connector"></div>
+            <div class="integration-node">
+                <span>Raio-X<br>de Vendas</span>
+            </div>
+            <div class="integration-connector"></div>
+            <div class="integration-node">
+                <span>Controladoria<br>Direta</span>
+            </div>
+        </div>
+
+        <p class="integration-text reveal reveal-delay-3">O Closer captura e qualifica. O Raio-X otimiza a conversao. A Controladoria mede o resultado. Juntos, fecham o ciclo: da primeira mensagem ate o retorno financeiro medido.</p>
+    </div>
+</section>
+
+<!-- CTA FINAL -->
+<section id="cta-final">
+    <div class="metatron-bg">
+        <svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">
+            <g fill="none" stroke="#C49A1B" stroke-width="0.5">
+                <circle cx="300" cy="300" r="280"/>
+                <circle cx="300" cy="300" r="140"/>
+                <circle cx="300" cy="160" r="140"/>
+                <circle cx="300" cy="440" r="140"/>
+                <circle cx="421" cy="230" r="140"/>
+                <circle cx="421" cy="370" r="140"/>
+                <circle cx="179" cy="230" r="140"/>
+                <circle cx="179" cy="370" r="140"/>
+                <line x1="300" y1="160" x2="421" y2="230"/>
+                <line x1="421" y1="230" x2="421" y2="370"/>
+                <line x1="421" y1="370" x2="300" y2="440"/>
+                <line x1="300" y1="440" x2="179" y2="370"/>
+                <line x1="179" y1="370" x2="179" y2="230"/>
+                <line x1="179" y1="230" x2="300" y2="160"/>
+                <circle cx="300" cy="300" r="3" fill="#C49A1B"/>
+            </g>
+        </svg>
+    </div>
+    <div class="cta-frame reveal">
+        <p class="cta-text">Quer ver como isso funciona na pratica em clinicas premium?</p>
+        <a href="https://wa.me/48991505476" class="btn-solid" target="_blank">Falar com Lazaro &rarr;</a>
+        <p class="cta-small">Conversa individual, sem compromisso.</p>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+    <hr class="footer-separator">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#top" class="footer-logo" aria-label="Voltar ao topo">LL'EXPERT</a>
+            <div class="footer-tagline">Tecnologia e IA para Clinicas Premium</div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/soulazaroleon/" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/soulazaroleon/" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="../privacidade.html">Privacidade</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 LL'EXPERT. Todos os direitos reservados.
+    </div>
+</footer>
+
+<script>
+    // Mobile menu
+    function toggleMobile() {
+        document.getElementById('hamburger').classList.toggle('open');
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Navbar scroll
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        navbar.classList.toggle('scrolled', window.scrollY > 36);
+    });
+
+    // Scroll reveal
+    var reveals = document.querySelectorAll('.reveal');
+    var io = new IntersectionObserver(function(entries) {
+        entries.forEach(function(e) {
+            if (e.isIntersecting) e.target.classList.add('visible');
+        });
+    }, { threshold: 0.08 });
+    reveals.forEach(function(el) { io.observe(el); });
+
+    // Hero reveal immediately
+    var heroReveal = document.querySelector('#hero .reveal');
+    if (heroReveal) heroReveal.classList.add('visible');
+</script>
+
+</body>
+</html>
