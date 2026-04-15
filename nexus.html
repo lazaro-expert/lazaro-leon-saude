@@ -3937,18 +3937,30 @@
                with an SVG connection bus. On small screens that arrangement breaks.
                We convert the command-center into a vertical stack: core on top,
                satellites below in a clean list, and hide the SVG connector. */
-            .hero-mockup-wrap { min-height: auto; margin-top: 24px; }
+            .hero-mockup-wrap {
+                min-height: auto;
+                margin-top: 24px;
+                width: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 0;
+            }
             .command-center {
                 position: relative;
                 height: auto;
+                width: 100%;
                 max-width: 280px;
                 min-height: 0;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
+                justify-content: center;
                 gap: 0;
                 padding: 0;
                 margin: 0 auto;
+                left: 0 !important;
+                right: 0 !important;
             }
             /* Hide ALL decorative elements on mobile - keep only the core "logo" centered */
             .command-center .cc-connections { display: none !important; }
