@@ -372,27 +372,113 @@
             background: var(--off-white);
         }
 
-        .problema-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 64px;
-            align-items: start;
-            max-width: 1100px;
+        .problema-wrap {
+            max-width: 780px;
             margin: 0 auto;
+            text-align: center;
         }
 
-        .problema-left .eyebrow { margin-bottom: 20px; }
+        .problema-wrap .eyebrow { margin-bottom: 28px; }
 
-        .problema-left .section-title {
-            margin-bottom: 28px;
+        .problema-title {
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: clamp(2.1rem, 4vw, 3.3rem);
+            line-height: 1.16;
+            letter-spacing: -0.025em;
+            color: var(--prussian-blue);
+            margin: 0 auto 40px;
+            max-width: 760px;
+        }
+
+        .problema-title em {
+            font-style: italic;
+            font-weight: 500;
+            color: var(--goldenrod);
+        }
+
+        .problema-rule {
+            width: 48px;
+            height: 1px;
+            background: var(--goldenrod);
+            opacity: 0.5;
+            margin: 0 auto 40px;
         }
 
         .problema-lead {
             font-family: 'Inter', sans-serif;
-            font-size: 1.05rem;
-            font-weight: 400;
-            color: rgba(0,36,74,0.65);
+            font-size: clamp(1.05rem, 1.3vw, 1.18rem);
+            font-weight: 300;
+            color: rgba(0,36,74,0.72);
             line-height: 1.85;
+            margin: 0 auto 20px;
+            max-width: 640px;
+        }
+
+        .problema-lead:last-child { margin-bottom: 0; }
+        .problema-lead strong { font-weight: 500; color: var(--prussian-blue); }
+
+        .problema-impact {
+            margin: 64px auto 0;
+            padding: 48px 40px;
+            max-width: 640px;
+            border-top: 1px solid rgba(196,154,27,0.25);
+            border-bottom: 1px solid rgba(196,154,27,0.25);
+            background: linear-gradient(180deg, rgba(196,154,27,0.03) 0%, transparent 100%);
+            position: relative;
+        }
+
+        .problema-impact-prefix {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.64rem;
+            letter-spacing: 0.3em;
+            color: rgba(196,154,27,0.8);
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .problema-impact-number {
+            font-family: 'Sora', sans-serif;
+            font-weight: 700;
+            font-size: clamp(2.4rem, 5vw, 4rem);
+            line-height: 1;
+            letter-spacing: -0.03em;
+            color: var(--prussian-blue);
+            margin-bottom: 16px;
+        }
+
+        .problema-impact-number em {
+            font-style: normal;
+            color: var(--goldenrod);
+        }
+
+        .problema-impact-label {
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(0.95rem, 1.15vw, 1.05rem);
+            font-weight: 300;
+            color: rgba(0,36,74,0.6);
+            line-height: 1.6;
+            max-width: 480px;
+            margin: 0 auto;
+        }
+
+        .problema-closing {
+            margin-top: 64px;
+            font-family: 'Sora', sans-serif;
+            font-style: italic;
+            font-weight: 400;
+            font-size: clamp(1.3rem, 2.2vw, 1.75rem);
+            color: var(--prussian-blue);
+            letter-spacing: -0.015em;
+        }
+        .problema-closing::before {
+            content: "";
+            display: block;
+            width: 24px;
+            height: 1px;
+            background: var(--goldenrod);
+            margin: 0 auto 24px;
+            opacity: 0.5;
         }
 
         .problema-pain {
@@ -831,125 +917,6 @@
             font-style: normal;
         }
 
-        /* ─── COMO FUNCIONA (WEEKS) ─── */
-        .semanas-section {
-            background: var(--floral-white);
-        }
-
-        .weeks-timeline {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .week-block {
-            display: grid;
-            grid-template-columns: 80px 1fr;
-            gap: 32px;
-            padding: 40px 0;
-            border-bottom: 1px solid rgba(196,154,27,0.15);
-            position: relative;
-            transition: padding-left 0.4s ease;
-        }
-
-        .week-block::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--goldenrod);
-            transition: width 0.6s ease;
-        }
-
-        .week-block:hover::before {
-            width: 100%;
-        }
-
-        .week-block:hover {
-            padding-left: 16px;
-        }
-
-        .week-block:last-child { border-bottom: none; }
-
-        .week-number-col {
-            text-align: center;
-        }
-
-        .week-num {
-            font-family: 'Sora', sans-serif;
-            font-size: 2.4rem;
-            font-weight: 700;
-            color: rgba(196,154,27,0.25);
-            line-height: 1;
-            margin-bottom: 4px;
-            transition: color 0.4s ease;
-        }
-
-        .week-block:hover .week-num {
-            color: var(--goldenrod);
-        }
-
-        .week-block:hover .week-title {
-            color: var(--goldenrod);
-        }
-
-        .week-label {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.6rem;
-            font-weight: 400;
-            color: rgba(0,36,74,0.4);
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-        }
-
-        .week-phase {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.68rem;
-            font-weight: 500;
-            color: var(--goldenrod);
-            letter-spacing: 0.08em;
-            text-transform: uppercase;
-            margin-bottom: 8px;
-        }
-
-        .week-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: var(--prussian-blue);
-            margin-bottom: 14px;
-            line-height: 1.3;
-            transition: color 0.4s ease;
-        }
-
-        .week-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: 1rem;
-            font-weight: 400;
-            color: rgba(0,36,74,0.75);
-            line-height: 1.85;
-        }
-
-        .week-deliverable {
-            display: inline-block;
-            margin-top: 14px;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.72rem;
-            font-weight: 500;
-            color: var(--goldenrod);
-            letter-spacing: 0.06em;
-            padding: 6px 14px;
-            border: 1px solid rgba(196,154,27,0.3);
-            border-radius: 2px;
-            transition: background 0.4s ease, color 0.4s ease;
-        }
-
-        .week-block:hover .week-deliverable {
-            background: var(--goldenrod);
-            color: var(--prussian-blue);
-        }
-
         /* ─── INCLUÍDO ─── */
         .incluido-section {
             background: var(--off-white);
@@ -1321,6 +1288,196 @@
 
         .bio-desc p:last-child { margin-bottom: 0; }
 
+        /* ─── DIAGNÓSTICO GRATUITO ─── */
+        .diag-section {
+            background: var(--floral-white);
+            border-top: 1px solid rgba(196,154,27,0.12);
+            position: relative;
+        }
+
+        .diag-section::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0,36,74,0.02) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,36,74,0.02) 1px, transparent 1px);
+            background-size: 48px 48px;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .diag-wrap {
+            position: relative;
+            max-width: 860px;
+            margin: 0 auto;
+        }
+
+        .diag-head {
+            text-align: center;
+            margin-bottom: 56px;
+        }
+
+        .diag-head .eyebrow {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.72rem;
+            letter-spacing: 0.22em;
+            margin-bottom: 20px;
+        }
+
+        .diag-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(2rem, 3.2vw, 2.9rem);
+            font-weight: 600;
+            color: var(--prussian-blue);
+            line-height: 1.15;
+            letter-spacing: -0.02em;
+            margin-bottom: 20px;
+        }
+
+        .diag-subtitle {
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.68);
+            line-height: 1.7;
+            max-width: 620px;
+            margin: 0 auto;
+        }
+
+        .diag-card {
+            max-width: 680px;
+            margin: 0 auto;
+            background: linear-gradient(180deg, #FFFFFF 0%, #FFFDF3 100%);
+            border: 1px solid rgba(196,154,27,0.2);
+            border-radius: 16px;
+            padding: 48px 56px;
+            box-shadow: 0 2px 24px rgba(0,36,74,0.04);
+            position: relative;
+        }
+
+        .diag-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .diag-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .diag-field {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .diag-label {
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.68rem;
+            font-weight: 500;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--goldenrod);
+            margin-bottom: 8px;
+        }
+
+        .diag-input,
+        .diag-select,
+        .diag-textarea {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.98rem;
+            font-weight: 400;
+            color: var(--prussian-blue);
+            background: #FFFFFF;
+            border: 1px solid rgba(0,36,74,0.2);
+            border-radius: 8px;
+            padding: 12px 16px;
+            width: 100%;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+        }
+
+        .diag-input::placeholder,
+        .diag-textarea::placeholder {
+            color: rgba(0,36,74,0.38);
+        }
+
+        .diag-input:focus,
+        .diag-select:focus,
+        .diag-textarea:focus {
+            border-color: var(--goldenrod);
+            box-shadow: 0 0 0 3px rgba(196,154,27,0.12);
+        }
+
+        .diag-select {
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8' fill='none'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='%23C49A1B' stroke-width='1.5' stroke-linecap='round'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 16px center;
+            padding-right: 40px;
+            cursor: pointer;
+        }
+
+        .diag-textarea {
+            resize: vertical;
+            min-height: 96px;
+            line-height: 1.6;
+        }
+
+        .diag-submit-wrap {
+            display: flex;
+            justify-content: center;
+            margin-top: 12px;
+        }
+
+        .diag-submit {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: var(--prussian-blue);
+            color: var(--floral-white);
+            border: none;
+            border-radius: 8px;
+            padding: 18px 40px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .diag-submit:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+            box-shadow: 0 8px 24px rgba(0,36,74,0.18);
+        }
+
+        .diag-fine-print {
+            margin-top: 24px;
+            text-align: center;
+            font-family: 'JetBrains Mono', 'Courier New', monospace;
+            font-size: 0.72rem;
+            line-height: 1.7;
+            color: rgba(0,36,74,0.5);
+        }
+
+        .diag-fine-print span {
+            display: block;
+        }
+
+        @media (max-width: 768px) {
+            .diag-card { padding: 32px 24px; border-radius: 12px; }
+            .diag-grid { grid-template-columns: 1fr; gap: 20px; }
+            .diag-head { margin-bottom: 40px; }
+            .diag-submit { width: 100%; }
+            .diag-submit-wrap { display: block; }
+        }
+
         /* ─── CTA FINAL ─── */
         .cta-section {
             background: var(--floral-white);
@@ -1611,7 +1768,6 @@
                     rgba(255,253,243,0.6) 100%
                 ) !important;
             }
-            .week-block { grid-template-columns: 60px 1fr; gap: 20px; }
             .solucao-metaphor { padding: 28px 20px; }
 
             .problema-grid { grid-template-columns: 1fr; gap: 40px; }
@@ -1713,7 +1869,7 @@
         .command-center {
             position: relative;
             width: 100%;
-            max-width: 460px;
+            max-width: 580px;
             height: 520px;
         }
 
@@ -1738,31 +1894,30 @@
             filter: drop-shadow(0 0 5px rgba(196,154,27,0.85));
         }
 
-        /* Central Nexus Core (left, dominant) */
+        /* Central Nexus Core (left, dominant - no container) */
         .cc-core {
             position: absolute;
             top: 50%;
             left: 0;
             transform: translateY(-50%);
-            width: 260px;
-            height: 400px;
-            background: var(--prussian-blue);
-            border: 1px solid rgba(196,154,27,0.4);
-            border-radius: 16px;
-            box-shadow:
-                0 30px 80px rgba(0,36,74,0.35),
-                0 0 0 1px rgba(196,154,27,0.1),
-                0 0 60px rgba(196,154,27,0.15);
+            width: 340px;
+            height: 420px;
+            z-index: 3;
+        }
+        .cc-core-metatron-stack {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 360px;
+            height: 360px;
             display: flex;
             align-items: center;
             justify-content: center;
-            overflow: hidden;
-            z-index: 3;
         }
         .cc-core-metatron {
             position: absolute;
             inset: 0;
-            opacity: 0.32;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -1770,50 +1925,119 @@
         .cc-core-metatron svg { width: 100%; height: 100%; }
         .cc-core-metatron circle,
         .cc-core-metatron path {
-            stroke: var(--goldenrod);
-            stroke-width: 0.45;
             fill: none;
+        }
+        /* Three layers rotating at different speeds */
+        .cc-core-metatron.layer-1 {
+            opacity: 0.85;
+            animation: cc-rotate-cw 120s linear infinite;
+        }
+        .cc-core-metatron.layer-1 circle,
+        .cc-core-metatron.layer-1 path {
+            stroke: var(--prussian-blue);
+            stroke-width: 1.1;
+        }
+        .cc-core-metatron.layer-2 {
+            opacity: 0.7;
+            transform: scale(0.7);
+            animation: cc-rotate-ccw 85s linear infinite;
+        }
+        .cc-core-metatron.layer-2 circle,
+        .cc-core-metatron.layer-2 path {
+            stroke: var(--goldenrod);
+            stroke-width: 1.2;
+        }
+        .cc-core-metatron.layer-3 {
+            opacity: 0.35;
+            transform: scale(1.15);
+            animation: cc-rotate-cw 180s linear infinite;
+        }
+        .cc-core-metatron.layer-3 circle,
+        .cc-core-metatron.layer-3 path {
+            stroke: var(--prussian-blue);
+            stroke-width: 0.8;
+        }
+        @keyframes cc-rotate-cw {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        @keyframes cc-rotate-ccw {
+            from { transform: rotate(0deg) scale(0.7); }
+            to { transform: rotate(-360deg) scale(0.7); }
+        }
+        .cc-core-metatron.layer-3 { animation-name: cc-rotate-cw-big; }
+        @keyframes cc-rotate-cw-big {
+            from { transform: rotate(0deg) scale(1.15); }
+            to { transform: rotate(360deg) scale(1.15); }
         }
         .cc-core-glow {
             position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at center, rgba(196,154,27,0.22) 0%, transparent 60%);
-            animation: cc-pulse 3s ease-in-out infinite;
+            inset: -60px;
+            background: radial-gradient(circle at center, rgba(196,154,27,0.28) 0%, rgba(0,36,74,0.08) 40%, transparent 65%);
+            animation: cc-pulse 4s ease-in-out infinite;
+            pointer-events: none;
         }
         @keyframes cc-pulse {
-            0%, 100% { opacity: 0.6; }
-            50% { opacity: 1; }
+            0%, 100% { opacity: 0.55; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.08); }
         }
-        .cc-core-content { position: relative; z-index: 2; text-align: center; }
+        /* Inner pulse ring */
+        .cc-core-ring {
+            position: absolute;
+            width: 110px; height: 110px;
+            border: 1.5px solid rgba(196,154,27,0.65);
+            border-radius: 50%;
+            animation: cc-ring-pulse 3.5s ease-out infinite;
+        }
+        .cc-core-ring:nth-child(2) { animation-delay: 1.2s; }
+        .cc-core-ring:nth-child(3) { animation-delay: 2.4s; }
+        @keyframes cc-ring-pulse {
+            0%   { transform: scale(0.6); opacity: 0.8; }
+            100% { transform: scale(2.2); opacity: 0; }
+        }
+        .cc-core-content {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 4;
+            text-align: center;
+            background: radial-gradient(ellipse at center, rgba(255,255,255,0.92) 0%, rgba(255,255,255,0.7) 40%, rgba(255,255,255,0) 80%);
+            padding: 14px 40px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            white-space: nowrap;
+        }
         .cc-core-label {
             font-family: 'Sora', sans-serif;
             font-weight: 700;
-            font-size: 1.6rem;
-            color: var(--floral-white);
-            letter-spacing: 0.18em;
+            font-size: 2rem;
+            color: var(--prussian-blue);
+            letter-spacing: 0.24em;
             line-height: 1;
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
         .cc-core-sub {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.56rem;
-            color: rgba(255,253,243,0.5);
-            letter-spacing: 0.3em;
+            font-size: 0.6rem;
+            color: rgba(0,36,74,0.55);
+            letter-spacing: 0.32em;
             text-transform: uppercase;
-            margin-bottom: 16px;
+            margin-bottom: 14px;
         }
         .cc-core-status {
             display: inline-flex;
             align-items: center;
             gap: 7px;
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.6rem;
-            color: rgba(196,154,27,0.9);
+            font-size: 0.62rem;
+            color: var(--goldenrod);
             letter-spacing: 0.2em;
-            padding: 4px 10px;
-            border: 1px solid rgba(196,154,27,0.3);
+            padding: 5px 14px;
+            border: 1px solid rgba(196,154,27,0.45);
             border-radius: 999px;
-            background: rgba(196,154,27,0.05);
+            background: rgba(196,154,27,0.08);
+            backdrop-filter: blur(6px);
         }
         .cc-core-dot {
             width: 6px; height: 6px; border-radius: 50%;
@@ -1840,9 +2064,9 @@
             z-index: 2;
             backdrop-filter: blur(10px);
         }
-        .cc-sat-1 { top: 30px;  right: 0; left: auto; transform: none; }
-        .cc-sat-2 { top: 210px; right: 0; left: auto; bottom: auto; transform: none; }
-        .cc-sat-3 { top: 390px; right: 0; left: auto; bottom: auto; transform: none; }
+        .cc-sat-1 { top: 20px;  right: 0; left: auto; transform: none; }
+        .cc-sat-2 { top: 50%; right: 0; left: auto; bottom: auto; transform: translateY(-50%); }
+        .cc-sat-3 { bottom: 20px; top: auto; right: 0; left: auto; transform: none; }
 
         .cc-sat-head {
             display: flex;
@@ -1945,12 +2169,18 @@
             position: relative;
         }
 
+        .stats-header {
+            max-width: 760px;
+            margin: 0 auto 56px;
+            text-align: center;
+        }
+
         .stats-grid {
-            max-width: 1100px;
+            max-width: 1000px;
             margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 32px;
         }
 
         .stat-card {
@@ -2112,7 +2342,8 @@
 
         @media (max-width: 768px) {
             .stats-strip { padding: 56px 24px; }
-            .stats-grid { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+            .stats-header { margin-bottom: 40px; }
+            .stats-grid { grid-template-columns: 1fr; gap: 32px; max-width: 420px; }
         }
 
         /* ─── MODULE MOCKUPS (solucao) ─── */
@@ -2262,291 +2493,6 @@
             border-radius: 999px;
         }
 
-        /* ─── ARCHITECTURE (PREMIUM) ─── */
-        .arch-section {
-            background: var(--prussian-blue);
-            position: relative;
-            overflow: hidden;
-        }
-        .arch-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background:
-                radial-gradient(ellipse 60% 50% at 50% 50%, rgba(196,154,27,0.12) 0%, transparent 70%),
-                radial-gradient(ellipse 80% 60% at 50% 100%, rgba(196,154,27,0.06) 0%, transparent 60%);
-            pointer-events: none;
-        }
-        .arch-section::after {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                linear-gradient(rgba(255,253,243,0.025) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(255,253,243,0.025) 1px, transparent 1px);
-            background-size: 56px 56px;
-            pointer-events: none;
-            opacity: 0.5;
-            mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 80%);
-            -webkit-mask-image: radial-gradient(ellipse 70% 60% at 50% 50%, black 0%, transparent 80%);
-        }
-        .arch-section .eyebrow { color: rgba(196,154,27,0.9); }
-        .arch-section .section-title { color: var(--floral-white) !important; }
-
-        .arch-wrap {
-            max-width: 1120px;
-            margin: 0 auto;
-            position: relative;
-            z-index: 2;
-        }
-
-        .arch-diagram {
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0;
-        }
-
-        .arch-modules-row {
-            display: grid;
-            grid-template-columns: repeat(3, 220px);
-            gap: 48px;
-            position: relative;
-            z-index: 3;
-        }
-
-        .arch-mod-card {
-            background: linear-gradient(160deg, rgba(0,36,74,0.92) 0%, rgba(0,36,74,0.62) 100%);
-            border: 1px solid rgba(196,154,27,0.25);
-            border-radius: 12px;
-            padding: 20px 18px;
-            position: relative;
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            box-shadow:
-                0 0 40px rgba(196,154,27,0.08),
-                inset 0 1px 0 rgba(255,253,243,0.06);
-            transition: transform 0.4s ease, border-color 0.4s ease;
-        }
-        .arch-mod-card:hover {
-            transform: translateY(-3px);
-            border-color: rgba(196,154,27,0.45);
-        }
-        .arch-mod-icon {
-            width: 28px;
-            height: 28px;
-            color: var(--goldenrod);
-            margin-bottom: 12px;
-            display: block;
-        }
-        .arch-mod-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 600;
-            color: var(--floral-white);
-            margin-bottom: 14px;
-            letter-spacing: -0.01em;
-        }
-        .arch-mod-viz {
-            height: 42px;
-            display: flex;
-            align-items: flex-end;
-        }
-        .arch-mod-viz svg { display: block; width: 100%; }
-
-        /* Module card mini viz */
-        .amv-chat-line {
-            stroke: rgba(196,154,27,0.6);
-            stroke-width: 1.2;
-            fill: none;
-            stroke-linecap: round;
-        }
-        .amv-chat-bubble-l {
-            fill: none;
-            stroke: rgba(196,154,27,0.5);
-            stroke-width: 1;
-        }
-        .amv-chat-bubble-r {
-            fill: rgba(196,154,27,0.15);
-            stroke: rgba(196,154,27,0.6);
-            stroke-width: 1;
-        }
-        .amv-wave i {
-            display: block;
-            width: 4px;
-            margin-right: 4px;
-            background: linear-gradient(180deg, var(--goldenrod), rgba(196,154,27,0.4));
-            border-radius: 2px;
-            animation: bar-wave 1.8s ease-in-out infinite;
-        }
-        .amv-wave {
-            display: flex;
-            align-items: flex-end;
-            height: 100%;
-        }
-        .amv-chart-line {
-            fill: none;
-            stroke: var(--goldenrod);
-            stroke-width: 1.4;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        .amv-chart-line.trend-1 { opacity: 0.5; }
-        .amv-chart-line.trend-2 { opacity: 0.75; }
-        .amv-chart-line.trend-3 { opacity: 1; }
-
-        /* Connection SVG between modules and dashboard */
-        .arch-connect {
-            width: 100%;
-            height: 110px;
-            display: block;
-            position: relative;
-            z-index: 2;
-            margin: 0;
-            overflow: visible;
-        }
-        .arch-connect-path {
-            fill: none;
-            stroke: url(#arch-flow-grad);
-            stroke-width: 1.2;
-            stroke-linecap: round;
-        }
-        .arch-connect-particle {
-            fill: var(--goldenrod);
-            filter: drop-shadow(0 0 4px rgba(196,154,27,0.8));
-        }
-        .arch-connect-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 9px;
-            fill: rgba(196,154,27,0.75);
-            letter-spacing: 0.08em;
-            text-anchor: middle;
-            text-transform: uppercase;
-        }
-
-        /* Central dashboard card */
-        .arch-dashboard {
-            width: 100%;
-            max-width: 520px;
-            background: linear-gradient(160deg, rgba(0,36,74,0.98) 0%, rgba(0,36,74,0.78) 100%);
-            border: 1px solid rgba(196,154,27,0.4);
-            border-radius: 14px;
-            padding: 26px 28px;
-            position: relative;
-            z-index: 3;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            box-shadow:
-                0 20px 60px rgba(0,0,0,0.35),
-                0 0 80px rgba(196,154,27,0.14),
-                inset 0 1px 0 rgba(255,253,243,0.08);
-        }
-        .arch-dash-head {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 6px;
-        }
-        .arch-dash-eyebrow {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.62rem;
-            color: var(--goldenrod);
-            letter-spacing: 0.16em;
-            text-transform: uppercase;
-        }
-        .arch-dash-live {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.58rem;
-            color: rgba(255,253,243,0.6);
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-        }
-        .arch-dash-live::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            border-radius: 50%;
-            background: #2ecc71;
-            animation: pulse-dot 2s infinite;
-        }
-        .arch-dash-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--floral-white);
-            letter-spacing: -0.01em;
-            margin-bottom: 20px;
-        }
-        .arch-dash-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 14px;
-        }
-        .arch-metric {
-            padding: 12px 10px;
-            border: 1px solid rgba(196,154,27,0.18);
-            border-radius: 8px;
-            background: rgba(0,36,74,0.5);
-        }
-        .arch-metric-label {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.56rem;
-            color: rgba(255,253,243,0.55);
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            margin-bottom: 6px;
-            display: block;
-        }
-        .arch-metric-value {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: var(--floral-white);
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 6px;
-            display: block;
-        }
-        .arch-metric-spark {
-            width: 100%;
-            height: 14px;
-            display: block;
-        }
-        .arch-metric-spark path {
-            fill: none;
-            stroke: var(--goldenrod);
-            stroke-width: 1.2;
-            stroke-linecap: round;
-        }
-        .arch-metric-bars {
-            display: flex;
-            align-items: flex-end;
-            gap: 2px;
-            height: 14px;
-        }
-        .arch-metric-bars i {
-            flex: 1;
-            background: var(--goldenrod);
-            border-radius: 1px;
-            opacity: 0.75;
-        }
-
-        @media (max-width: 900px) {
-            .arch-modules-row {
-                grid-template-columns: 1fr;
-                gap: 14px;
-                max-width: 320px;
-                width: 100%;
-            }
-            .arch-connect { display: none; }
-            .arch-dashboard { margin-top: 20px; }
-            .arch-dash-grid { grid-template-columns: repeat(2, 1fr); }
-        }
-
         /* ─── INTEGRATIONS ─── */
         .integr-section {
             background: var(--off-white);
@@ -2606,9 +2552,10 @@
         @media (max-width: 520px) {
             .hero-mockup-wrap { min-height: 440px; }
             .command-center { max-width: 360px; height: 440px; }
-            .cc-core { width: 170px; height: 170px; }
-            .cc-core-label { font-size: 1.3rem; }
-            .cc-core-sub { font-size: 0.5rem; margin-bottom: 10px; }
+            .cc-core { width: 230px; height: 260px; }
+            .cc-core-metatron-stack { width: 200px; height: 200px; }
+            .cc-core-label { font-size: 1.4rem; }
+            .cc-core-sub { font-size: 0.52rem; margin-bottom: 10px; }
             .cc-satellite { width: 134px; padding: 10px; }
             .cc-sat-viz { height: 30px; margin-bottom: 8px; }
             .cc-sat-num { font-size: 0.85rem; }
@@ -2619,45 +2566,147 @@
         /* IMPROVEMENTS: EIXOS V2 (PAIN MINI-MOCKUPS)  */
         /* ═══════════════════════════════════════════ */
         .eixos-section.v2 .eixos-grid {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1200px;
+            display: block;
+            max-width: 820px;
+            margin: 0 auto;
         }
+        .eixos-section.v2 .eixos-header {
+            text-align: center;
+            margin-bottom: 64px;
+            max-width: 820px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .eixos-section.v2 .eixos-title {
+            color: var(--floral-white) !important;
+            margin-bottom: 24px;
+            font-family: 'Sora', sans-serif;
+            font-weight: 600;
+            font-size: clamp(1.9rem, 3.6vw, 2.8rem);
+            line-height: 1.18;
+            letter-spacing: -0.025em;
+        }
+        .eixos-section.v2 .eixos-title em {
+            font-style: italic;
+            font-weight: 500;
+            color: var(--goldenrod);
+        }
+        .eixos-section.v2 .eixos-lead {
+            font-family: 'Inter', sans-serif;
+            font-weight: 300;
+            font-size: clamp(0.98rem, 1.15vw, 1.1rem);
+            color: rgba(255,253,243,0.6);
+            line-height: 1.75;
+            max-width: 580px;
+            margin: 0 auto;
+        }
+        .eixos-section.v2 .eixos-closing {
+            margin: 64px auto 0;
+            text-align: center;
+            font-family: 'Sora', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1.1rem, 1.8vw, 1.45rem);
+            color: rgba(255,253,243,0.75);
+            letter-spacing: -0.015em;
+            max-width: 640px;
+        }
+        .eixos-section.v2 .eixos-closing em {
+            font-style: italic;
+            color: var(--goldenrod);
+            font-weight: 500;
+        }
+        .eixos-section.v2 .eixos-closing::before {
+            content: "";
+            display: block;
+            width: 32px;
+            height: 1px;
+            background: var(--goldenrod);
+            opacity: 0.5;
+            margin: 0 auto 28px;
+        }
+        /* Editorial magazine blocks (big number + content) */
         .eixos-section.v2 .eixo-card {
-            background: var(--off-white);
-            border: 1px solid rgba(196,154,27,0.15);
-            border-radius: 12px;
-            padding: 36px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-            transition: border-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+            background: transparent;
+            border: none;
+            border-top: 1px solid rgba(196,154,27,0.2);
+            border-radius: 0;
+            padding: 72px 0;
+            display: grid;
+            grid-template-columns: minmax(140px, 180px) 1fr;
+            gap: 56px;
+            align-items: start;
+            transform: none;
+            box-shadow: none;
+            transition: none;
+            position: relative;
         }
         .eixos-section.v2 .eixo-card:hover {
-            background: var(--off-white);
-            border-color: rgba(196,154,27,0.5);
-            transform: translateY(-6px);
-            box-shadow: 0 18px 48px rgba(0,0,0,0.15);
+            background: transparent;
+            border-color: rgba(196,154,27,0.2);
+            transform: none;
+            box-shadow: none;
         }
-        .eixos-section.v2 .eixo-card .eixo-title {
-            color: var(--prussian-blue);
-            font-size: 1.15rem;
-            margin-bottom: 10px;
+        .eixos-section.v2 .eixo-card:first-child {
+            border-top: none;
+            padding-top: 24px;
         }
-        .eixos-section.v2 .eixo-card:hover .eixo-title { color: var(--prussian-blue); }
-        .eixos-section.v2 .eixo-card .eixo-desc {
-            color: rgba(0,36,74,0.6);
-            font-size: 0.92rem;
+        .eixos-section.v2 .eixo-card:last-child {
+            padding-bottom: 24px;
         }
-        .eixos-section.v2 .eixo-card:hover .eixo-desc { color: rgba(0,36,74,0.85); }
+
+        /* Big display number */
         .eixos-section.v2 .eixo-card .eixo-num {
-            color: rgba(196,154,27,0.35);
-            font-size: 0.82rem;
-            font-family: 'JetBrains Mono', monospace;
-            letter-spacing: 0.12em;
-            margin-bottom: 0;
-            text-transform: uppercase;
+            color: rgba(196,154,27,0.55);
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(4.5rem, 9vw, 7.5rem);
+            font-weight: 200;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin: 0;
+            text-transform: none;
+            opacity: 1;
+            display: block;
+            position: sticky;
+            top: 120px;
         }
+
+        /* Small label above title */
+        .eixos-section.v2 .eixo-card .eixo-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.7rem;
+            letter-spacing: 0.3em;
+            text-transform: uppercase;
+            color: var(--goldenrod);
+            margin-bottom: 16px;
+            font-weight: 500;
+        }
+
+        .eixos-section.v2 .eixo-content {
+            min-width: 0;
+        }
+
+        /* Editorial title */
+        .eixos-section.v2 .eixo-card .eixo-title {
+            color: var(--floral-white);
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.7rem, 3vw, 2.3rem);
+            font-weight: 600;
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+            margin-bottom: 28px;
+            max-width: 680px;
+        }
+        .eixos-section.v2 .eixo-card:hover .eixo-title { color: var(--floral-white); }
+        .eixos-section.v2 .eixo-card .eixo-desc {
+            color: rgba(255,253,243,0.65);
+            font-family: 'Inter', sans-serif;
+            font-size: clamp(1rem, 1.2vw, 1.1rem);
+            font-weight: 300;
+            line-height: 1.85;
+            max-width: 660px;
+            margin-bottom: 28px;
+        }
+        .eixos-section.v2 .eixo-card:hover .eixo-desc { color: rgba(255,253,243,0.78); }
 
         .pain-viz {
             background: linear-gradient(180deg, rgba(0,36,74,0.04) 0%, rgba(0,36,74,0.02) 100%);
@@ -2807,358 +2856,164 @@
             font-weight: 700;
         }
 
-        /* Minimal motif (replaces heavy pain-viz mockups) */
+        /* Inline pain motif (editorial pill) */
         .pain-motif {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: center;
+            display: inline-flex;
+            flex-direction: row;
+            align-items: center;
             gap: 14px;
-            padding: 14px 0 18px;
-            min-height: 88px;
+            padding: 10px 18px;
+            border: 1px solid rgba(196,154,27,0.22);
+            border-radius: 4px;
+            background: rgba(255,253,243,0.02);
             color: var(--goldenrod);
+            transition: border-color 0.4s ease, background 0.4s ease;
         }
         .pain-motif .pain-icon {
+            width: 20px !important;
+            height: 20px !important;
             opacity: 0.9;
-            transition: opacity 0.4s ease, transform 0.4s ease;
+            flex-shrink: 0;
+            transition: opacity 0.4s ease;
+        }
+        .eixos-section.v2 .eixo-card:hover .pain-motif {
+            border-color: rgba(196,154,27,0.5);
+            background: rgba(196,154,27,0.04);
         }
         .eixos-section.v2 .eixo-card:hover .pain-motif .pain-icon {
             opacity: 1;
-            transform: translateY(-1px);
         }
         .pain-motif-label {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            letter-spacing: 0.14em;
-            color: rgba(0,36,74,0.4);
-            text-transform: uppercase;
-        }
-
-        @media (max-width: 900px) {
-            .eixos-section.v2 .eixos-grid { grid-template-columns: 1fr; max-width: 520px; }
-        }
-
-        /* ═══════════════════════════════════════════ */
-        /* IMPROVEMENTS: TRANSFORM V2 (BEFORE/AFTER)   */
-        /* ═══════════════════════════════════════════ */
-        .transform-section.v2 { background: var(--floral-white); }
-        .transform-compare {
-            max-width: 1100px;
-            margin: 0 auto;
-            background: var(--off-white);
-            border: 1px solid rgba(0,36,74,0.08);
-            border-radius: 16px;
-            overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,36,74,0.06);
-        }
-        .transform-compare-head {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            padding: 22px 32px;
-            background: var(--prussian-blue);
-            color: var(--floral-white);
-        }
-        .transform-compare-head .th {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            letter-spacing: 0.18em;
-            text-transform: uppercase;
-            color: rgba(255,253,243,0.55);
-        }
-        .transform-compare-head .th.nexus { color: var(--goldenrod); }
-        .transform-compare-row {
-            display: grid;
-            grid-template-columns: 1.2fr 1fr 1fr;
-            padding: 28px 32px;
-            border-bottom: 1px solid rgba(0,36,74,0.06);
-            align-items: center;
-            gap: 24px;
-        }
-        .transform-compare-row:last-child { border-bottom: none; }
-        .transform-dim {
-            font-family: 'Sora', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--prussian-blue);
-        }
-        .transform-dim-sub {
-            display: block;
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 400;
-            color: rgba(0,36,74,0.5);
-            margin-top: 4px;
-        }
-        .transform-cell {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .transform-cell-icon {
-            width: 32px; height: 32px;
-            border-radius: 8px;
-            display: flex; align-items: center; justify-content: center;
-            flex-shrink: 0;
-        }
-        .transform-cell.before .transform-cell-icon {
-            background: rgba(0,36,74,0.08);
-            color: rgba(0,36,74,0.4);
-        }
-        .transform-cell.after .transform-cell-icon {
-            background: rgba(196,154,27,0.18);
-            color: var(--goldenrod);
-        }
-        .transform-cell-text {
-            font-family: 'Sora', sans-serif;
-            font-size: 0.92rem;
-            font-weight: 600;
-            line-height: 1.3;
-        }
-        .transform-cell.before .transform-cell-text { color: rgba(0,36,74,0.45); }
-        .transform-cell.after .transform-cell-text { color: var(--prussian-blue); }
-        .transform-cell-metric {
-            display: block;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.72rem;
-            font-weight: 500;
-            margin-top: 4px;
-            letter-spacing: 0.04em;
-        }
-        .transform-cell.before .transform-cell-metric { color: rgba(0,36,74,0.4); }
-        .transform-cell.after .transform-cell-metric { color: var(--goldenrod); }
-
-        @media (max-width: 820px) {
-            .transform-compare-head { display: none; }
-            .transform-compare-row {
-                grid-template-columns: 1fr;
-                gap: 14px;
-                padding: 22px;
-            }
-            .transform-cell.before::before {
-                content: 'HOJE';
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 0.65rem;
-                color: rgba(0,36,74,0.4);
-                letter-spacing: 0.14em;
-                margin-right: 6px;
-            }
-            .transform-cell.after::before {
-                content: 'NEXUS';
-                font-family: 'JetBrains Mono', monospace;
-                font-size: 0.65rem;
-                color: var(--goldenrod);
-                letter-spacing: 0.14em;
-                margin-right: 6px;
-                font-weight: 700;
-            }
-        }
-
-        /* ═══════════════════════════════════════════ */
-        /* IMPROVEMENTS: SEMANAS V2 (VISUAL TIMELINE)  */
-        /* ═══════════════════════════════════════════ */
-        .semanas-section.v2 { background: var(--off-white); }
-        .timeline-v2 {
-            position: relative;
-            max-width: 1100px;
-            margin: 80px auto 40px;
-            padding: 0 40px;
-        }
-        .timeline-v2-track {
-            position: absolute;
-            top: 50%;
-            left: 40px;
-            right: 40px;
-            height: 2px;
-            background: rgba(0,36,74,0.1);
-            transform: translateY(-50%);
-            z-index: 1;
-        }
-        .timeline-v2-track::after {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            height: 100%;
-            width: var(--progress, 0%);
-            background: linear-gradient(90deg, var(--goldenrod) 0%, rgba(196,154,27,0.5) 100%);
-            transition: width 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-        }
-        .timeline-v2-row {
-            position: relative;
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 24px;
-            z-index: 2;
-        }
-        .timeline-v2-node {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 20px;
-            position: relative;
-        }
-        .timeline-v2-card {
-            background: var(--floral-white);
-            border: 1px solid rgba(0,36,74,0.08);
-            border-radius: 12px;
-            padding: 22px 20px;
-            min-height: 148px;
-            text-align: left;
-            width: 100%;
-            box-shadow: 0 10px 30px rgba(0,36,74,0.05);
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
-        }
-        .timeline-v2-node:hover .timeline-v2-card {
-            transform: translateY(-4px);
-            border-color: rgba(196,154,27,0.4);
-            box-shadow: 0 18px 44px rgba(0,36,74,0.1);
-        }
-        .timeline-v2-card .tl-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--prussian-blue);
-            margin-bottom: 8px;
-            line-height: 1.3;
-        }
-        .timeline-v2-card .tl-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.85rem;
-            color: rgba(0,36,74,0.6);
-            line-height: 1.6;
-        }
-        .timeline-v2-dot {
-            width: 52px;
-            height: 52px;
-            border-radius: 50%;
-            background: var(--off-white);
-            border: 2px solid rgba(0,36,74,0.15);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
-            transition: border-color 0.5s ease, background 0.5s ease;
-            z-index: 3;
-        }
-        .timeline-v2-node.active .timeline-v2-dot {
-            border-color: var(--goldenrod);
-            background: var(--off-white);
-        }
-        .timeline-v2-node.active .timeline-v2-dot::before {
-            content: '';
-            position: absolute;
-            inset: -6px;
-            border-radius: 50%;
-            border: 2px solid rgba(196,154,27,0.25);
-            animation: tlPulse 2.2s infinite ease-out;
-        }
-        @keyframes tlPulse {
-            0% { transform: scale(0.9); opacity: 0.7; }
-            100% { transform: scale(1.35); opacity: 0; }
-        }
-        .timeline-v2-dot span {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--prussian-blue);
-        }
-        .timeline-v2-node.active .timeline-v2-dot span { color: var(--goldenrod); }
-        .timeline-v2-chip {
-            font-family: 'JetBrains Mono', monospace;
             font-size: 0.68rem;
-            color: var(--goldenrod);
-            background: rgba(196,154,27,0.12);
-            padding: 4px 10px;
-            border-radius: 99px;
-            letter-spacing: 0.08em;
+            letter-spacing: 0.2em;
+            color: rgba(196,154,27,0.85);
             text-transform: uppercase;
-            font-weight: 600;
-            margin-top: -4px;
+            font-weight: 500;
         }
 
         @media (max-width: 900px) {
-            .timeline-v2 { padding: 0 20px; margin-top: 40px; }
-            .timeline-v2-track { display: none; }
-            .timeline-v2-row { grid-template-columns: 1fr; gap: 28px; }
-            .timeline-v2-node { flex-direction: row; align-items: flex-start; }
-            .timeline-v2-dot { flex-shrink: 0; }
-            .timeline-v2-card { margin-left: 12px; flex: 1; }
-            .timeline-v2-chip { display: none; }
+            .eixos-section.v2 .eixos-grid { max-width: 600px; }
+            .eixos-section.v2 .eixo-card {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 56px 0;
+            }
+            .eixos-section.v2 .eixo-card .eixo-num {
+                font-size: 4rem;
+                position: static;
+                line-height: 0.8;
+                margin-bottom: 8px;
+            }
         }
 
         /* ═══════════════════════════════════════════ */
-        /* IMPROVEMENT 4: SECURITY & COMPLIANCE        */
+        /* TRANSFORM V3 (EDITORIAL HUMAN SCENARIOS)    */
         /* ═══════════════════════════════════════════ */
-        .security-section {
-            background: var(--prussian-blue);
-            position: relative;
-            overflow: hidden;
-        }
-        .security-section::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image:
-                radial-gradient(circle at 15% 20%, rgba(196,154,27,0.08), transparent 40%),
-                radial-gradient(circle at 85% 80%, rgba(196,154,27,0.06), transparent 40%);
-            pointer-events: none;
-        }
-        .security-section .section-wide { position: relative; z-index: 1; }
-        .security-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            max-width: 1200px;
-            margin: 48px auto 0;
-        }
-        .security-card {
-            background: rgba(255,253,243,0.03);
-            border: 1px solid rgba(196,154,27,0.18);
-            border-radius: 12px;
-            padding: 32px 26px;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease, background 0.4s ease;
-            position: relative;
-        }
-        .security-card:hover {
-            transform: translateY(-6px);
-            border-color: rgba(196,154,27,0.55);
-            background: rgba(255,253,243,0.05);
-            box-shadow: 0 18px 48px rgba(0,0,0,0.35), 0 0 0 1px rgba(196,154,27,0.15);
-        }
-        .security-icon {
-            width: 48px;
-            height: 48px;
-            border-radius: 10px;
-            background: rgba(196,154,27,0.12);
-            display: flex; align-items: center; justify-content: center;
+        .transform-section.v3 { background: var(--off-white); }
+        .transform-section.v3 .section-title em {
+            font-style: italic;
             color: var(--goldenrod);
-            margin-bottom: 22px;
-            transition: background 0.4s ease;
+            font-weight: 500;
         }
-        .security-card:hover .security-icon {
-            background: rgba(196,154,27,0.22);
+        .transform-list {
+            max-width: 900px;
+            margin: 0 auto;
         }
-        .security-title {
-            font-family: 'Sora', sans-serif;
-            font-size: 1.08rem;
-            font-weight: 600;
-            color: var(--floral-white);
-            margin-bottom: 10px;
-            line-height: 1.3;
+        .transform-block {
+            padding: 72px 0;
+            border-top: 1px solid rgba(196,154,27,0.2);
+            display: grid;
+            grid-template-columns: minmax(140px, 180px) 1fr;
+            gap: 56px;
+            align-items: start;
         }
-        .security-desc {
-            font-family: 'Inter', sans-serif;
-            font-size: 0.88rem;
-            color: rgba(255,253,243,0.6);
-            line-height: 1.7;
+        .transform-block:first-of-type {
+            border-top: none;
+            padding-top: 24px;
         }
-        .security-section .eyebrow { color: var(--goldenrod); }
-        .security-section .section-title { color: var(--floral-white); }
+        .transform-block:last-of-type { padding-bottom: 24px; }
 
-        @media (max-width: 1000px) {
-            .security-grid { grid-template-columns: repeat(2, 1fr); }
+        .transform-num {
+            color: rgba(196,154,27,0.55);
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(4.5rem, 9vw, 7.5rem);
+            font-weight: 200;
+            line-height: 0.9;
+            letter-spacing: -0.04em;
+            margin: 0;
+            position: sticky;
+            top: 120px;
         }
-        @media (max-width: 560px) {
-            .security-grid { grid-template-columns: 1fr; }
+
+        .transform-body { min-width: 0; }
+
+        .transform-title {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.5rem, 2.5vw, 1.95rem);
+            font-weight: 600;
+            color: var(--prussian-blue);
+            line-height: 1.25;
+            letter-spacing: -0.02em;
+            margin-bottom: 32px;
+        }
+
+        .transform-pair {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 28px;
+        }
+
+        .transform-scenario {
+            position: relative;
+            padding: 24px 26px;
+            border-radius: 8px;
+        }
+        .transform-scenario.before {
+            background: rgba(0,36,74,0.03);
+            border-left: 2px solid rgba(0,36,74,0.15);
+        }
+        .transform-scenario.after {
+            background: rgba(196,154,27,0.04);
+            border-left: 2px solid var(--goldenrod);
+        }
+        .transform-scenario .scenario-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.62rem;
+            letter-spacing: 0.25em;
+            text-transform: uppercase;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 12px;
+        }
+        .transform-scenario.before .scenario-label { color: rgba(0,36,74,0.4); }
+        .transform-scenario.after .scenario-label { color: var(--goldenrod); }
+        .transform-scenario p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.7;
+            margin: 0;
+        }
+        .transform-scenario.before p { color: rgba(0,36,74,0.6); }
+        .transform-scenario.after p { color: rgba(0,36,74,0.85); }
+
+        @media (max-width: 900px) {
+            .transform-block {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 56px 0;
+            }
+            .transform-num {
+                font-size: 4rem;
+                position: static;
+                line-height: 0.8;
+                margin-bottom: 8px;
+            }
+            .transform-pair {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
         }
 
         /* ═══════════════════════════════════════════ */
@@ -3355,72 +3210,155 @@
         /* ═══════════════════════════════════════════ */
         /* IMPROVEMENT 7: RESULTS METRICS              */
         /* ═══════════════════════════════════════════ */
-        .results-section { background: var(--floral-white); }
+        .results-section { background: var(--off-white); }
         .results-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
+            gap: 28px;
             max-width: 1200px;
-            margin: 48px auto 0;
+            margin: 56px auto 0;
+            align-items: stretch;
         }
         .result-card {
-            background: var(--off-white);
-            border: 1px solid rgba(196,154,27,0.18);
+            background: linear-gradient(180deg, var(--floral-white) 0%, var(--off-white) 100%);
+            border: 1px solid rgba(196,154,27,0.15);
             border-radius: 16px;
-            padding: 40px 32px;
+            padding: 36px 32px 28px;
             position: relative;
             overflow: hidden;
-            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s cubic-bezier(0.4,0,0.2,1), box-shadow 0.4s ease, border-color 0.4s ease;
+        }
+        .result-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, transparent 0%, var(--goldenrod) 50%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
         }
         .result-card:hover {
             transform: translateY(-6px);
-            border-color: rgba(196,154,27,0.5);
-            box-shadow: 0 20px 52px rgba(0,36,74,0.08);
+            border-color: rgba(196,154,27,0.4);
+            box-shadow: 0 24px 60px rgba(0,36,74,0.1);
+        }
+        .result-card:hover::before { opacity: 1; }
+
+        .result-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 28px;
         }
         .result-eyebrow {
             font-family: 'JetBrains Mono', monospace;
-            font-size: 0.7rem;
-            color: rgba(0,36,74,0.4);
-            letter-spacing: 0.16em;
+            font-size: 0.62rem;
+            color: var(--goldenrod);
+            letter-spacing: 0.28em;
             text-transform: uppercase;
-            margin-bottom: 12px;
-            display: block;
+            font-weight: 500;
         }
+        .result-live {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            color: rgba(0,36,74,0.4);
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+        }
+        .result-live::before {
+            content: '';
+            width: 6px; height: 6px;
+            border-radius: 50%;
+            background: #5FAF7E;
+            box-shadow: 0 0 0 0 rgba(95,175,126,0.6);
+            animation: cc-live 1.8s infinite;
+        }
+
         .result-number {
             font-family: 'Sora', sans-serif;
-            font-size: 4.2rem;
+            font-size: clamp(3.2rem, 5vw, 4.8rem);
             font-weight: 700;
+            color: var(--prussian-blue);
+            line-height: 0.95;
+            margin-bottom: 8px;
+            letter-spacing: -0.035em;
+        }
+        .result-number em {
+            font-style: normal;
             color: var(--goldenrod);
-            line-height: 1;
-            margin-bottom: 14px;
-            letter-spacing: -0.02em;
         }
         .result-label {
             font-family: 'Sora', sans-serif;
-            font-size: 1.05rem;
+            font-size: 1rem;
             font-weight: 600;
             color: var(--prussian-blue);
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             line-height: 1.3;
+            letter-spacing: -0.01em;
         }
         .result-desc {
             font-family: 'Inter', sans-serif;
             font-size: 0.88rem;
             color: rgba(0,36,74,0.6);
             line-height: 1.65;
-            margin-bottom: 24px;
+            margin-bottom: 28px;
+            flex: 1;
         }
-        .result-visual {
-            height: 48px;
-            border-top: 1px dashed rgba(196,154,27,0.25);
-            padding-top: 16px;
+
+        /* Premium chart container */
+        .result-chart {
+            background: rgba(0,36,74,0.025);
+            border: 1px solid rgba(0,36,74,0.06);
+            border-radius: 10px;
+            padding: 18px 18px 14px;
+            position: relative;
+        }
+        .result-chart-head {
             display: flex;
-            align-items: center;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.58rem;
+            letter-spacing: 0.16em;
+            color: rgba(0,36,74,0.45);
+            text-transform: uppercase;
         }
-        .result-sparkline { width: 100%; height: 32px; }
+        .result-chart-body {
+            position: relative;
+            height: 80px;
+        }
+        .result-chart svg {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .result-chart-foot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 10px;
+            padding-top: 10px;
+            border-top: 1px dashed rgba(196,154,27,0.2);
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.6rem;
+            letter-spacing: 0.12em;
+            color: rgba(0,36,74,0.5);
+            text-transform: uppercase;
+        }
+        .result-chart-foot strong {
+            color: var(--goldenrod);
+            font-weight: 600;
+            letter-spacing: 0.08em;
+        }
 
         @media (max-width: 960px) {
-            .results-grid { grid-template-columns: 1fr; max-width: 560px; }
+            .results-grid { grid-template-columns: 1fr; max-width: 480px; }
             .result-number { font-size: 3.4rem; }
         }
 
@@ -3730,6 +3668,506 @@
             .compare-label { margin: 0 auto; min-width: auto; }
         }
 
+        /* ═══════════════════════════════════════════ */
+        /* TRUST STRIP (Segurança & Compliance)        */
+        /* ═══════════════════════════════════════════ */
+        .trust-strip {
+            background: var(--off-white);
+            padding: 56px 64px;
+            border-top: 1px solid rgba(196,154,27,0.12);
+            border-bottom: 1px solid rgba(196,154,27,0.12);
+        }
+        .trust-wrap {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 32px;
+        }
+        .trust-eyebrow {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.65rem;
+            letter-spacing: 0.3em;
+            color: var(--goldenrod);
+            text-transform: uppercase;
+            font-weight: 500;
+            margin: 0;
+            white-space: nowrap;
+        }
+        .trust-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .trust-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 16px;
+            border: 1px solid rgba(196,154,27,0.22);
+            border-radius: 999px;
+            background: rgba(255,253,243,0.6);
+            color: rgba(0,36,74,0.78);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
+            transition: border-color 0.3s ease, background 0.3s ease;
+        }
+        .trust-pill:hover {
+            border-color: rgba(196,154,27,0.5);
+            background: rgba(196,154,27,0.06);
+        }
+        .trust-pill svg {
+            width: 16px;
+            height: 16px;
+            color: var(--goldenrod);
+            flex-shrink: 0;
+        }
+        @media (max-width: 768px) {
+            .trust-strip { padding: 40px 24px; }
+            .trust-wrap { flex-direction: column; align-items: flex-start; gap: 20px; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /* INTERMEDIATE CTAs                       */
+        /* ═══════════════════════════════════════ */
+        .inline-cta-wrap {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin: 72px auto 0;
+            padding: 0 24px;
+            text-align: center;
+        }
+        .inline-cta-text {
+            font-family: 'Inter', sans-serif;
+            font-style: italic;
+            font-size: 0.98rem;
+            font-weight: 300;
+            letter-spacing: 0.01em;
+            line-height: 1.6;
+            margin: 0;
+            max-width: 520px;
+        }
+        .inline-cta-text.light {
+            color: rgba(255, 253, 243, 0.7);
+        }
+        .inline-cta-text.dark {
+            color: rgba(0, 36, 74, 0.65);
+        }
+        .inline-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            font-family: 'Sora', sans-serif;
+            font-size: 0.96rem;
+            font-weight: 500;
+            letter-spacing: 0.01em;
+            padding: 16px 34px;
+            border-radius: 8px;
+            text-decoration: none;
+            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        /* Variant: outline gold on dark bg */
+        .inline-cta.outline-gold {
+            background: transparent;
+            color: var(--goldenrod);
+            border: 1px solid var(--goldenrod);
+        }
+        .inline-cta.outline-gold:hover {
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            transform: translateY(-2px);
+        }
+        /* Variant: filled prussian on light bg */
+        .inline-cta.solid-prussian {
+            background: var(--prussian-blue);
+            color: var(--floral-white);
+            border: 1px solid var(--prussian-blue);
+        }
+        .inline-cta.solid-prussian:hover {
+            background: #001a36;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(0, 36, 74, 0.25);
+        }
+        /* Variant: filled gold on dark bg */
+        .inline-cta.solid-gold {
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            border: 1px solid var(--goldenrod);
+        }
+        .inline-cta.solid-gold:hover {
+            background: #d6a826;
+            transform: translateY(-2px);
+            box-shadow: 0 14px 34px rgba(196, 154, 27, 0.35);
+        }
+        /* Variant: outline gold with backlight glow on light bg */
+        .inline-cta.outline-gold-glow {
+            background: transparent;
+            color: var(--goldenrod);
+            border: 1px solid var(--goldenrod);
+            position: relative;
+        }
+        .inline-cta.outline-gold-glow:hover {
+            background: var(--goldenrod);
+            color: var(--prussian-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 0 0 1px rgba(196, 154, 27, 0.15),
+                        0 10px 40px rgba(196, 154, 27, 0.45),
+                        0 0 60px rgba(196, 154, 27, 0.25);
+        }
+        @media (max-width: 640px) {
+            .inline-cta-wrap { margin-top: 56px; gap: 14px; }
+            .inline-cta {
+                font-size: 0.9rem;
+                padding: 14px 24px;
+                white-space: normal;
+                text-align: center;
+            }
+            .inline-cta-text { font-size: 0.92rem; }
+        }
+
+        /* ═══════════════════════════════════════ */
+        /* MOBILE POLISH OVERRIDES                 */
+        /* Only add mobile fixes here - do not     */
+        /* touch desktop styles.                   */
+        /* ═══════════════════════════════════════ */
+
+        /* ─── 768px: Tablet / Small Laptop ─── */
+        @media (max-width: 768px) {
+            /* HERO COMMAND CENTER — simplify to a clean stack.
+               The original layout absolute-positions 3 satellites around a left core
+               with an SVG connection bus. On small screens that arrangement breaks.
+               We convert the command-center into a vertical stack: core on top,
+               satellites below in a clean list, and hide the SVG connector. */
+            .hero-mockup-wrap { min-height: auto; margin-top: 16px; }
+            .command-center {
+                position: relative;
+                height: auto;
+                max-width: 420px;
+                min-height: 0;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                gap: 20px;
+                padding: 8px 0 12px;
+            }
+            /* Hide the decorative SVG bus on mobile — the visual doesn't map well
+               to a vertical layout and would overflow / misalign. */
+            .command-center .cc-connections { display: none !important; }
+            /* Core becomes static and centered */
+            .cc-core {
+                position: relative;
+                top: auto; left: auto; transform: none;
+                width: 260px; height: 300px;
+                margin: 0 auto;
+            }
+            .cc-core-metatron-stack { width: 240px; height: 240px; }
+            .cc-core-content {
+                position: relative;
+                bottom: auto; left: auto;
+                transform: none;
+                padding: 10px 28px;
+                margin-top: 8px;
+                white-space: normal;
+            }
+            .cc-core-label { font-size: 1.5rem; }
+            .cc-core-sub { font-size: 0.56rem; margin-bottom: 10px; }
+            /* Satellites: stack in a vertical list, full width of wrap */
+            .cc-satellite {
+                position: relative !important;
+                top: auto !important; right: auto !important;
+                bottom: auto !important; left: auto !important;
+                transform: none !important;
+                width: 100%;
+                max-width: 320px;
+            }
+            .cc-sat-1, .cc-sat-2, .cc-sat-3 {
+                top: auto; right: auto; bottom: auto; left: auto;
+                transform: none;
+            }
+
+            /* STRATA/STACK — strata header on narrow screens */
+            .strata-header { font-size: 0.58rem; letter-spacing: 0.22em; }
+            .strata-name { font-size: 0.9rem; }
+            .strata-price { font-size: 0.72rem; }
+
+            /* TRANSFORM — cancel sticky for small screens (number shouldn't stick
+               when everything stacks vertically) */
+            .transform-num { position: static !important; top: auto !important; }
+            .transform-title { margin-bottom: 20px; }
+
+            /* EIXOS v2 — cancel sticky number, loosen padding */
+            .eixos-section.v2 .eixo-card .eixo-num { position: static !important; top: auto !important; }
+            .eixos-section.v2 .eixos-header { margin-bottom: 48px; }
+            .eixos-section.v2 .eixos-closing { margin-top: 48px; }
+
+            /* SOLUÇÃO — 3 pilar-cards already go to 1fr at 1100px; make sure
+               the bottom border looks right and cards don't have a hanging
+               right border when stacked */
+            .solucao-pilares { grid-template-columns: 1fr !important; max-width: 480px !important; gap: 24px; }
+            .pilar-card {
+                border-right: none;
+                border-bottom: 1px solid rgba(196,154,27,0.15);
+                padding-bottom: 32px;
+            }
+            .pilar-card:last-child { border-bottom: none; }
+
+            /* SOLUÇÃO METAPHOR — big gap + 80px col doesn't work narrow */
+            .solucao-metaphor {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding: 32px 22px;
+                text-align: left;
+            }
+            .solucao-metaphor-icon { width: 44px; height: 44px; }
+
+            /* BIO (#trajetória) — the background photo positioned right-top
+               becomes a soft texture; text overlay gets stronger scrim for
+               legibility. */
+            #trajetória {
+                min-height: auto !important;
+                padding: 20px 0;
+            }
+            #trajetória > div[style*="background:url"] {
+                background-position: center top !important;
+                background-size: cover !important;
+                opacity: 0.55;
+            }
+            /* Stronger scrim on mobile so text is always readable */
+            #trajetória > div[style*="linear-gradient"] {
+                background: linear-gradient(
+                    to bottom,
+                    rgba(255,253,243,0.96) 0%,
+                    rgba(255,253,243,0.92) 60%,
+                    rgba(255,253,243,0.88) 100%
+                ) !important;
+            }
+
+            /* FAQ — readable padding + larger touch target */
+            .faq-question {
+                font-size: 0.98rem;
+                padding: 22px 0;
+                min-height: 44px;
+                line-height: 1.45;
+            }
+            .faq-icon { font-size: 1.3rem; margin-left: 14px; }
+            .faq-answer-inner { font-size: 0.92rem; line-height: 1.75; }
+            .faq-list { padding: 0 4px; }
+
+            /* PRICING — prevent value wrap from breaking layout */
+            .pricing-row { padding: 14px 0; gap: 12px; }
+            .pricing-item { font-size: 0.92rem; flex: 1; }
+            .pricing-value { font-size: 0.92rem; }
+            .pricing-total { padding: 20px 0; }
+            .pricing-total-value { font-size: 1.5rem; }
+
+            /* CTA section padding */
+            .cta-section.section-padding,
+            .cta-mid-light,
+            .cta-mid { padding-left: 24px; padding-right: 24px; }
+            .cta-title { font-size: clamp(1.5rem, 5vw, 1.9rem); }
+
+            /* RESULTS cards — already stack at 960px; tighten internal padding */
+            .result-card { padding: 28px 22px 22px; }
+            .result-head { margin-bottom: 20px; }
+            .result-number { font-size: clamp(2.8rem, 12vw, 3.4rem); }
+            .result-desc { margin-bottom: 20px; }
+            .result-chart { padding: 14px 14px 12px; }
+
+            /* STACK-CORE — core visuals scaled down */
+            .core-metatron svg { width: 320px; height: 320px; }
+            .core-name { font-size: clamp(2rem, 9vw, 2.8rem); letter-spacing: 0.1em; }
+            .core-tagline { font-size: 0.95rem; }
+            .core-symbol { font-size: 2.4rem; margin-bottom: 20px; }
+            .core-meta { font-size: 0.52rem; letter-spacing: 0.14em; gap: 8px; bottom: 16px; left: 16px; right: 16px; }
+
+            /* TRUST PILLS — wrap naturally but keep touch friendly */
+            .trust-pill { padding: 10px 14px; font-size: 0.8rem; }
+            .trust-pills { gap: 10px; }
+
+            /* TOUCH TARGETS — general guarantee for interactive elements */
+            .mobile-overlay a,
+            .mobile-overlay .mobile-cta,
+            .btn-solid,
+            .btn-solid-dark,
+            .btn-outline-gold,
+            .nav-cta,
+            .inline-cta {
+                min-height: 44px;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .hamburger { width: 44px; height: 44px; display: flex !important; align-items: center; justify-content: center; }
+
+            /* PROBLEMA/stats padding sanity */
+            .problema-impact { padding: 36px 24px; margin-top: 48px; }
+            .problema-closing { margin-top: 48px; font-size: clamp(1.15rem, 4.5vw, 1.4rem); }
+            .stats-header { padding: 0 4px; }
+        }
+
+        /* ─── 480px: Small Phones ─── */
+        @media (max-width: 480px) {
+            /* Global paddings */
+            .section-padding { padding: 64px 20px; }
+            nav { padding: 14px 18px; }
+            #hero { padding: 110px 20px 56px; }
+            .hero-headline { font-size: clamp(1.8rem, 8vw, 2.2rem); }
+            .hero-sub { font-size: 0.98rem; line-height: 1.75; margin-bottom: 32px; }
+            .btn-solid, .btn-solid-dark, .btn-outline-gold {
+                padding: 16px 32px;
+                font-size: 0.76rem;
+                letter-spacing: 0.08em;
+            }
+
+            /* HERO COMMAND CENTER — even more compact */
+            .command-center { max-width: 320px; gap: 14px; }
+            .cc-core { width: 220px; height: 250px; }
+            .cc-core-metatron-stack { width: 200px; height: 200px; }
+            .cc-core-label { font-size: 1.3rem; letter-spacing: 0.18em; }
+            .cc-core-sub { font-size: 0.5rem; margin-bottom: 8px; letter-spacing: 0.25em; }
+            .cc-core-status { font-size: 0.55rem; padding: 4px 10px; letter-spacing: 0.15em; }
+            .cc-satellite { padding: 12px; max-width: 280px; }
+            .cc-sat-num { font-size: 0.9rem; }
+            .cc-sat-unit { font-size: 0.62rem; }
+            .cc-sat-label { font-size: 0.52rem; }
+
+            /* STATS STRIP — stat-card with left border adjusts */
+            .stats-strip { padding: 48px 20px; }
+            .stat-card { padding: 0 14px; }
+
+            /* EIXOS v2 */
+            .eixos-section.v2 .eixo-card { padding: 48px 0; gap: 14px; }
+            .eixos-section.v2 .eixo-card .eixo-num { font-size: clamp(3.6rem, 15vw, 4.5rem); }
+            .eixos-section.v2 .eixo-card .eixo-title { font-size: clamp(1.4rem, 6vw, 1.7rem); margin-bottom: 20px; }
+            .eixos-section.v2 .eixo-card .eixo-desc { font-size: 0.95rem; line-height: 1.75; }
+            .pain-motif { padding: 8px 14px; gap: 10px; }
+            .pain-motif-label { font-size: 0.6rem; letter-spacing: 0.16em; }
+
+            /* TRANSFORM SECTION */
+            .transform-block { padding: 44px 0; gap: 14px; }
+            .transform-num { font-size: clamp(3.6rem, 15vw, 4.5rem); }
+            .transform-title { font-size: clamp(1.3rem, 5.5vw, 1.6rem); margin-bottom: 18px; }
+            .transform-scenario { padding: 18px 18px; }
+            .transform-scenario p { font-size: 0.9rem; line-height: 1.65; }
+
+            /* STACK REPLACE section */
+            .stack-replace-section { padding: 72px 20px 64px; }
+            .stack-h-main { font-size: clamp(1.7rem, 7vw, 2.1rem); }
+            .stack-subtitle { font-size: 0.96rem; margin-top: 20px; }
+            .stack-headline { margin-bottom: 56px; }
+            .stack-duel { margin-bottom: 64px; gap: 36px; }
+            .stack-versus { min-height: 60px; }
+            .stack-core { padding: 44px 20px; min-height: 320px; }
+            .core-metatron svg { width: 260px; height: 260px; }
+            .core-name { font-size: clamp(1.8rem, 8vw, 2.4rem); letter-spacing: 0.08em; }
+            .core-tagline { font-size: 0.88rem; max-width: 220px; }
+            .core-symbol { font-size: 2rem; margin-bottom: 16px; }
+            .strata-header { font-size: 0.54rem; letter-spacing: 0.18em; padding-bottom: 12px; }
+            .strata-row { padding: 16px 0; gap: 10px; grid-template-columns: 22px 1fr auto; }
+            .strata-idx { font-size: 0.68rem; }
+            .strata-name { font-size: 0.86rem; }
+            .strata-price { font-size: 0.68rem; }
+            .strata-total { font-size: 0.7rem; }
+            .strata-meta { font-size: 0.58rem; letter-spacing: 0.08em; }
+            .compare-label { font-size: 0.56rem; letter-spacing: 0.2em; padding: 5px 12px; }
+            .compare-left, .compare-right { font-size: 0.92rem; }
+
+            /* RESULTS */
+            .results-grid { max-width: 380px; gap: 20px; }
+            .result-card { padding: 24px 20px 20px; border-radius: 12px; }
+            .result-number { font-size: clamp(2.4rem, 11vw, 3rem); }
+            .result-label { font-size: 0.95rem; }
+            .result-desc { font-size: 0.86rem; }
+            .result-chart { padding: 12px 12px 10px; }
+            .result-chart-body { height: 64px; }
+
+            /* SECTION TITLES */
+            .section-title { font-size: clamp(1.6rem, 7vw, 2.1rem); margin-bottom: 32px; }
+            .problema-title { font-size: clamp(1.6rem, 7vw, 2.2rem); margin-bottom: 28px; }
+            .problema-impact { padding: 32px 20px; margin-top: 40px; }
+            .problema-impact-number { font-size: clamp(2rem, 10vw, 3rem); }
+            .problema-closing { font-size: clamp(1.1rem, 5vw, 1.3rem); margin-top: 40px; }
+            .problema-highlight { font-size: clamp(1.2rem, 5.5vw, 1.5rem); padding-top: 40px; margin-top: 48px; }
+
+            /* INCLUIDO / PARA QUEM — narrow cols */
+            .incluido-col, .paraquem-col { padding: 28px 22px; }
+            .incluido-col h3, .paraquem-col-title { font-size: 1rem; margin-bottom: 22px; padding-bottom: 16px; }
+            .incluido-text, .paraquem-item { font-size: 0.92rem; }
+
+            /* PRICING */
+            .pricing-row { flex-wrap: wrap; padding: 12px 0; }
+            .pricing-item, .pricing-value { font-size: 0.88rem; }
+            .pricing-total-value { font-size: 1.3rem; }
+
+            /* CTA FINAL */
+            .cta-title { font-size: clamp(1.4rem, 6.5vw, 1.8rem); margin-bottom: 20px; }
+            .cta-text { font-size: 0.96rem; margin-bottom: 32px; }
+
+            /* FAQ */
+            .faq-question { font-size: 0.94rem; padding: 20px 0; }
+            .faq-answer-inner { font-size: 0.88rem; }
+
+            /* BIO */
+            #trajetória .bio-content {
+                padding: 56px 20px !important;
+                margin-left: 0 !important;
+            }
+            #trajetória .bio-content h2 { font-size: clamp(1.6rem, 7vw, 2rem) !important; }
+
+            /* FOOTER */
+            footer { padding: 36px 20px 24px; }
+            .footer-inner { gap: 24px; }
+            .footer-brand .footer-logo { font-size: 1.15rem; }
+            .footer-links { flex-wrap: wrap; justify-content: center; gap: 16px; }
+
+            /* TRUST */
+            .trust-strip { padding: 32px 20px; }
+            .trust-pill { font-size: 0.76rem; padding: 9px 12px; gap: 8px; }
+            .trust-pill svg { width: 14px; height: 14px; }
+
+            /* NAV OVERLAY — tap-sized links */
+            .mobile-overlay a { font-size: 1.1rem; padding: 6px 20px; }
+            .mobile-overlay .mobile-cta { padding: 14px 36px; font-size: 0.78rem; }
+
+            /* Testimonials */
+            .testimonial-card { padding: 28px 22px; }
+            .testimonial-text { font-size: 0.88rem; }
+
+            /* Section divider symbol shrink */
+            .section-divider { padding: 48px 0; }
+            .geo-symbol { width: 56px; height: 56px; }
+        }
+
+        /* ─── 360px: Very small phones safety net ─── */
+        @media (max-width: 360px) {
+            nav { padding: 12px 14px; }
+            #hero { padding: 100px 16px 48px; }
+            .section-padding { padding: 56px 16px; }
+            .command-center { max-width: 280px; }
+            .cc-core { width: 200px; height: 230px; }
+            .cc-core-metatron-stack { width: 180px; height: 180px; }
+            .cc-core-label { font-size: 1.15rem; }
+            .btn-solid, .btn-solid-dark, .btn-outline-gold {
+                padding: 14px 24px;
+                font-size: 0.72rem;
+                letter-spacing: 0.06em;
+            }
+            .hero-headline { font-size: clamp(1.6rem, 8.5vw, 1.9rem); }
+            .core-metatron svg { width: 220px; height: 220px; }
+            .core-name { font-size: 1.7rem; }
+        }
+
     </style>
 </head>
 <body id="top">
@@ -3774,27 +4212,57 @@
             <h1 class="hero-headline">O sistema que faz clínicas premium operarem com <span>excelência</span> - sem o dono carregar tudo.</h1>
             <div class="hero-gold-line"></div>
             <p class="hero-sub">Atendimento autônomo, raio-x de vendas e controladoria de marketing num único ecossistema integrado à operação de clínicas premium.</p>
-            <a href="https://wa.me/48991505476" class="btn-solid-dark" target="_blank">Falar com Lázaro &rarr;</a>
+            <a href="#stats" class="btn-solid-dark">Conhecer o sistema &darr;</a>
         </div>
 
         <div class="hero-mockup-wrap reveal">
             <div class="command-center" aria-hidden="true">
 
-                <!-- Connection lines + particles -->
-                <svg class="cc-connections" viewBox="0 0 460 520" preserveAspectRatio="none">
+                <!-- Connection bus (spine + branches + nodes) -->
+                <svg class="cc-connections" viewBox="0 0 580 520" preserveAspectRatio="none">
                     <defs>
                         <linearGradient id="cc-line-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                            <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.15"/>
-                            <stop offset="40%" stop-color="#C49A1B" stop-opacity="0.55"/>
-                            <stop offset="100%" stop-color="#C49A1B" stop-opacity="0.55"/>
+                            <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.25"/>
+                            <stop offset="40%" stop-color="#C49A1B" stop-opacity="0.6"/>
+                            <stop offset="100%" stop-color="#C49A1B" stop-opacity="0.6"/>
                         </linearGradient>
-                        <path id="cc-path-1" d="M 260 80 L 304 80"/>
-                        <path id="cc-path-2" d="M 260 260 L 304 260"/>
-                        <path id="cc-path-3" d="M 260 440 L 304 440"/>
+                        <linearGradient id="cc-spine-grad" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#C49A1B" stop-opacity="0"/>
+                            <stop offset="15%" stop-color="#C49A1B" stop-opacity="0.55"/>
+                            <stop offset="85%" stop-color="#C49A1B" stop-opacity="0.55"/>
+                            <stop offset="100%" stop-color="#C49A1B" stop-opacity="0"/>
+                        </linearGradient>
+                        <radialGradient id="cc-node-glow">
+                            <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.9"/>
+                            <stop offset="100%" stop-color="#C49A1B" stop-opacity="0"/>
+                        </radialGradient>
+                        <path id="cc-path-1" d="M 340 80 L 424 80"/>
+                        <path id="cc-path-2" d="M 340 260 L 424 260"/>
+                        <path id="cc-path-3" d="M 340 440 L 424 440"/>
                     </defs>
-                    <use href="#cc-path-1" stroke="url(#cc-line-grad)"/>
-                    <use href="#cc-path-2" stroke="url(#cc-line-grad)"/>
-                    <use href="#cc-path-3" stroke="url(#cc-line-grad)"/>
+
+                    <!-- Vertical spine connecting all 3 branches -->
+                    <line x1="340" y1="80" x2="340" y2="440" stroke="url(#cc-spine-grad)" stroke-width="1"/>
+
+                    <!-- 3 horizontal branches -->
+                    <use href="#cc-path-1" stroke="url(#cc-line-grad)" stroke-width="1"/>
+                    <use href="#cc-path-2" stroke="url(#cc-line-grad)" stroke-width="1"/>
+                    <use href="#cc-path-3" stroke="url(#cc-line-grad)" stroke-width="1"/>
+
+                    <!-- Spine junction nodes (where branches meet spine) -->
+                    <circle cx="340" cy="80"  r="14" fill="url(#cc-node-glow)"/>
+                    <circle cx="340" cy="260" r="14" fill="url(#cc-node-glow)"/>
+                    <circle cx="340" cy="440" r="14" fill="url(#cc-node-glow)"/>
+                    <circle cx="340" cy="80"  r="3" fill="#C49A1B"/>
+                    <circle cx="340" cy="260" r="3" fill="#C49A1B"/>
+                    <circle cx="340" cy="440" r="3" fill="#C49A1B"/>
+
+                    <!-- Satellite endpoint nodes (where branches arrive at cards) -->
+                    <circle cx="424" cy="80"  r="2.5" fill="#C49A1B" opacity="0.8"/>
+                    <circle cx="424" cy="260" r="2.5" fill="#C49A1B" opacity="0.8"/>
+                    <circle cx="424" cy="440" r="2.5" fill="#C49A1B" opacity="0.8"/>
+
+                    <!-- Flowing particles on each branch -->
                     <circle class="cc-particle" r="2.5">
                         <animateMotion dur="3s" repeatCount="indefinite">
                             <mpath href="#cc-path-1"/>
@@ -3814,21 +4282,49 @@
 
                 <!-- Central Nexus Core -->
                 <div class="cc-core">
-                    <div class="cc-core-metatron">
-                        <svg viewBox="0 0 400 400" fill="none">
-                            <circle cx="200" cy="200" r="60"/>
-                            <circle cx="200" cy="80" r="60"/>
-                            <circle cx="200" cy="320" r="60"/>
-                            <circle cx="96" cy="140" r="60"/>
-                            <circle cx="304" cy="140" r="60"/>
-                            <circle cx="96" cy="260" r="60"/>
-                            <circle cx="304" cy="260" r="60"/>
-                            <circle cx="200" cy="200" r="120"/>
-                            <path d="M200 80 L304 260 L96 260 Z"/>
-                            <path d="M200 320 L96 140 L304 140 Z"/>
-                        </svg>
+                    <div class="cc-core-metatron-stack">
+                        <div class="cc-core-glow"></div>
+
+                        <!-- Camada 3: mais externa, só círculos concêntricos -->
+                        <div class="cc-core-metatron layer-3">
+                            <svg viewBox="0 0 400 400" fill="none">
+                                <circle cx="200" cy="200" r="180"/>
+                                <circle cx="200" cy="200" r="140"/>
+                            </svg>
+                        </div>
+
+                        <!-- Camada 1: principal Metatron -->
+                        <div class="cc-core-metatron layer-1">
+                            <svg viewBox="0 0 400 400" fill="none">
+                                <circle cx="200" cy="200" r="60"/>
+                                <circle cx="200" cy="80" r="60"/>
+                                <circle cx="200" cy="320" r="60"/>
+                                <circle cx="96" cy="140" r="60"/>
+                                <circle cx="304" cy="140" r="60"/>
+                                <circle cx="96" cy="260" r="60"/>
+                                <circle cx="304" cy="260" r="60"/>
+                                <circle cx="200" cy="200" r="120"/>
+                                <path d="M200 80 L304 260 L96 260 Z"/>
+                                <path d="M200 320 L96 140 L304 140 Z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Camada 2: interna, mais rápida, rotação inversa -->
+                        <div class="cc-core-metatron layer-2">
+                            <svg viewBox="0 0 400 400" fill="none">
+                                <circle cx="200" cy="200" r="40"/>
+                                <circle cx="200" cy="200" r="80"/>
+                                <path d="M200 120 L269 240 L131 240 Z"/>
+                                <path d="M200 280 L131 160 L269 160 Z"/>
+                            </svg>
+                        </div>
+
+                        <!-- Pulse rings internos -->
+                        <div class="cc-core-ring"></div>
+                        <div class="cc-core-ring"></div>
+                        <div class="cc-core-ring"></div>
                     </div>
-                    <div class="cc-core-glow"></div>
+
                     <div class="cc-core-content">
                         <div class="cc-core-label">NEXUS</div>
                         <div class="cc-core-sub">Sistema Unificado</div>
@@ -3903,7 +4399,11 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- STATS STRIP                                 -->
 <!-- ═══════════════════════════════════════════ -->
-<section class="stats-strip">
+<section id="stats" class="stats-strip">
+    <div class="stats-header reveal">
+        <p class="eyebrow">A OPERAÇÃO QUE VOCÊ GANHA</p>
+        <h2 class="section-title" style="color:var(--prussian-blue); margin-bottom:0;">Números reais da sua clínica com Nexus rodando.</h2>
+    </div>
     <div class="stats-grid">
         <div class="stat-card reveal">
             <div class="stat-value"><span class="stat-num" data-target="3">0</span><span class="unit">s</span></div>
@@ -3919,7 +4419,7 @@
                     <path class="spark-line" d="M 2 14 L 12 12 L 22 15 L 32 11 L 42 13 L 52 10 L 62 14 L 72 12 L 78 13"/>
                 </svg>
             </div>
-            <div class="stat-label">Tempo médio de resposta</div>
+            <div class="stat-label">Tempo até a primeira resposta ao paciente</div>
         </div>
         <div class="stat-card reveal">
             <div class="stat-value"><span class="stat-num" data-target="24">0</span><span class="unit">h</span></div>
@@ -3930,7 +4430,7 @@
                     <circle class="r-dot" cx="30" cy="4" r="2.4"/>
                 </svg>
             </div>
-            <div class="stat-label">Cobertura operacional</div>
+            <div class="stat-label">Operação contínua, inclusive madrugada e feriado</div>
         </div>
         <div class="stat-card reveal">
             <div class="stat-value"><span class="stat-num" data-target="100">0</span><span class="unit">%</span></div>
@@ -3939,24 +4439,7 @@
                     <i></i><i></i><i></i><i></i>
                 </div>
             </div>
-            <div class="stat-label">Das ligações analisadas</div>
-        </div>
-        <div class="stat-card reveal">
-            <div class="stat-value"><span class="stat-num" data-target="1">0</span><span class="unit">semana</span></div>
-            <div class="stat-viz">
-                <svg class="stat-timeline" viewBox="0 0 80 32" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <line class="tl-line" x1="8" y1="12" x2="72" y2="12"/>
-                    <circle class="tl-dot d1" cx="8" cy="12" r="3"/>
-                    <circle class="tl-dot d2" cx="29" cy="12" r="3"/>
-                    <circle class="tl-dot d3" cx="51" cy="12" r="3"/>
-                    <circle class="tl-dot d4" cx="72" cy="12" r="3"/>
-                    <text class="tl-label" x="8" y="26">D</text>
-                    <text class="tl-label" x="29" y="26">A</text>
-                    <text class="tl-label" x="51" y="26">I</text>
-                    <text class="tl-label" x="72" y="26">O</text>
-                </svg>
-            </div>
-            <div class="stat-label">Para implementação</div>
+            <div class="stat-label">Das ligações gravadas, transcritas e analisadas</div>
         </div>
     </div>
 </section>
@@ -3965,12 +4448,32 @@
 <!-- O PROBLEMA                                  -->
 <!-- ═══════════════════════════════════════════ -->
 <section class="problema-section section-padding">
-    <div class="problema-grid">
-        <div class="problema-left reveal">
-            <p class="eyebrow">O Cenário Real</p>
-            <h2 class="section-title" style="color:var(--prussian-blue);">Clínicas premium perdem dinheiro em lugares invisíveis ao olho do dono.</h2>
-            <p class="problema-lead">A maioria das clínicas premium opera no escuro. Não é falta de pacientes. É falta de inteligência operacional. Cada vazamento invisível é dinheiro saindo sem você saber.</p>
+    <div class="problema-wrap reveal">
+        <p class="eyebrow">O Cenário Real</p>
+        <h2 class="problema-title">
+            Clínicas premium perdem dinheiro em lugares <em>invisíveis</em> ao olho do dono.
+        </h2>
+        <div class="problema-rule"></div>
+        <p class="problema-lead">
+            A maioria das clínicas premium opera no escuro. Não é falta de pacientes. É falta de <strong>inteligência operacional</strong>.
+        </p>
+        <p class="problema-lead">
+            Cada vazamento invisível é dinheiro saindo sem você saber.
+        </p>
+
+        <div class="problema-impact">
+            <p class="problema-impact-prefix">Perda média estimada</p>
+            <div class="problema-impact-number">
+                R$ <em>8</em> a <em>15</em> mil
+            </div>
+            <p class="problema-impact-label">
+                por mês em 3 pontos que nenhum relatório financeiro mostra
+            </p>
         </div>
+
+        <p class="problema-closing">
+            Vamos abrir a caixa preta.
+        </p>
     </div>
 </section>
 
@@ -3979,60 +4482,80 @@
 <!-- ═══════════════════════════════════════════ -->
 <section class="eixos-section section-padding v2">
     <div class="section-wide">
-        <div class="reveal" style="text-align:center; margin-bottom:64px;">
-            <p class="eyebrow">A Anatomia do Problema</p>
-            <h2 class="section-title" style="color:var(--floral-white); margin-bottom:0;">Três vazamentos que travam o crescimento de clínicas premium</h2>
+        <div class="reveal eixos-header">
+            <p class="eyebrow">Dentro da Caixa Preta</p>
+            <h2 class="section-title eixos-title">Três vazamentos. Zero visibilidade. <em>Milhares saindo por mês.</em></h2>
+            <p class="eixos-lead">Cada ponto abaixo é uma fatia do vazamento invisível que você acabou de ver.</p>
         </div>
 
         <div class="eixos-grid">
-            <!-- CARD 1: Silence -->
+            <!-- BLOCO 1: Silence -->
             <div class="eixo-card reveal">
-                <div class="pain-motif">
-                    <svg class="pain-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="18" cy="18" r="14"/>
-                        <path d="M18 10v8l5 3"/>
-                    </svg>
-                    <span class="pain-motif-label">23:42 · SEM RESPOSTA</span>
+                <p class="eixo-num">01</p>
+                <div class="eixo-content">
+                    <p class="eixo-label">Vazamento</p>
+                    <h3 class="eixo-title">Leads fora do horário vão pro concorrente.</h3>
+                    <p class="eixo-desc">Paciente manda mensagem às 23h. A clínica silencia. A concorrência responde. Cada lead perdido fora do expediente é uma consulta que nunca aconteceu.</p>
+                    <div class="pain-motif">
+                        <svg class="pain-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="18" cy="18" r="14"/>
+                            <path d="M18 10v8l5 3"/>
+                        </svg>
+                        <span class="pain-motif-label">23:42 · SEM RESPOSTA</span>
+                    </div>
                 </div>
-                <p class="eixo-num">Vazamento 01</p>
-                <h3 class="eixo-title">Leads fora do horário vão pro concorrente</h3>
-                <p class="eixo-desc">Paciente manda mensagem às 23h. A clínica silencia. A concorrência responde. Cada lead perdido fora do expediente é uma consulta que nunca aconteceu.</p>
             </div>
 
-            <!-- CARD 2: Line dipping -->
+            <!-- BLOCO 2: Line dipping -->
             <div class="eixo-card reveal">
-                <div class="pain-motif">
-                    <svg class="pain-icon" width="96" height="36" viewBox="0 0 96 36" fill="none" aria-hidden="true">
-                        <defs>
-                            <linearGradient id="painDipGrad" x1="0" y1="0" x2="1" y2="0">
-                                <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.95"/>
-                                <stop offset="70%" stop-color="#C49A1B" stop-opacity="0.35"/>
-                                <stop offset="100%" stop-color="#C49A1B" stop-opacity="0"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M2 14 C 20 14, 34 14, 48 16 C 60 18, 70 24, 82 31 L 94 34" stroke="url(#painDipGrad)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
-                    </svg>
-                    <span class="pain-motif-label">DESISTÊNCIA · 02:14</span>
+                <p class="eixo-num">02</p>
+                <div class="eixo-content">
+                    <p class="eixo-label">Vazamento</p>
+                    <h3 class="eixo-title">Vendas morrendo no telefone.</h3>
+                    <p class="eixo-desc">A recepção atende 40 ligações por dia. Quantas convertem? Em que momento a paciente desiste? A clínica não sabe - e o que não se mede, não se melhora.</p>
+                    <div class="pain-motif">
+                        <svg class="pain-icon" viewBox="0 0 96 36" fill="none" aria-hidden="true" style="width:40px;height:14px;">
+                            <defs>
+                                <linearGradient id="painDipGrad" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.95"/>
+                                    <stop offset="70%" stop-color="#C49A1B" stop-opacity="0.35"/>
+                                    <stop offset="100%" stop-color="#C49A1B" stop-opacity="0"/>
+                                </linearGradient>
+                            </defs>
+                            <path d="M2 14 C 20 14, 34 14, 48 16 C 60 18, 70 24, 82 31 L 94 34" stroke="url(#painDipGrad)" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+                        </svg>
+                        <span class="pain-motif-label">DESISTÊNCIA · 02:14</span>
+                    </div>
                 </div>
-                <p class="eixo-num">Vazamento 02</p>
-                <h3 class="eixo-title">Vendas morrendo no telefone</h3>
-                <p class="eixo-desc">A recepção atende 40 ligações por dia. Quantas convertem? Em que momento a paciente desiste? A clínica não sabe - e o que não se mede, não se melhora.</p>
             </div>
 
-            <!-- CARD 3: Unknown origin -->
+            <!-- BLOCO 3: Unknown origin -->
             <div class="eixo-card reveal">
-                <div class="pain-motif">
-                    <svg class="pain-icon" width="36" height="36" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="18" cy="18" r="14" stroke-dasharray="3 3"/>
-                        <path d="M14 14a4 4 0 1 1 6 3.2c-1.2 0.7-2 1.3-2 2.6"/>
-                        <circle cx="18" cy="24.2" r="0.9" fill="currentColor" stroke="none"/>
-                    </svg>
-                    <span class="pain-motif-label">ORIGEM · DESCONHECIDA</span>
+                <p class="eixo-num">03</p>
+                <div class="eixo-content">
+                    <p class="eixo-label">Vazamento</p>
+                    <h3 class="eixo-title">Marketing sem rastreio real.</h3>
+                    <p class="eixo-desc">R$ 15k por mês em tráfego. Zero clareza sobre qual campanha trouxe qual paciente. O dinheiro entra e escoa sem controle nenhum.</p>
+                    <div class="pain-motif">
+                        <svg class="pain-icon" viewBox="0 0 36 36" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <circle cx="18" cy="18" r="14" stroke-dasharray="3 3"/>
+                            <path d="M14 14a4 4 0 1 1 6 3.2c-1.2 0.7-2 1.3-2 2.6"/>
+                            <circle cx="18" cy="24.2" r="0.9" fill="currentColor" stroke="none"/>
+                        </svg>
+                        <span class="pain-motif-label">ORIGEM · DESCONHECIDA</span>
+                    </div>
                 </div>
-                <p class="eixo-num">Vazamento 03</p>
-                <h3 class="eixo-title">Marketing sem rastreio real</h3>
-                <p class="eixo-desc">R$ 15k por mês em tráfego. Zero clareza sobre qual campanha trouxe qual paciente. O dinheiro entra e escoa sem controle nenhum.</p>
             </div>
+        </div>
+
+        <p class="eixos-closing reveal">
+            Cada um deles tem solução. <em>Nós desenhamos a arquitetura.</em>
+        </p>
+
+        <div class="inline-cta-wrap reveal">
+            <a href="https://wa.me/48991505476" target="_blank" rel="noopener" class="inline-cta outline-gold">
+                Quero parar de vazar dinheiro →
+            </a>
         </div>
     </div>
 </section>
@@ -4182,398 +4705,98 @@
                 <p class="pilar-desc">Tracking UTM até a conversão real. Cada real investido é rastreado do clique ao procedimento. Você decide com dados, não com achismo.</p>
             </div>
         </div>
-    </div>
-</section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- ARQUITETURA INTEGRADA                       -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="arch-section section-padding">
-    <div class="section-wide">
-        <div class="reveal" style="text-align:center; margin-bottom:56px;">
-            <p class="eyebrow">Como os módulos se conectam</p>
-            <h2 class="section-title" style="margin-bottom:0;">Um sistema único. Três camadas integradas.</h2>
-        </div>
-
-        <div class="arch-wrap reveal">
-            <div class="arch-diagram">
-
-                <!-- 3 Module Cards -->
-                <div class="arch-modules-row">
-                    <div class="arch-mod-card">
-                        <svg class="arch-mod-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                            <path d="M4 8a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v8a3 3 0 0 1-3 3h-9l-5 4v-4H7a3 3 0 0 1-3-3V8z" stroke="currentColor" stroke-width="1.4"/>
-                        </svg>
-                        <h3 class="arch-mod-title">Closer Invisível</h3>
-                        <div class="arch-mod-viz">
-                            <svg viewBox="0 0 180 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <rect class="amv-chat-bubble-l" x="4" y="6" width="88" height="14" rx="7"/>
-                                <line class="amv-chat-line" x1="14" y1="13" x2="52" y2="13" stroke-width="1"/>
-                                <line class="amv-chat-line" x1="14" y1="13" x2="78" y2="13" stroke-width="0.8" opacity="0.5"/>
-                                <rect class="amv-chat-bubble-r" x="88" y="24" width="88" height="14" rx="7"/>
-                                <line class="amv-chat-line" x1="100" y1="31" x2="164" y2="31" stroke-width="1"/>
-                            </svg>
-                        </div>
-                    </div>
-
-                    <div class="arch-mod-card">
-                        <svg class="arch-mod-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                            <line x1="3"  y1="14" x2="3"  y2="14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="8"  y1="7"  x2="8"  y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="13" y1="4"  x2="13" y2="24" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="18" y1="9"  x2="18" y2="19" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                            <line x1="23" y1="6"  x2="23" y2="22" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-                        </svg>
-                        <h3 class="arch-mod-title">Raio-X de Vendas</h3>
-                        <div class="arch-mod-viz">
-                            <div class="amv-wave" aria-hidden="true">
-                                <i style="height:40%; animation-delay:0s"></i>
-                                <i style="height:70%; animation-delay:.12s"></i>
-                                <i style="height:55%; animation-delay:.24s"></i>
-                                <i style="height:90%; animation-delay:.36s"></i>
-                                <i style="height:45%; animation-delay:.48s"></i>
-                                <i style="height:75%; animation-delay:.60s"></i>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="arch-mod-card">
-                        <svg class="arch-mod-icon" viewBox="0 0 28 28" fill="none" aria-hidden="true">
-                            <polyline points="3,22 10,16 14,19 20,10 25,13" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
-                            <circle cx="25" cy="13" r="1.6" fill="currentColor"/>
-                        </svg>
-                        <h3 class="arch-mod-title">Controladoria</h3>
-                        <div class="arch-mod-viz">
-                            <svg viewBox="0 0 180 42" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                                <polyline class="amv-chart-line trend-1" points="4,34 40,30 80,28 120,24 160,22 176,21"/>
-                                <polyline class="amv-chart-line trend-2" points="4,30 40,26 80,22 120,18 160,14 176,13"/>
-                                <polyline class="amv-chart-line trend-3" points="4,28 40,22 80,18 120,12 160,8 176,6"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Connection lines with flowing particles -->
-                <svg class="arch-connect" viewBox="0 0 1120 110" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <defs>
-                        <linearGradient id="arch-flow-grad" x1="0" y1="0" x2="0" y2="1">
-                            <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.15"/>
-                            <stop offset="50%" stop-color="#C49A1B" stop-opacity="0.8"/>
-                            <stop offset="100%" stop-color="#C49A1B" stop-opacity="0.4"/>
-                        </linearGradient>
-                    </defs>
-
-                    <!-- Paths from each module to central dashboard -->
-                    <path id="arch-p1" class="arch-connect-path" d="M 186 0 C 186 55, 360 55, 430 100"/>
-                    <path id="arch-p2" class="arch-connect-path" d="M 560 0 L 560 100"/>
-                    <path id="arch-p3" class="arch-connect-path" d="M 934 0 C 934 55, 760 55, 690 100"/>
-
-                    <!-- Labels on lines -->
-                    <text class="arch-connect-label" x="280" y="56">Leads qualificados</text>
-                    <text class="arch-connect-label" x="560" y="56">Dados de venda</text>
-                    <text class="arch-connect-label" x="840" y="56">Atribuição</text>
-
-                    <!-- Flowing particles: 2 per path, staggered -->
-                    <circle class="arch-connect-particle" r="2.6">
-                        <animateMotion dur="3.2s" repeatCount="indefinite" begin="0s">
-                            <mpath href="#arch-p1"/>
-                        </animateMotion>
-                    </circle>
-                    <circle class="arch-connect-particle" r="2.6">
-                        <animateMotion dur="3.2s" repeatCount="indefinite" begin="1.6s">
-                            <mpath href="#arch-p1"/>
-                        </animateMotion>
-                    </circle>
-
-                    <circle class="arch-connect-particle" r="2.6">
-                        <animateMotion dur="2.6s" repeatCount="indefinite" begin="0.5s">
-                            <mpath href="#arch-p2"/>
-                        </animateMotion>
-                    </circle>
-                    <circle class="arch-connect-particle" r="2.6">
-                        <animateMotion dur="2.6s" repeatCount="indefinite" begin="1.8s">
-                            <mpath href="#arch-p2"/>
-                        </animateMotion>
-                    </circle>
-
-                    <circle class="arch-connect-particle" r="2.6">
-                        <animateMotion dur="3.2s" repeatCount="indefinite" begin="1s">
-                            <mpath href="#arch-p3"/>
-                        </animateMotion>
-                    </circle>
-                    <circle class="arch-connect-particle" r="2.6">
-                        <animateMotion dur="3.2s" repeatCount="indefinite" begin="2.4s">
-                            <mpath href="#arch-p3"/>
-                        </animateMotion>
-                    </circle>
-                </svg>
-
-                <!-- Central Dashboard Card -->
-                <div class="arch-dashboard">
-                    <div class="arch-dash-head">
-                        <span class="arch-dash-eyebrow">Dashboard Nexus</span>
-                        <span class="arch-dash-live">Live</span>
-                    </div>
-                    <h3 class="arch-dash-title">Visão Integrada da Operação</h3>
-                    <div class="arch-dash-grid">
-                        <div class="arch-metric">
-                            <span class="arch-metric-label">Leads</span>
-                            <span class="arch-metric-value">384</span>
-                            <svg class="arch-metric-spark" viewBox="0 0 80 14" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M 2 11 L 14 9 L 26 10 L 38 6 L 50 7 L 62 4 L 78 3"/>
-                            </svg>
-                        </div>
-                        <div class="arch-metric">
-                            <span class="arch-metric-label">Conversão</span>
-                            <span class="arch-metric-value">22%</span>
-                            <svg class="arch-metric-spark" viewBox="0 0 80 14" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M 2 10 L 16 8 L 30 9 L 44 5 L 58 6 L 72 3 L 78 4"/>
-                            </svg>
-                        </div>
-                        <div class="arch-metric">
-                            <span class="arch-metric-label">ROI</span>
-                            <span class="arch-metric-value">4.2x</span>
-                            <div class="arch-metric-bars" aria-hidden="true">
-                                <i style="height:35%"></i><i style="height:55%"></i><i style="height:45%"></i><i style="height:70%"></i><i style="height:60%"></i><i style="height:85%"></i><i style="height:95%"></i>
-                            </div>
-                        </div>
-                        <div class="arch-metric">
-                            <span class="arch-metric-label">Resposta</span>
-                            <span class="arch-metric-value">3.2s</span>
-                            <svg class="arch-metric-spark" viewBox="0 0 80 14" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M 2 6 L 16 7 L 30 5 L 44 8 L 58 6 L 72 7 L 78 6"/>
-                            </svg>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+        <div class="inline-cta-wrap reveal">
+            <p class="inline-cta-text dark">Essa arquitetura funciona na sua realidade?</p>
+            <a href="https://wa.me/48991505476" target="_blank" rel="noopener" class="inline-cta solid-prussian">
+                Ver o Nexus rodando na minha clínica →
+            </a>
         </div>
     </div>
 </section>
 
-<!-- ═══════════════════════════════════════════ -->
-<!-- SEGURANÇA E COMPLIANCE                      -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="security-section section-padding">
-    <div class="section-wide">
-        <div class="reveal" style="text-align:center; margin-bottom:24px;">
-            <p class="eyebrow">Segurança e Compliance</p>
-            <h2 class="section-title" style="margin-bottom:16px;">A tecnologia mais avançada exige o padrão mais alto de segurança.</h2>
-            <p style="font-family:'Inter',sans-serif; font-size:1.05rem; color:rgba(255,253,243,0.65); line-height:1.85; max-width:700px; margin:0 auto;">
-                Desenvolvido do zero respeitando LGPD. Dados em servidores brasileiros. Auditoria contínua.
-            </p>
-        </div>
 
-        <div class="security-grid">
-            <div class="security-card reveal">
-                <div class="security-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l8 4v6c0 5-3.5 9.5-8 10-4.5-.5-8-5-8-10V6l8-4z"/><path d="M9 12l2 2 4-4"/></svg>
-                </div>
-                <h3 class="security-title">Conforme LGPD</h3>
-                <p class="security-desc">Todo fluxo construído em conformidade com a Lei Geral de Proteção de Dados. Consentimento explícito, direito ao esquecimento, auditoria.</p>
-            </div>
 
-            <div class="security-card reveal">
-                <div class="security-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="4" y="11" width="16" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/><circle cx="12" cy="16" r="1" fill="currentColor"/></svg>
-                </div>
-                <h3 class="security-title">Criptografia ponta a ponta</h3>
-                <p class="security-desc">Comunicações e dados em trânsito protegidos com TLS 1.3. Dados em repouso com AES-256.</p>
-            </div>
-
-            <div class="security-card reveal">
-                <div class="security-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="4" width="18" height="6" rx="1"/><rect x="3" y="14" width="18" height="6" rx="1"/><circle cx="7" cy="7" r="1" fill="currentColor"/><circle cx="7" cy="17" r="1" fill="currentColor"/><path d="M17 5v4M19 5h-4"/></svg>
-                </div>
-                <h3 class="security-title">Dados no Brasil</h3>
-                <p class="security-desc">Servidores localizados em território nacional. Jurisdição brasileira. Sem transferência internacional.</p>
-            </div>
-
-            <div class="security-card reveal">
-                <div class="security-icon">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9l-6-6z"/><path d="M14 3v6h6"/><path d="M9 15l2 2 4-4"/></svg>
-                </div>
-                <h3 class="security-title">Logs e auditoria</h3>
-                <p class="security-desc">Todo acesso, edição e ação registrada. Trilha de auditoria completa disponível a qualquer momento.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<!-- ═══════════════════════════════════════════ -->
-<!-- COMO FUNCIONA                               -->
-<!-- ═══════════════════════════════════════════ -->
-<section class="semanas-section section-padding tech-grid v2">
-    <div class="section-wide">
-        <div class="reveal" style="text-align:center; margin-bottom:24px;">
-            <p class="eyebrow">Como Funciona</p>
-            <h2 class="section-title" style="color:var(--prussian-blue); margin-bottom:16px;">Do diagnóstico ao sistema rodando.</h2>
-            <p style="font-family:'Inter',sans-serif; font-size:1.05rem; color:rgba(0,36,74,0.65); line-height:1.85; max-width:640px; margin:0 auto;">
-                4 fases. Implementação gradual para não interromper a operação.
-            </p>
-        </div>
-
-        <div class="timeline-v2 reveal" id="timelineV2">
-            <div class="timeline-v2-track" aria-hidden="true"></div>
-            <div class="timeline-v2-row">
-                <div class="timeline-v2-node">
-                    <div class="timeline-v2-card">
-                        <h3 class="tl-title">Diagnóstico da Operação</h3>
-                        <p class="tl-desc">Mapeamos fluxos, pontos de contato e gargalos. Entendemos onde estão os vazamentos.</p>
-                    </div>
-                    <div class="timeline-v2-dot"><span>01</span></div>
-                    <div class="timeline-v2-chip">1 semana</div>
-                </div>
-                <div class="timeline-v2-node">
-                    <div class="timeline-v2-card">
-                        <h3 class="tl-title">Arquitetura Sob Medida</h3>
-                        <p class="tl-desc">Projetamos o Nexus adaptado à realidade de cada clínica. Cada módulo configurado para o cenário específico.</p>
-                    </div>
-                    <div class="timeline-v2-dot"><span>02</span></div>
-                    <div class="timeline-v2-chip">1 semana</div>
-                </div>
-                <div class="timeline-v2-node">
-                    <div class="timeline-v2-card">
-                        <h3 class="tl-title">Implementação e Treinamento</h3>
-                        <p class="tl-desc">Instalamos, integramos com as ferramentas existentes e treinamos a equipe no novo fluxo.</p>
-                    </div>
-                    <div class="timeline-v2-dot"><span>03</span></div>
-                    <div class="timeline-v2-chip">2 semanas</div>
-                </div>
-                <div class="timeline-v2-node">
-                    <div class="timeline-v2-card">
-                        <h3 class="tl-title">Operação e Otimização</h3>
-                        <p class="tl-desc">O sistema roda. Acompanhamos, ajustamos e otimizamos com base em dados reais.</p>
-                    </div>
-                    <div class="timeline-v2-dot"><span>04</span></div>
-                    <div class="timeline-v2-chip">Contínua</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 
 <!-- ═══════════════════════════════════════════ -->
 <!-- O QUE MUDA                                  -->
 <!-- ═══════════════════════════════════════════ -->
-<section class="transform-section section-padding v2">
+<section class="transform-section section-padding v3">
     <div class="section-wide">
-        <div class="reveal" style="text-align:center; margin-bottom:56px;">
-            <p class="eyebrow">O Que Muda</p>
-            <h2 class="section-title" style="color:var(--prussian-blue); margin-bottom:16px;">Antes do Nexus vs. com Nexus rodando</h2>
-            <p style="font-family:'Inter',sans-serif; font-size:1.05rem; color:rgba(0,36,74,0.65); line-height:1.85; max-width:640px; margin:0 auto;">
-                Não é uma promessa. É o que acontece quando a operação ganha inteligência.
-            </p>
+        <div class="reveal" style="text-align:center; margin-bottom:64px; max-width:780px; margin-left:auto; margin-right:auto;">
+            <p class="eyebrow">O Que Muda na Prática</p>
+            <h2 class="section-title" style="color:var(--prussian-blue); margin-bottom:0;">Quatro dores que toda clínica premium conhece. <em style="font-style:italic; color:var(--goldenrod); font-weight:500;">E o que muda quando a operação tem inteligência.</em></h2>
         </div>
 
-        <div class="transform-compare reveal">
-            <div class="transform-compare-head">
-                <div class="th">Dimensão</div>
-                <div class="th">Hoje</div>
-                <div class="th nexus">Com Nexus</div>
-            </div>
-
-            <!-- ROW 1 -->
-            <div class="transform-compare-row">
-                <div class="transform-dim">
-                    Atendimento fora do horário
-                    <span class="transform-dim-sub">Noites, finais de semana, feriados</span>
-                </div>
-                <div class="transform-cell before">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Silêncio</div>
-                        <span class="transform-cell-metric">0% DE RESPOSTA</span>
-                    </div>
-                </div>
-                <div class="transform-cell after">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Resposta em 3s</div>
-                        <span class="transform-cell-metric">100% DE COBERTURA</span>
+        <div class="transform-list">
+            <!-- BLOCO 01 -->
+            <div class="transform-block reveal">
+                <p class="transform-num">01</p>
+                <div class="transform-body">
+                    <h3 class="transform-title">Pacientes que somem depois do procedimento.</h3>
+                    <div class="transform-pair">
+                        <div class="transform-scenario before">
+                            <span class="scenario-label">Antes</span>
+                            <p>A paciente faz o preenchimento, paga bem, vai embora feliz. Você nunca mais ouve falar dela. A próxima sessão ficou na cabeça dela e na agenda da concorrência.</p>
+                        </div>
+                        <div class="transform-scenario after">
+                            <span class="scenario-label">Com Nexus</span>
+                            <p>Follow-up automatizado com a linguagem da clínica. A paciente é convidada pro retorno no momento certo. Recorrência vira receita previsível.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ROW 2 -->
-            <div class="transform-compare-row">
-                <div class="transform-dim">
-                    Análise de vendas
-                    <span class="transform-dim-sub">Ligações, objeções, performance</span>
-                </div>
-                <div class="transform-cell before">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Acha que sabe</div>
-                        <span class="transform-cell-metric">0% ANALISADAS</span>
-                    </div>
-                </div>
-                <div class="transform-cell after">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Sabe com precisão</div>
-                        <span class="transform-cell-metric">100% ANALISADAS</span>
+            <!-- BLOCO 02 -->
+            <div class="transform-block reveal">
+                <p class="transform-num">02</p>
+                <div class="transform-body">
+                    <h3 class="transform-title">Reclamação que vira review 1 estrela.</h3>
+                    <div class="transform-pair">
+                        <div class="transform-scenario before">
+                            <span class="scenario-label">Antes</span>
+                            <p>Paciente VIP saiu chateada com algo na recepção. Você só descobre quando vê a avaliação no Google, dias depois, com a porta já aberta.</p>
+                        </div>
+                        <div class="transform-scenario after">
+                            <span class="scenario-label">Com Nexus</span>
+                            <p>O Raio-X capta a fricção em tempo real - tom da ligação, palavras-chave de insatisfação. Você age antes de virar review pública.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ROW 3 -->
-            <div class="transform-compare-row">
-                <div class="transform-dim">
-                    Atribuição de marketing
-                    <span class="transform-dim-sub">Do clique ao procedimento</span>
-                </div>
-                <div class="transform-cell before">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8" cy="8" r="1.2" fill="currentColor"/><circle cx="16" cy="8" r="1.2" fill="currentColor"/><circle cx="8" cy="16" r="1.2" fill="currentColor"/><circle cx="16" cy="16" r="1.2" fill="currentColor"/><circle cx="12" cy="12" r="1.2" fill="currentColor"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Adivinhação</div>
-                        <span class="transform-cell-metric">? ? ?</span>
-                    </div>
-                </div>
-                <div class="transform-cell after">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2" fill="currentColor"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Rastreio real</div>
-                        <span class="transform-cell-metric">ROI POR CAMPANHA</span>
+            <!-- BLOCO 03 -->
+            <div class="transform-block reveal">
+                <p class="transform-num">03</p>
+                <div class="transform-body">
+                    <h3 class="transform-title">Preço chega antes do valor.</h3>
+                    <div class="transform-pair">
+                        <div class="transform-scenario before">
+                            <span class="scenario-label">Antes</span>
+                            <p>Lead pergunta "quanto custa?" pelo WhatsApp. Sua recepção responde. Lead desaparece. A clínica nunca mostrou o que de fato entrega.</p>
+                        </div>
+                        <div class="transform-scenario after">
+                            <span class="scenario-label">Com Nexus</span>
+                            <p>O Closer entende o procedimento, contextualiza o protocolo, mostra autoridade. Quando o valor chega, a paciente já entendeu por que vale.</p>
+                        </div>
                     </div>
                 </div>
             </div>
 
-            <!-- ROW 4 -->
-            <div class="transform-compare-row">
-                <div class="transform-dim">
-                    Dependência operacional
-                    <span class="transform-dim-sub">Quem sustenta a máquina rodando</span>
-                </div>
-                <div class="transform-cell before">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Tudo passa por você</div>
-                        <span class="transform-cell-metric">GARGALO = VOCÊ</span>
-                    </div>
-                </div>
-                <div class="transform-cell after">
-                    <div class="transform-cell-icon">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><circle cx="5" cy="5" r="2"/><circle cx="19" cy="5" r="2"/><circle cx="5" cy="19" r="2"/><circle cx="19" cy="19" r="2"/><line x1="6.5" y1="6.5" x2="9.8" y2="9.8"/><line x1="17.5" y1="6.5" x2="14.2" y2="9.8"/><line x1="6.5" y1="17.5" x2="9.8" y2="14.2"/><line x1="17.5" y1="17.5" x2="14.2" y2="14.2"/></svg>
-                    </div>
-                    <div>
-                        <div class="transform-cell-text">Sistema inteligente</div>
-                        <span class="transform-cell-metric">VOCÊ NO ESTRATÉGICO</span>
+            <!-- BLOCO 04 -->
+            <div class="transform-block reveal">
+                <p class="transform-num">04</p>
+                <div class="transform-body">
+                    <h3 class="transform-title">No-show em consulta paga.</h3>
+                    <div class="transform-pair">
+                        <div class="transform-scenario before">
+                            <span class="scenario-label">Antes</span>
+                            <p>Paciente marca, bloqueia uma janela valiosa da agenda, não aparece. A cadeira vazia custou mais do que a consulta valeria.</p>
+                        </div>
+                        <div class="transform-scenario after">
+                            <span class="scenario-label">Com Nexus</span>
+                            <p>Lembrete automático com confirmação ativa 24h antes. A paciente confirma ou libera o horário. Sua agenda para de vazar.</p>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -4607,43 +4830,43 @@
                 <div class="strata-row">
                     <span class="strata-idx">01</span>
                     <span class="strata-cat">ATENDIMENTO</span>
-                    <span class="strata-name">Chatbot genérico</span>
-                    <span class="strata-price">R$ 300</span>
+                    <span class="strata-name">Chatbot + WhatsApp Business API</span>
+                    <span class="strata-price">R$ 450</span>
                 </div>
                 <div class="strata-row" data-offset="1">
                     <span class="strata-idx">02</span>
                     <span class="strata-cat">RELACIONAMENTO</span>
-                    <span class="strata-name">CRM tradicional</span>
-                    <span class="strata-price">R$ 800</span>
+                    <span class="strata-name">CRM + licenças da equipe</span>
+                    <span class="strata-price">R$ 1.500</span>
                 </div>
                 <div class="strata-row">
                     <span class="strata-idx">03</span>
                     <span class="strata-cat">VOZ</span>
-                    <span class="strata-name">Gravador de chamadas</span>
-                    <span class="strata-price">R$ 400</span>
+                    <span class="strata-name">Gravação e transcrição de chamadas</span>
+                    <span class="strata-price">R$ 600</span>
                 </div>
                 <div class="strata-row" data-offset="2">
                     <span class="strata-idx">04</span>
-                    <span class="strata-cat">DADOS</span>
-                    <span class="strata-name">Analista para planilhas</span>
-                    <span class="strata-price">R$ 2.000</span>
+                    <span class="strata-cat">OPERAÇÃO</span>
+                    <span class="strata-name">Atendente extra pra cobertura WhatsApp</span>
+                    <span class="strata-price">R$ 1.800</span>
                 </div>
                 <div class="strata-row">
                     <span class="strata-idx">05</span>
                     <span class="strata-cat">RASTREIO</span>
-                    <span class="strata-name">Ferramenta UTM</span>
-                    <span class="strata-price">R$ 200</span>
+                    <span class="strata-name">Ferramenta UTM + tracking</span>
+                    <span class="strata-price">R$ 350</span>
                 </div>
                 <div class="strata-row" data-offset="3">
                     <span class="strata-idx">06</span>
                     <span class="strata-cat">FLUXO</span>
-                    <span class="strata-name">Plataforma de automação</span>
-                    <span class="strata-price">R$ 300</span>
+                    <span class="strata-name">Plataforma de automação (Zapier/Make)</span>
+                    <span class="strata-price">R$ 400</span>
                 </div>
                 <div class="strata-footer">
                     <div class="strata-total">
                         <span>TOTAL MENSAL</span>
-                        <span>R$ 2.800+</span>
+                        <span>R$ 5.100+</span>
                     </div>
                     <div class="strata-meta">
                         <span>Integrações nativas</span>
@@ -4741,6 +4964,13 @@
             </div>
         </div>
 
+        <div class="inline-cta-wrap reveal">
+            <p class="inline-cta-text light">Vale a pena o stack caótico?</p>
+            <a href="https://wa.me/48991505476" target="_blank" rel="noopener" class="inline-cta solid-gold">
+                Fazer o cálculo pra minha clínica →
+            </a>
+        </div>
+
     </div>
 </section>
 
@@ -4758,66 +4988,156 @@
         </div>
 
         <div class="results-grid">
+
+            <!-- METRIC 01 -->
             <div class="result-card reveal">
-                <span class="result-eyebrow">Métrica 01</span>
-                <div class="result-number">+47%</div>
+                <div class="result-head">
+                    <span class="result-eyebrow">Métrica 01</span>
+                    <span class="result-live">Ativo</span>
+                </div>
+                <div class="result-number"><em>+47</em>%</div>
                 <div class="result-label">Conversão de leads</div>
-                <p class="result-desc">Aumento médio na taxa de conversão entre contato e consulta agendada após a implementação do Nexus.</p>
-                <div class="result-visual">
-                    <svg class="result-sparkline" viewBox="0 0 200 32" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="spark1" x1="0" x2="0" y1="0" y2="1">
-                                <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.35"/>
-                                <stop offset="100%" stop-color="#C49A1B" stop-opacity="0"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M0,26 L20,24 L40,22 L60,20 L80,16 L100,14 L120,10 L140,9 L160,6 L180,4 L200,2" fill="none" stroke="#C49A1B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M0,26 L20,24 L40,22 L60,20 L80,16 L100,14 L120,10 L140,9 L160,6 L180,4 L200,2 L200,32 L0,32 Z" fill="url(#spark1)"/>
-                    </svg>
+                <p class="result-desc">Aumento médio entre primeiro contato e consulta agendada após implementação do Nexus.</p>
+                <div class="result-chart">
+                    <div class="result-chart-head">
+                        <span>Antes · Pós Nexus</span>
+                        <span>60 dias</span>
+                    </div>
+                    <div class="result-chart-body">
+                        <svg viewBox="0 0 240 80" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="bar-gold" x1="0" y1="0" x2="0" y2="1">
+                                    <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.85"/>
+                                    <stop offset="100%" stop-color="#C49A1B" stop-opacity="0.4"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Grid lines -->
+                            <line x1="0" y1="20" x2="240" y2="20" stroke="#00244A" stroke-opacity="0.05"/>
+                            <line x1="0" y1="40" x2="240" y2="40" stroke="#00244A" stroke-opacity="0.05"/>
+                            <line x1="0" y1="60" x2="240" y2="60" stroke="#00244A" stroke-opacity="0.05"/>
+                            <!-- Before bars (muted) -->
+                            <rect x="6"  y="50" width="14" height="28" fill="#00244A" fill-opacity="0.18" rx="2"/>
+                            <rect x="26" y="48" width="14" height="30" fill="#00244A" fill-opacity="0.18" rx="2"/>
+                            <rect x="46" y="52" width="14" height="26" fill="#00244A" fill-opacity="0.18" rx="2"/>
+                            <rect x="66" y="46" width="14" height="32" fill="#00244A" fill-opacity="0.18" rx="2"/>
+                            <!-- Divider -->
+                            <line x1="92" y1="0" x2="92" y2="78" stroke="#C49A1B" stroke-opacity="0.4" stroke-dasharray="2 3"/>
+                            <!-- After bars (gold gradient ascending) -->
+                            <rect x="100" y="34" width="14" height="44" fill="url(#bar-gold)" rx="2"/>
+                            <rect x="120" y="28" width="14" height="50" fill="url(#bar-gold)" rx="2"/>
+                            <rect x="140" y="22" width="14" height="56" fill="url(#bar-gold)" rx="2"/>
+                            <rect x="160" y="16" width="14" height="62" fill="url(#bar-gold)" rx="2"/>
+                            <rect x="180" y="10" width="14" height="68" fill="url(#bar-gold)" rx="2"/>
+                            <rect x="200" y="6"  width="14" height="72" fill="url(#bar-gold)" rx="2"/>
+                            <rect x="220" y="2"  width="14" height="76" fill="url(#bar-gold)" rx="2"/>
+                        </svg>
+                    </div>
+                    <div class="result-chart-foot">
+                        <span>Antes · 22%</span>
+                        <span>Agora · <strong>69%</strong></span>
+                    </div>
                 </div>
             </div>
 
+            <!-- METRIC 02 -->
             <div class="result-card reveal">
-                <span class="result-eyebrow">Métrica 02</span>
-                <div class="result-number">3.2s</div>
+                <div class="result-head">
+                    <span class="result-eyebrow">Métrica 02</span>
+                    <span class="result-live">Tempo real</span>
+                </div>
+                <div class="result-number"><em>3.2</em>s</div>
                 <div class="result-label">Tempo médio de resposta</div>
-                <p class="result-desc">Resposta qualificada ao primeiro contato do paciente. 24h por dia, inclusive finais de semana e feriados.</p>
-                <div class="result-visual">
-                    <svg class="result-sparkline" viewBox="0 0 200 32" preserveAspectRatio="none">
-                        <circle cx="20" cy="16" r="10" fill="none" stroke="#C49A1B" stroke-width="1.6"/>
-                        <line x1="20" y1="16" x2="20" y2="9" stroke="#C49A1B" stroke-width="1.6" stroke-linecap="round"/>
-                        <line x1="20" y1="16" x2="25" y2="16" stroke="#C49A1B" stroke-width="1.6" stroke-linecap="round"/>
-                        <line x1="42" y1="16" x2="200" y2="16" stroke="#C49A1B" stroke-width="1" stroke-dasharray="3 3" opacity="0.4"/>
-                        <text x="50" y="14" font-family="JetBrains Mono" font-size="8" fill="#00244A" opacity="0.5">00:00</text>
-                        <text x="95" y="14" font-family="JetBrains Mono" font-size="8" fill="#00244A" opacity="0.5">06:00</text>
-                        <text x="140" y="14" font-family="JetBrains Mono" font-size="8" fill="#00244A" opacity="0.5">12:00</text>
-                        <text x="180" y="14" font-family="JetBrains Mono" font-size="8" fill="#00244A" opacity="0.5">24h</text>
-                        <circle cx="55" cy="22" r="2" fill="#C49A1B"/>
-                        <circle cx="95" cy="22" r="2" fill="#C49A1B"/>
-                        <circle cx="140" cy="22" r="2" fill="#C49A1B"/>
-                        <circle cx="180" cy="22" r="2" fill="#C49A1B"/>
-                    </svg>
+                <p class="result-desc">Resposta qualificada ao primeiro contato do paciente. 24h por dia, inclusive feriados.</p>
+                <div class="result-chart">
+                    <div class="result-chart-head">
+                        <span>Cobertura · 24h</span>
+                        <span>Média semanal</span>
+                    </div>
+                    <div class="result-chart-body">
+                        <svg viewBox="0 0 240 80" preserveAspectRatio="none">
+                            <!-- Reference baseline -->
+                            <line x1="0" y1="62" x2="240" y2="62" stroke="#00244A" stroke-opacity="0.08"/>
+                            <line x1="0" y1="40" x2="240" y2="40" stroke="#00244A" stroke-opacity="0.05" stroke-dasharray="2 3"/>
+                            <line x1="0" y1="20" x2="240" y2="20" stroke="#00244A" stroke-opacity="0.05" stroke-dasharray="2 3"/>
+                            <!-- Hour markers -->
+                            <text x="0"   y="76" font-family="JetBrains Mono" font-size="6" fill="#00244A" opacity="0.4">00h</text>
+                            <text x="58"  y="76" font-family="JetBrains Mono" font-size="6" fill="#00244A" opacity="0.4">06h</text>
+                            <text x="116" y="76" font-family="JetBrains Mono" font-size="6" fill="#00244A" opacity="0.4">12h</text>
+                            <text x="174" y="76" font-family="JetBrains Mono" font-size="6" fill="#00244A" opacity="0.4">18h</text>
+                            <text x="222" y="76" font-family="JetBrains Mono" font-size="6" fill="#00244A" opacity="0.4">24h</text>
+                            <!-- Activity wave (constant ~3s response across all hours) -->
+                            <path d="M0,58 L20,57 L40,58 L60,56 L80,58 L100,57 L120,58 L140,56 L160,58 L180,57 L200,58 L220,56 L240,58"
+                                  fill="none" stroke="#C49A1B" stroke-width="1.8" stroke-linecap="round"/>
+                            <!-- Pulse dots at intervals -->
+                            <circle cx="20"  cy="57" r="2.4" fill="#C49A1B"/>
+                            <circle cx="80"  cy="58" r="2.4" fill="#C49A1B"/>
+                            <circle cx="140" cy="56" r="2.4" fill="#C49A1B"/>
+                            <circle cx="200" cy="58" r="2.4" fill="#C49A1B"/>
+                            <!-- Highlight zone -->
+                            <rect x="0" y="52" width="240" height="14" fill="#C49A1B" fill-opacity="0.06" rx="2"/>
+                        </svg>
+                    </div>
+                    <div class="result-chart-foot">
+                        <span>Pico · 02h-06h</span>
+                        <span>Cobertura · <strong>100%</strong></span>
+                    </div>
                 </div>
             </div>
 
+            <!-- METRIC 03 -->
             <div class="result-card reveal">
-                <span class="result-eyebrow">Métrica 03</span>
-                <div class="result-number">R$ 1,48</div>
+                <div class="result-head">
+                    <span class="result-eyebrow">Métrica 03</span>
+                    <span class="result-live">Rastreado</span>
+                </div>
+                <div class="result-number">R$ <em>1,48</em></div>
                 <div class="result-label">Custo por lead qualificado</div>
-                <p class="result-desc">Com rastreio completo de ROI, cada real investido em marketing rastreado até o procedimento.</p>
-                <div class="result-visual">
-                    <svg class="result-sparkline" viewBox="0 0 200 32" preserveAspectRatio="none">
-                        <defs>
-                            <linearGradient id="spark3" x1="0" x2="0" y1="0" y2="1">
-                                <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.3"/>
-                                <stop offset="100%" stop-color="#C49A1B" stop-opacity="0"/>
-                            </linearGradient>
-                        </defs>
-                        <path d="M0,4 L20,6 L40,9 L60,12 L80,14 L100,17 L120,20 L140,23 L160,26 L180,28 L200,30" fill="none" stroke="#C49A1B" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-                        <path d="M0,4 L20,6 L40,9 L60,12 L80,14 L100,17 L120,20 L140,23 L160,26 L180,28 L200,30 L200,32 L0,32 Z" fill="url(#spark3)"/>
-                    </svg>
+                <p class="result-desc">Cada real investido rastreado do clique até o procedimento. ROI medido por campanha.</p>
+                <div class="result-chart">
+                    <div class="result-chart-head">
+                        <span>Funil · UTM rastreado</span>
+                        <span>30 dias</span>
+                    </div>
+                    <div class="result-chart-body">
+                        <svg viewBox="0 0 240 80" preserveAspectRatio="none">
+                            <defs>
+                                <linearGradient id="funnel-gold" x1="0" y1="0" x2="1" y2="0">
+                                    <stop offset="0%" stop-color="#C49A1B" stop-opacity="0.65"/>
+                                    <stop offset="100%" stop-color="#C49A1B" stop-opacity="0.95"/>
+                                </linearGradient>
+                            </defs>
+                            <!-- Funnel stages descending -->
+                            <rect x="10" y="14" width="220" height="10" rx="3" fill="#00244A" fill-opacity="0.1"/>
+                            <rect x="10" y="14" width="220" height="10" rx="3" fill="url(#funnel-gold)"/>
+                            <text x="14" y="22" font-family="JetBrains Mono" font-size="7" fill="#00244A" opacity="0.7">Cliques · 12.4k</text>
+
+                            <rect x="34" y="32" width="172" height="10" rx="3" fill="#00244A" fill-opacity="0.1"/>
+                            <rect x="34" y="32" width="172" height="10" rx="3" fill="url(#funnel-gold)" fill-opacity="0.85"/>
+                            <text x="38" y="40" font-family="JetBrains Mono" font-size="7" fill="#00244A" opacity="0.7">Leads · 3.8k</text>
+
+                            <rect x="58" y="50" width="124" height="10" rx="3" fill="#00244A" fill-opacity="0.1"/>
+                            <rect x="58" y="50" width="124" height="10" rx="3" fill="url(#funnel-gold)" fill-opacity="0.7"/>
+                            <text x="62" y="58" font-family="JetBrains Mono" font-size="7" fill="#00244A" opacity="0.7">Qualificados · 1.2k</text>
+
+                            <rect x="86" y="68" width="68" height="10" rx="3" fill="#00244A" fill-opacity="0.1"/>
+                            <rect x="86" y="68" width="68" height="10" rx="3" fill="#C49A1B"/>
+                            <text x="90" y="76" font-family="JetBrains Mono" font-size="7" fill="#00244A" opacity="0.7">Procedimentos · 312</text>
+                        </svg>
+                    </div>
+                    <div class="result-chart-foot">
+                        <span>Investimento · R$ 18k</span>
+                        <span>ROI · <strong>4.2x</strong></span>
+                    </div>
                 </div>
             </div>
+
+        </div>
+
+        <div class="inline-cta-wrap reveal">
+            <p class="inline-cta-text dark">Quer que esses resultados apareçam na sua operação?</p>
+            <a href="https://wa.me/48991505476" target="_blank" rel="noopener" class="inline-cta outline-gold-glow">
+                Quero esses números também →
+            </a>
         </div>
     </div>
 </section>
@@ -4825,9 +5145,9 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- QUEM ESTA DO OUTRO LADO                     -->
 <!-- ═══════════════════════════════════════════ -->
-<section id="trajetória" style="position:relative;min-height:520px;display:flex;align-items:center;overflow:hidden;">
+<section id="trajetória" style="position:relative;min-height:680px;display:flex;align-items:center;overflow:hidden;">
     <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;"><canvas id="metatron-bio"></canvas></div>
-    <div style="position:absolute;inset:0;background:url('bio-lazaro-saude.png') center center / cover no-repeat;z-index:1;"></div>
+    <div style="position:absolute;inset:0;background:url('bio-lazaro-saude.png') right top / cover no-repeat;z-index:1;"></div>
     <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,253,243,0.95) 0%, rgba(255,253,243,0.88) 30%, rgba(255,253,243,0.5) 55%, rgba(255,253,243,0.0) 80%);z-index:2;"></div>
 
     <div style="position:relative;z-index:3;max-width:540px;padding:100px 64px;margin-left:8%;" class="bio-content">
@@ -4856,11 +5176,16 @@
     <div class="faq-list">
         <div class="faq-item reveal">
             <button class="faq-question" onclick="toggleFaq(this)">
-                Em quanto tempo o Nexus estará rodando na minha clínica?
+                Como funciona o processo de implementação? Em quanto tempo o Nexus estará rodando na minha clínica?
                 <span class="faq-icon">+</span>
             </button>
             <div class="faq-answer">
-                <p class="faq-answer-inner">Do diagnóstico à operação, em média 4 a 6 semanas. A implementação é gradual, módulo a módulo, para não interromper a operação da clínica.</p>
+                <p class="faq-answer-inner">Do diagnóstico à operação, em média 4 a 6 semanas, em 4 fases:</p>
+                <p class="faq-answer-inner"><strong>01. Diagnóstico da Operação</strong> (1 semana) - mapeamos fluxos, pontos de contato e gargalos. Entendemos onde estão os vazamentos.</p>
+                <p class="faq-answer-inner"><strong>02. Arquitetura Sob Medida</strong> (1 semana) - projetamos o Nexus adaptado à realidade da sua clínica. Cada módulo configurado pro seu cenário específico.</p>
+                <p class="faq-answer-inner"><strong>03. Implementação e Treinamento</strong> (2 semanas) - instalamos, integramos com as ferramentas existentes e treinamos a equipe no novo fluxo.</p>
+                <p class="faq-answer-inner"><strong>04. Operação e Otimização</strong> (contínua) - o sistema roda. Acompanhamos, ajustamos e otimizamos com base em dados reais.</p>
+                <p class="faq-answer-inner">A implementação é gradual, módulo a módulo, para não interromper o funcionamento da clínica.</p>
             </div>
         </div>
         <div class="faq-item reveal">
@@ -4898,6 +5223,114 @@
             <div class="faq-answer">
                 <p class="faq-answer-inner">O Nexus integra com as ferramentas que a clínica já usa. Não substituímos o CRM existente - potencializamos o que já está rodando com camadas de automação e inteligência.</p>
             </div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- TRUST STRIP - SEGURANÇA & COMPLIANCE        -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="trust-strip">
+    <div class="trust-wrap reveal">
+        <p class="trust-eyebrow">Segurança e Compliance</p>
+        <ul class="trust-pills">
+            <li class="trust-pill">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                    <path d="M8 1.5l5 2v4c0 3.5-2.4 6.4-5 7-2.6-.6-5-3.5-5-7v-4l5-2z"/>
+                    <path d="M5.6 7.8l1.6 1.6 3.2-3.2"/>
+                </svg>
+                <span>LGPD</span>
+            </li>
+            <li class="trust-pill">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                    <rect x="3" y="7" width="10" height="6.5" rx="1.2"/>
+                    <path d="M5 7V5a3 3 0 016 0v2"/>
+                </svg>
+                <span>Criptografia ponta a ponta</span>
+            </li>
+            <li class="trust-pill">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                    <rect x="2" y="2.5" width="12" height="4" rx="0.8"/>
+                    <rect x="2" y="9.5" width="12" height="4" rx="0.8"/>
+                    <circle cx="4.5" cy="4.5" r="0.6" fill="currentColor"/>
+                    <circle cx="4.5" cy="11.5" r="0.6" fill="currentColor"/>
+                </svg>
+                <span>Dados em servidores brasileiros</span>
+            </li>
+            <li class="trust-pill">
+                <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true">
+                    <path d="M9.5 1.5h-5a1.4 1.4 0 00-1.4 1.4v10.2a1.4 1.4 0 001.4 1.4h7a1.4 1.4 0 001.4-1.4V5.5l-3.4-4z"/>
+                    <path d="M9.5 1.5v4h3.4"/>
+                    <path d="M6 10l1.4 1.4 2.8-2.8"/>
+                </svg>
+                <span>Auditoria contínua</span>
+            </li>
+        </ul>
+    </div>
+</section>
+
+<!-- ═══════════════════════════════════════════ -->
+<!-- DIAGNÓSTICO GRATUITO                        -->
+<!-- ═══════════════════════════════════════════ -->
+<section class="diag-section section-padding" id="diagnostico">
+    <div class="diag-wrap reveal">
+        <div class="diag-head">
+            <p class="eyebrow">DIAGNÓSTICO GRATUITO</p>
+            <h2 class="diag-title">Onde a sua clínica está vazando dinheiro?</h2>
+            <p class="diag-subtitle">Preencha o formulário. Lázaro analisa sua operação e retorna em até 24h com o mapa dos vazamentos específicos da sua clínica.</p>
+        </div>
+
+        <div class="diag-card">
+            <form action="https://formsubmit.co/contato@lazaroleon.com.br" method="POST" class="diag-form">
+                <input type="hidden" name="_next" value="#diagnostico-ok">
+                <input type="hidden" name="_subject" value="Novo diagnóstico - Nexus Saúde">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="text" name="_honey" style="display:none">
+
+                <div class="diag-grid">
+                    <div class="diag-field">
+                        <label class="diag-label" for="diag-nome">Nome</label>
+                        <input class="diag-input" type="text" id="diag-nome" name="nome" placeholder="Seu nome" required>
+                    </div>
+                    <div class="diag-field">
+                        <label class="diag-label" for="diag-clinica">Clínica</label>
+                        <input class="diag-input" type="text" id="diag-clinica" name="clinica" placeholder="Nome da clínica" required>
+                    </div>
+                </div>
+
+                <div class="diag-grid">
+                    <div class="diag-field">
+                        <label class="diag-label" for="diag-whatsapp">WhatsApp</label>
+                        <input class="diag-input" type="tel" id="diag-whatsapp" name="whatsapp" placeholder="(11) 00000-0000" required>
+                    </div>
+                    <div class="diag-field">
+                        <label class="diag-label" for="diag-especialidade">Especialidade</label>
+                        <select class="diag-select" id="diag-especialidade" name="especialidade" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="Dermatologia">Dermatologia</option>
+                            <option value="Cirurgia Plástica">Cirurgia Plástica</option>
+                            <option value="Nutrição">Nutrição</option>
+                            <option value="Estética">Estética</option>
+                            <option value="Ginecologia">Ginecologia</option>
+                            <option value="Outra">Outra</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="diag-field">
+                    <label class="diag-label" for="diag-vazamento">Qual o maior vazamento que você percebe hoje?</label>
+                    <textarea class="diag-textarea" id="diag-vazamento" name="vazamento" rows="3" placeholder="Conte em poucas linhas..." required></textarea>
+                </div>
+
+                <div class="diag-submit-wrap">
+                    <button type="submit" class="diag-submit">Receber meu diagnóstico &rarr;</button>
+                </div>
+
+                <div class="diag-fine-print">
+                    <span>Sem compromisso. Sem script de vendas. Sem spam.</span>
+                    <span>Resposta em até 24h via WhatsApp.</span>
+                </div>
+            </form>
         </div>
     </div>
 </section>
@@ -4990,30 +5423,6 @@
     }, { threshold: 0.4 });
     statNums.forEach(el => statObserver.observe(el));
 
-    // ─── Timeline V2: progressive fill + node activation on scroll ───
-    (function(){
-        const timeline = document.getElementById('timelineV2');
-        if (!timeline) return;
-        const track = timeline.querySelector('.timeline-v2-track');
-        const nodes = timeline.querySelectorAll('.timeline-v2-node');
-        let done = false;
-        const animateTimeline = () => {
-            if (done) return;
-            const rect = timeline.getBoundingClientRect();
-            const viewportH = window.innerHeight;
-            if (rect.top < viewportH * 0.7 && rect.bottom > 0) {
-                done = true;
-                // Fill track gradually
-                track.style.setProperty('--progress', '100%');
-                // Activate nodes sequentially
-                nodes.forEach((node, i) => {
-                    setTimeout(() => node.classList.add('active'), 300 + i * 280);
-                });
-            }
-        };
-        window.addEventListener('scroll', animateTimeline, { passive: true });
-        animateTimeline();
-    })();
 </script>
 </body>
 </html>
