@@ -1213,6 +1213,45 @@
             color: var(--goldenrod);
         }
 
+        /* ─── BIO NEXUS (overlay com foto direita, igual home) ─── */
+        .bio-section-nx {
+            position: relative;
+            min-height: 680px;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+        .bio-section-nx .bio-bg-desktop {
+            position: absolute;
+            inset: 0;
+            overflow: hidden;
+        }
+        .bio-section-nx .bio-mesh {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            z-index: 0;
+        }
+        .bio-section-nx .bio-photo-desktop {
+            position: absolute;
+            inset: 0;
+            background: url('bio-lazaro-saude.png') right top / cover no-repeat;
+            z-index: 1;
+        }
+        .bio-section-nx .bio-overlay-desktop {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to right, rgba(255,253,243,0.95) 0%, rgba(255,253,243,0.88) 30%, rgba(255,253,243,0.5) 55%, rgba(255,253,243,0.0) 80%);
+            z-index: 2;
+        }
+        .bio-section-nx .bio-content {
+            position: relative;
+            z-index: 3;
+            max-width: 540px;
+            padding: 100px 64px;
+            margin-left: 8%;
+        }
+
         /* ─── BIO ─── */
         .bio-section {
             background: var(--prussian-blue);
@@ -1751,7 +1790,6 @@
         }
 
         @media (max-width: 768px) {
-            #trajetória .bio-content { padding: 72px 28px !important; margin-left: 0 !important; max-width: 100% !important; }
             nav { padding: 16px 24px; }
             .section-padding { padding: 80px 24px; }
             #hero {
@@ -3662,10 +3700,67 @@
             .stack-duel { margin-bottom: 88px; }
             .strata-row { grid-template-columns: 24px 1fr auto; gap: 12px; }
             .strata-cat { display: none; }
-            .compare-row { grid-template-columns: 1fr; gap: 10px; padding: 24px 0; text-align: center; }
-            .compare-left, .compare-right { text-align: center; }
-            .compare-left::after, .compare-right::before { display: none; }
-            .compare-label { margin: 0 auto; min-width: auto; }
+            /* Compare row vira card 2 colunas: ANTES vs COM NEXUS */
+            .compare-row {
+                grid-template-columns: 1fr 1fr;
+                gap: 0;
+                padding: 0;
+                margin-bottom: 16px;
+                border-bottom: none;
+                border: 1px solid rgba(196,154,27,0.15);
+                border-radius: 10px;
+                overflow: hidden;
+                position: relative;
+            }
+            .compare-row .compare-label {
+                position: absolute;
+                top: -10px;
+                left: 50%;
+                transform: translateX(-50%);
+                background: var(--prussian-blue);
+                z-index: 2;
+                margin: 0;
+                font-size: 0.55rem;
+                padding: 4px 12px;
+                border-color: rgba(196,154,27,0.35);
+            }
+            .compare-row .compare-left,
+            .compare-row .compare-right {
+                padding: 32px 16px 22px;
+                text-align: center;
+                position: relative;
+                font-size: 0.88rem;
+            }
+            .compare-row .compare-left {
+                background: rgba(0,0,0,0.15);
+                border-right: 1px solid rgba(196,154,27,0.1);
+            }
+            .compare-row .compare-left::before {
+                content: 'ANTES';
+                display: block;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.55rem;
+                letter-spacing: 0.25em;
+                color: rgba(255,253,243,0.35);
+                margin-bottom: 8px;
+            }
+            .compare-row .compare-right {
+                background: rgba(196,154,27,0.04);
+            }
+            .compare-row .compare-right::before {
+                content: 'COM NEXUS';
+                display: block;
+                font-family: 'JetBrains Mono', monospace;
+                font-size: 0.55rem;
+                letter-spacing: 0.25em;
+                color: var(--goldenrod);
+                margin-bottom: 8px;
+                width: auto;
+                height: auto;
+                background: none;
+                vertical-align: baseline;
+            }
+            .compare-left::after { display: none; }
         }
 
         /* ═══════════════════════════════════════════ */
@@ -3849,52 +3944,42 @@
                with an SVG connection bus. On small screens that arrangement breaks.
                We convert the command-center into a vertical stack: core on top,
                satellites below in a clean list, and hide the SVG connector. */
-            .hero-mockup-wrap { min-height: auto; margin-top: 16px; }
+            .hero-mockup-wrap { min-height: auto; margin-top: 24px; }
             .command-center {
                 position: relative;
                 height: auto;
-                max-width: 420px;
+                max-width: 280px;
                 min-height: 0;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                gap: 20px;
-                padding: 8px 0 12px;
+                gap: 0;
+                padding: 0;
+                margin: 0 auto;
             }
-            /* Hide the decorative SVG bus on mobile — the visual doesn't map well
-               to a vertical layout and would overflow / misalign. */
+            /* Hide ALL decorative elements on mobile - keep only the core "logo" centered */
             .command-center .cc-connections { display: none !important; }
-            /* Core becomes static and centered */
+            .command-center .cc-satellite { display: none !important; }
+
+            /* Core becomes the centerpiece - bigger and clean */
             .cc-core {
                 position: relative;
                 top: auto; left: auto; transform: none;
-                width: 260px; height: 300px;
+                width: 240px; height: 280px;
                 margin: 0 auto;
             }
-            .cc-core-metatron-stack { width: 240px; height: 240px; }
+            .cc-core-metatron-stack { width: 220px; height: 220px; }
             .cc-core-content {
                 position: relative;
                 bottom: auto; left: auto;
                 transform: none;
-                padding: 10px 28px;
-                margin-top: 8px;
+                padding: 10px 0 0;
+                margin-top: 0;
                 white-space: normal;
+                text-align: center;
             }
-            .cc-core-label { font-size: 1.5rem; }
-            .cc-core-sub { font-size: 0.56rem; margin-bottom: 10px; }
-            /* Satellites: stack in a vertical list, full width of wrap */
-            .cc-satellite {
-                position: relative !important;
-                top: auto !important; right: auto !important;
-                bottom: auto !important; left: auto !important;
-                transform: none !important;
-                width: 100%;
-                max-width: 320px;
-            }
-            .cc-sat-1, .cc-sat-2, .cc-sat-3 {
-                top: auto; right: auto; bottom: auto; left: auto;
-                transform: none;
-            }
+            .cc-core-label { font-size: 1.6rem; }
+            .cc-core-sub { font-size: 0.6rem; margin-bottom: 8px; }
 
             /* STRATA/STACK — strata header on narrow screens */
             .strata-header { font-size: 0.58rem; letter-spacing: 0.22em; }
@@ -3931,27 +4016,42 @@
             }
             .solucao-metaphor-icon { width: 44px; height: 44px; }
 
-            /* BIO (#trajetória) — the background photo positioned right-top
-               becomes a soft texture; text overlay gets stronger scrim for
-               legibility. */
-            #trajetória {
+            /* BIO NEXUS — foto stacked em cima + texto centralizado embaixo */
+            .bio-section-nx {
                 min-height: auto !important;
-                padding: 20px 0;
+                display: block !important;
+                background: var(--floral-white);
             }
-            #trajetória > div[style*="background:url"] {
+            .bio-section-nx .bio-bg-desktop {
+                position: relative !important;
+                width: 100%;
+                aspect-ratio: 1/1;
+                max-height: 600px;
+            }
+            .bio-section-nx .bio-photo-desktop {
                 background-position: center top !important;
-                background-size: cover !important;
-                opacity: 0.55;
             }
-            /* Stronger scrim on mobile so text is always readable */
-            #trajetória > div[style*="linear-gradient"] {
-                background: linear-gradient(
-                    to bottom,
-                    rgba(255,253,243,0.96) 0%,
-                    rgba(255,253,243,0.92) 60%,
-                    rgba(255,253,243,0.88) 100%
-                ) !important;
+            .bio-section-nx .bio-overlay-desktop {
+                background: linear-gradient(to bottom,
+                    rgba(255,253,243,0) 0%,
+                    rgba(255,253,243,0) 50%,
+                    rgba(255,253,243,0.85) 85%,
+                    rgba(255,253,243,1) 100%) !important;
             }
+            .bio-section-nx .bio-content {
+                position: relative !important;
+                margin-left: 0 !important;
+                max-width: 100% !important;
+                padding: 0 24px 80px !important;
+                width: 100% !important;
+                text-align: center;
+                margin-top: -80px;
+                z-index: 10;
+            }
+            .bio-section-nx .bio-content .eyebrow,
+            .bio-section-nx .bio-content h2 { text-align: center; }
+            .bio-section-nx .bio-content > div[style*="width:40px"] { margin-left: auto !important; margin-right: auto !important; }
+            .bio-section-nx .bio-content > div[style*="display:flex;gap:24px"] { justify-content: center; }
 
             /* FAQ — readable padding + larger touch target */
             .faq-question {
@@ -4928,7 +5028,7 @@
 
         <div class="stack-compare reveal">
             <div class="compare-prelude">
-                <p class="compare-title">O caos fragmentado comparado à <strong>inteligência unida</strong>.</p>
+                <p class="compare-title">O caos fragmentado comparado à <strong>inteligência unificada</strong>.</p>
             </div>
             <div class="compare-rows">
                 <div class="compare-row">
@@ -5145,12 +5245,14 @@
 <!-- ═══════════════════════════════════════════ -->
 <!-- QUEM ESTA DO OUTRO LADO                     -->
 <!-- ═══════════════════════════════════════════ -->
-<section id="trajetória" style="position:relative;min-height:680px;display:flex;align-items:center;overflow:hidden;">
-    <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none;z-index:0;"><canvas id="metatron-bio"></canvas></div>
-    <div style="position:absolute;inset:0;background:url('bio-lazaro-saude.png') right top / cover no-repeat;z-index:1;"></div>
-    <div style="position:absolute;inset:0;background:linear-gradient(to right, rgba(255,253,243,0.95) 0%, rgba(255,253,243,0.88) 30%, rgba(255,253,243,0.5) 55%, rgba(255,253,243,0.0) 80%);z-index:2;"></div>
+<section id="trajetória" class="bio-section-nx">
+    <div class="bio-bg-desktop">
+        <div class="bio-mesh"><canvas id="metatron-bio"></canvas></div>
+        <div class="bio-photo-desktop"></div>
+        <div class="bio-overlay-desktop"></div>
+    </div>
 
-    <div style="position:relative;z-index:3;max-width:540px;padding:100px 64px;margin-left:8%;" class="bio-content">
+    <div class="bio-content">
         <p class="eyebrow reveal">Quem está por trás</p>
         <h2 class="section-title reveal" style="margin-bottom:20px;font-size:clamp(1.8rem,2.8vw,2.4rem);">Lázaro Leon</h2>
         <div class="reveal" style="width:40px;height:1px;background:var(--goldenrod);margin-bottom:28px;"></div>
