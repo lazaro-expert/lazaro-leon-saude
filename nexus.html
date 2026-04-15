@@ -2582,8 +2582,9 @@
 
         /* Hero responsive */
         @media (max-width: 980px) {
-            #hero .hero-inner { grid-template-columns: 1fr; gap: 48px; }
-            .hero-mockup-wrap { min-height: 480px; }
+            #hero .hero-inner { grid-template-columns: 1fr; gap: 32px; }
+            #hero .hero-content { order: 2; }
+            #hero .hero-mockup-wrap { order: 1; min-height: auto; }
             .command-center { max-width: 420px; }
         }
 
@@ -4029,7 +4030,8 @@
                 max-height: 600px;
             }
             .bio-section-nx .bio-photo-desktop {
-                background-position: center top !important;
+                background-position: 75% 20% !important;
+                background-size: cover !important;
             }
             .bio-section-nx .bio-overlay-desktop {
                 background: linear-gradient(to bottom,
