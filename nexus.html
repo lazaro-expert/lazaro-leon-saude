@@ -2589,16 +2589,8 @@
         }
 
         @media (max-width: 520px) {
-            .hero-mockup-wrap { min-height: 440px; }
-            .command-center { max-width: 360px; height: 440px; }
-            .cc-core { width: 230px; height: 260px; }
-            .cc-core-metatron-stack { width: 200px; height: 200px; }
-            .cc-core-label { font-size: 1.4rem; }
-            .cc-core-sub { font-size: 0.52rem; margin-bottom: 10px; }
-            .cc-satellite { width: 134px; padding: 10px; }
-            .cc-sat-viz { height: 30px; margin-bottom: 8px; }
-            .cc-sat-num { font-size: 0.85rem; }
-            .cc-sat-unit { font-size: 0.62rem; }
+            .hero-mockup-wrap { min-height: auto; }
+            .command-center { max-width: 320px; height: auto; }
         }
 
         /* ═══════════════════════════════════════════ */
@@ -3962,25 +3954,50 @@
             .command-center .cc-connections { display: none !important; }
             .command-center .cc-satellite { display: none !important; }
 
-            /* Core becomes the centerpiece - bigger and clean */
+            /* Core becomes the centerpiece - geometria em cima + texto embaixo (vertical natural) */
             .cc-core {
-                position: relative;
-                top: auto; left: auto; transform: none;
-                width: 240px; height: 280px;
-                margin: 0 auto;
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                width: 100% !important;
+                max-width: 280px !important;
+                height: auto !important;
+                margin: 0 auto !important;
+                display: flex !important;
+                flex-direction: column !important;
+                align-items: center !important;
+                gap: 24px !important;
             }
-            .cc-core-metatron-stack { width: 220px; height: 220px; }
+
+            /* Geometria sai do absolute, vira bloco normal */
+            .cc-core-metatron-stack {
+                position: relative !important;
+                top: auto !important;
+                left: auto !important;
+                transform: none !important;
+                width: 240px !important;
+                height: 240px !important;
+                margin: 0 !important;
+            }
+
+            /* Texto NEXUS vira bloco abaixo da geometria (sem absolute) */
             .cc-core-content {
-                position: relative;
-                bottom: auto; left: auto;
-                transform: none;
-                padding: 10px 0 0;
-                margin-top: 0;
-                white-space: normal;
-                text-align: center;
+                position: relative !important;
+                bottom: auto !important;
+                left: auto !important;
+                transform: none !important;
+                padding: 14px 28px !important;
+                margin: 0 !important;
+                white-space: normal !important;
+                text-align: center !important;
+                background: transparent !important;
+                backdrop-filter: none !important;
+                width: auto !important;
             }
-            .cc-core-label { font-size: 1.6rem; }
-            .cc-core-sub { font-size: 0.6rem; margin-bottom: 8px; }
+
+            .cc-core-label { font-size: 1.7rem !important; margin-bottom: 8px !important; }
+            .cc-core-sub { font-size: 0.6rem !important; margin-bottom: 12px !important; }
 
             /* STRATA/STACK — strata header on narrow screens */
             .strata-header { font-size: 0.58rem; letter-spacing: 0.22em; }
