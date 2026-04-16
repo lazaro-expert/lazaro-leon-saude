@@ -1797,17 +1797,23 @@
             nav { padding: 16px 24px; }
             .section-padding { padding: 80px 24px; }
             #hero {
-                padding: 120px 24px 60px;
-                min-height: 80vh;
+                padding: 100px 24px 48px;
+                min-height: auto;
+            }
+            .hero-bg {
+                background-size: 140% auto !important;
+                background-position: 65% 20% !important;
             }
             .hero-content { max-width: 100%; }
-            .hero-gold-line { margin: 0 auto 28px; text-align: center; }
+            .hero-gold-line { margin: 0 auto 20px; text-align: center; }
+            .hero-headline { font-size: clamp(1.6rem, 5.5vw, 2rem); margin-bottom: 16px !important; }
+            .hero-sub { font-size: 0.95rem; margin-bottom: 28px !important; }
             .hero-overlay {
                 background: linear-gradient(
                     to bottom,
-                    rgba(255,253,243,0.92) 0%,
-                    rgba(255,253,243,0.8) 50%,
-                    rgba(255,253,243,0.6) 100%
+                    rgba(255,253,243,0.75) 0%,
+                    rgba(255,253,243,0.65) 40%,
+                    rgba(255,253,243,0.5) 100%
                 ) !important;
             }
             .solucao-metaphor { padding: 28px 20px; }
