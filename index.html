@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LL'EXPERT - Lázaro Leon | Arquitetura Digital e IA para Clínicas Premium</title>
     <meta name="description" content="Arquitetura digital e IA para clínicas premium. Atendimento autônomo, raio-x de vendas e controladoria de marketing num único sistema.">
+    <link rel="canonical" href="https://saude.lazaroleon.com.br/">
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"LL'EXPERT","alternateName":"Lázaro Leon","description":"Arquitetura digital e IA para clínicas premium operarem com excelência.","url":"https://saude.lazaroleon.com.br/","logo":"https://saude.lazaroleon.com.br/favicon.svg","founder":{"@type":"Person","name":"Lázaro Leon","url":"https://www.linkedin.com/in/soulazaroleon/"},"sameAs":["https://www.linkedin.com/in/soulazaroleon/","https://www.instagram.com/soulazaroleon/"],"areaServed":"BR","inLanguage":"pt-BR"}
+    </script>
     <meta property="og:type" content="website">
     <meta property="og:title" content="LL'EXPERT - Tecnologia e IA para Clínicas Premium">
     <meta property="og:description" content="Arquitetura digital e IA para clínicas premium operarem com excelência.">
@@ -707,7 +711,7 @@
 
         /* FOOTER */
         footer {
-            background: #1A2A3A;
+            background: var(--prussian-blue);
             padding: 56px 64px 32px;
             color: rgba(255,255,255,0.7);
         }
@@ -1254,7 +1258,15 @@
         let scrollY = 0;
         window.addEventListener('scroll', () => { scrollY = window.pageYOffset; });
 
+        let isVisible = true;
+        const visObs = new IntersectionObserver((entries) => {
+            isVisible = entries[0].isIntersecting;
+        }, { threshold: 0, rootMargin: '100px' });
+        visObs.observe(section);
+
         function animate() {
+            requestAnimationFrame(animate);
+            if (!isVisible) return;
             time += opts.speed;
 
             const rect = section.getBoundingClientRect();
@@ -1333,7 +1345,6 @@
             }
 
             ctx.setTransform(1, 0, 0, 1, 0, 0);
-            requestAnimationFrame(animate);
         }
         animate();
     }

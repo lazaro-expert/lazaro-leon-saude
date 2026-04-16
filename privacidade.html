@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Politica de Privacidade | LL'EXPERT Saude</title>
+    <meta name="description" content="Politica de Privacidade e conformidade LGPD da LL'EXPERT Saude. Saiba como tratamos seus dados pessoais.">
+    <link rel="canonical" href="https://saude.lazaroleon.com.br/privacidade.html">
+    <script type="application/ld+json">
+{"@context":"https://schema.org","@type":"ProfessionalService","name":"LL'EXPERT","alternateName":"Lázaro Leon","description":"Arquitetura digital e IA para clínicas premium operarem com excelência.","url":"https://saude.lazaroleon.com.br/","logo":"https://saude.lazaroleon.com.br/favicon.svg","founder":{"@type":"Person","name":"Lázaro Leon","url":"https://www.linkedin.com/in/soulazaroleon/"},"sameAs":["https://www.linkedin.com/in/soulazaroleon/","https://www.instagram.com/soulazaroleon/"],"areaServed":"BR","inLanguage":"pt-BR"}
+    </script>
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Politica de Privacidade | LL'EXPERT Saude">
+    <meta property="og:description" content="Politica de Privacidade e conformidade LGPD da LL'EXPERT Saude.">
+    <meta property="og:url" content="https://saude.lazaroleon.com.br/privacidade.html">
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.svg">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --floral-white: #FFFDF3;
+            --off-white: #FFFFFF;
+            --goldenrod: #C49A1B;
+            --prussian-blue: #00244A;
+            --transition: 0.4s ease;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--floral-white);
+            color: var(--prussian-blue);
+            overflow-x: hidden;
+        }
+
+        /* NAV */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            padding: 22px 64px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: background var(--transition), backdrop-filter var(--transition), border-color var(--transition);
+            border-bottom: 1px solid transparent;
+        }
+
+        nav.scrolled {
+            background: rgba(255, 253, 243, 0.88);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            border-bottom-color: rgba(220, 163, 30, 0.18);
+        }
+
+        .nav-logo {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.45rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.06em;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            list-style: none;
+        }
+
+        .nav-links li a {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.04em;
+            transition: opacity var(--transition);
+        }
+
+        .nav-links li a:hover { opacity: 0.55; }
+
+        .nav-cta {
+            background: var(--prussian-blue) !important;
+            color: var(--floral-white) !important;
+            border-radius: 2px !important;
+            padding: 10px 26px !important;
+            letter-spacing: 0.07em !important;
+        }
+
+        .nav-cta:hover { opacity: 0.82 !important; }
+
+        /* HAMBURGER */
+        .hamburger {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 22px;
+            height: 1.5px;
+            background: var(--prussian-blue);
+            margin: 5px 0;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+
+        .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+        .mobile-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 1050;
+            background: rgba(255,253,243,0.97);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 36px;
+        }
+
+        .mobile-overlay.open { display: flex; }
+
+        .mobile-overlay a {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--prussian-blue);
+            text-decoration: none;
+            letter-spacing: 0.02em;
+            transition: opacity var(--transition);
+        }
+
+        .mobile-overlay a:hover { opacity: 0.55; }
+
+        .mobile-overlay .mobile-cta {
+            margin-top: 12px;
+            background: var(--prussian-blue);
+            color: var(--floral-white);
+            padding: 14px 40px;
+            border-radius: 2px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.08em;
+        }
+
+        @media (max-width: 768px) {
+            .hamburger { display: block; }
+        }
+
+        /* CONTENT */
+        .privacy-section {
+            max-width: 780px;
+            margin: 0 auto;
+            padding: 160px 64px 100px;
+        }
+
+        .privacy-section h1 {
+            font-family: 'Sora', sans-serif;
+            font-size: clamp(1.8rem, 3vw, 2.6rem);
+            font-weight: 600;
+            color: var(--prussian-blue);
+            letter-spacing: -0.02em;
+            margin-bottom: 12px;
+            line-height: 1.2;
+        }
+
+        .privacy-section .updated {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.45);
+            margin-bottom: 48px;
+        }
+
+        .privacy-section h2 {
+            font-family: 'Sora', sans-serif;
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: var(--prussian-blue);
+            margin-top: 48px;
+            margin-bottom: 16px;
+            letter-spacing: -0.01em;
+        }
+
+        .privacy-section p {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.78);
+            line-height: 1.85;
+            margin-bottom: 16px;
+        }
+
+        .privacy-section ul {
+            list-style: none;
+            margin-bottom: 16px;
+            padding-left: 0;
+        }
+
+        .privacy-section ul li {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: rgba(0,36,74,0.78);
+            line-height: 1.85;
+            padding-left: 20px;
+            position: relative;
+            margin-bottom: 6px;
+        }
+
+        .privacy-section ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: var(--goldenrod);
+        }
+
+        .privacy-section a {
+            color: var(--goldenrod);
+            text-decoration: none;
+            border-bottom: 1px solid rgba(196,154,27,0.3);
+            transition: border-color 0.3s ease;
+        }
+
+        .privacy-section a:hover {
+            border-bottom-color: var(--goldenrod);
+        }
+
+        .gold-rule {
+            width: 48px;
+            height: 1px;
+            background: var(--goldenrod);
+            margin-bottom: 32px;
+        }
+
+        /* FOOTER */
+        footer {
+            background: var(--prussian-blue);
+            padding: 56px 64px 32px;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-separator {
+            max-width: 1100px;
+            margin: 0 auto 48px;
+            border: none;
+            height: 1px;
+            background: #C49A1B;
+            opacity: 0.2;
+        }
+
+        .footer-brand .footer-logo {
+            display: inline-block;
+            font-family: 'Sora', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: -0.02em;
+            margin-bottom: 8px;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .footer-brand .footer-logo:hover {
+            color: #C49A1B;
+        }
+
+        .footer-brand .footer-tagline {
+            font-family: 'Inter', sans-serif;
+            font-size: 0.82rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.45);
+        }
+
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            align-items: center;
+            gap: 32px;
+        }
+
+        .footer-inner .footer-brand { justify-self: start; }
+        .footer-inner .footer-social { justify-self: center; }
+        .footer-inner .footer-links { justify-self: end; }
+
+        .footer-social {
+            display: flex;
+            gap: 14px;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .footer-social a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+        }
+
+        .footer-social a:hover {
+            color: #C49A1B;
+            background: rgba(196,154,27,0.08);
+            transform: translateY(-2px);
+        }
+
+        .footer-social svg {
+            width: 18px;
+            height: 18px;
+            display: block;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 24px;
+            align-items: center;
+        }
+
+        .footer-links a {
+            font-family: 'Inter', sans-serif;
+            color: rgba(255,255,255,0.5);
+            transition: color 0.3s ease;
+            font-size: 0.82rem;
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 40px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 300;
+            color: rgba(255,255,255,0.3);
+            text-align: center;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            nav { padding: 16px 24px; }
+            .nav-links { display: none; }
+            .privacy-section { padding: 120px 24px 80px; }
+            footer { padding: 40px 24px 24px; }
+            .footer-inner { grid-template-columns: 1fr; text-align: center; }
+            .footer-inner .footer-brand, .footer-inner .footer-social, .footer-inner .footer-links { justify-self: center; }
+            .footer-brand { text-align: center; }
+        }
+    </style>
+</head>
+<body id="top">
+
+<!-- NAV -->
+<nav id="navbar">
+    <a href="index.html" class="nav-logo">LL'EXPERT</a>
+    <ul class="nav-links">
+        <li><a href="index.html#cenario">Cenario</a></li>
+        <li><a href="index.html#oquefazemos">O Que Fazemos</a></li>
+        <li><a href="index.html#sistema-preview">O Nexus</a></li>
+        <li><a href="index.html#arquitetura">Servicos</a></li>
+        <li><a href="index.html#conversar" class="nav-cta">Contato</a></li>
+    </ul>
+    <button class="hamburger" id="hamburger" onclick="toggleMobile()">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-overlay" id="mobileMenu">
+    <a href="index.html#cenario" onclick="toggleMobile()">Cenario</a>
+    <a href="index.html#oquefazemos" onclick="toggleMobile()">O Que Fazemos</a>
+    <a href="index.html#sistema-preview" onclick="toggleMobile()">O Nexus</a>
+    <a href="index.html#arquitetura" onclick="toggleMobile()">Servicos</a>
+    <a href="index.html#conversar" class="mobile-cta" onclick="toggleMobile()">Contato</a>
+</div>
+
+<!-- CONTENT -->
+<main class="privacy-section">
+    <h1>Politica de Privacidade</h1>
+    <p class="updated">Ultima atualizacao: abril de 2026</p>
+    <div class="gold-rule"></div>
+
+    <p>A LL'EXPERT, inscrita sob CNPJ a definir, com sede em Florianopolis/SC, e responsavel pelo tratamento dos dados pessoais coletados neste site. Esta politica descreve como coletamos, usamos e protegemos suas informacoes, em conformidade com a Lei Geral de Protecao de Dados Pessoais (LGPD - Lei n. 13.709/2018).</p>
+
+    <h2>1. Dados que coletamos</h2>
+    <p>Podemos coletar os seguintes dados pessoais quando voce interage com nosso site ou servicos:</p>
+    <ul>
+        <li>Nome completo</li>
+        <li>Endereco de e-mail</li>
+        <li>Numero de telefone (WhatsApp)</li>
+        <li>Nome da clinica ou empresa</li>
+        <li>Dados de navegacao (cookies, IP, paginas visitadas, tempo de permanencia)</li>
+        <li>Dados fornecidos voluntariamente em formularios de contato</li>
+    </ul>
+
+    <h2>2. Como utilizamos seus dados</h2>
+    <p>Os dados coletados sao utilizados para:</p>
+    <ul>
+        <li>Responder solicitacoes de contato e atendimento</li>
+        <li>Enviar propostas e informacoes sobre nossos servicos</li>
+        <li>Personalizar a experiencia de navegacao</li>
+        <li>Analisar o desempenho do site e campanhas de marketing</li>
+        <li>Cumprir obrigacoes legais e regulatorias</li>
+    </ul>
+
+    <h2>3. Base legal para o tratamento</h2>
+    <p>O tratamento dos seus dados pessoais e realizado com base nas seguintes hipoteses legais previstas na LGPD:</p>
+    <ul>
+        <li>Consentimento do titular (Art. 7, I)</li>
+        <li>Execucao de contrato ou procedimentos preliminares (Art. 7, V)</li>
+        <li>Interesse legitimo do controlador (Art. 7, IX)</li>
+    </ul>
+
+    <h2>4. Compartilhamento de dados</h2>
+    <p>Seus dados pessoais podem ser compartilhados com:</p>
+    <ul>
+        <li>Ferramentas de analise e marketing (Google Analytics, Meta Ads)</li>
+        <li>Plataformas de comunicacao (WhatsApp Business API)</li>
+        <li>Servicos de hospedagem e infraestrutura (Cloudflare)</li>
+    </ul>
+    <p>Nao vendemos, alugamos ou comercializamos seus dados pessoais com terceiros para fins que nao estejam descritos nesta politica.</p>
+
+    <h2>5. Cookies e tecnologias de rastreamento</h2>
+    <p>Utilizamos cookies e tecnologias semelhantes para melhorar a experiencia de navegacao, analisar o trafego do site e personalizar conteudo. Voce pode gerenciar as preferencias de cookies nas configuracoes do seu navegador.</p>
+
+    <h2>6. Retencao de dados</h2>
+    <p>Seus dados pessoais serao mantidos pelo tempo necessario para cumprir as finalidades para as quais foram coletados, ou conforme exigido por lei. Apos esse periodo, os dados serao eliminados ou anonimizados.</p>
+
+    <h2>7. Seus direitos como titular</h2>
+    <p>De acordo com a LGPD, voce tem direito a:</p>
+    <ul>
+        <li>Confirmar a existencia de tratamento de dados</li>
+        <li>Acessar seus dados pessoais</li>
+        <li>Corrigir dados incompletos, inexatos ou desatualizados</li>
+        <li>Solicitar a anonimizacao, bloqueio ou eliminacao de dados desnecessarios</li>
+        <li>Solicitar a portabilidade dos dados</li>
+        <li>Revogar o consentimento a qualquer momento</li>
+        <li>Obter informacao sobre o compartilhamento de dados</li>
+    </ul>
+    <p>Para exercer seus direitos, entre em contato pelo e-mail: <a href="mailto:lazz.sollar@gmail.com">lazz.sollar@gmail.com</a></p>
+
+    <h2>8. Seguranca dos dados</h2>
+    <p>Adotamos medidas tecnicas e administrativas adequadas para proteger seus dados pessoais contra acessos nao autorizados, destruicao, perda, alteracao ou qualquer forma de tratamento inadequado. Isso inclui criptografia SSL/TLS, controle de acesso e monitoramento continuo.</p>
+
+    <h2>9. Transferencia internacional de dados</h2>
+    <p>Alguns dos servicos que utilizamos podem armazenar dados em servidores fora do Brasil. Nesses casos, garantimos que os paises destinatarios proporcionam grau de protecao de dados pessoais adequado ao previsto na LGPD, ou adotamos salvaguardas contratuais apropriadas.</p>
+
+    <h2>10. Alteracoes nesta politica</h2>
+    <p>Esta politica pode ser atualizada periodicamente. Recomendamos que voce a consulte regularmente. A data da ultima atualizacao estara sempre indicada no topo desta pagina.</p>
+
+    <h2>11. Contato</h2>
+    <p>Se voce tiver duvidas sobre esta Politica de Privacidade ou sobre o tratamento dos seus dados pessoais, entre em contato:</p>
+    <p><strong>LL'EXPERT - Lazaro Leon</strong><br>
+    E-mail: <a href="mailto:lazz.sollar@gmail.com">lazz.sollar@gmail.com</a><br>
+    WhatsApp: <a href="https://wa.me/48991505476" target="_blank">+55 48 99150-5476</a></p>
+</main>
+
+<!-- FOOTER -->
+<footer>
+    <hr class="footer-separator">
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <a href="#top" class="footer-logo" aria-label="Voltar ao topo">LL'EXPERT</a>
+            <div class="footer-tagline">Tecnologia e IA para Clinicas Premium</div>
+        </div>
+        <div class="footer-social">
+            <a href="https://www.linkedin.com/in/soulazaroleon/" target="_blank" aria-label="LinkedIn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+            </a>
+            <a href="https://www.instagram.com/soulazaroleon/" target="_blank" aria-label="Instagram">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+            </a>
+        </div>
+        <div class="footer-links">
+            <a href="privacidade.html">Privacidade</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        &copy; 2026 LL'EXPERT. Todos os direitos reservados.
+    </div>
+</footer>
+
+<script>
+    // Mobile menu
+    function toggleMobile() {
+        document.getElementById('hamburger').classList.toggle('open');
+        document.getElementById('mobileMenu').classList.toggle('open');
+        document.body.style.overflow = document.getElementById('mobileMenu').classList.contains('open') ? 'hidden' : '';
+    }
+
+    // Navbar scroll
+    var navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function() {
+        navbar.classList.toggle('scrolled', window.scrollY > 36);
+    });
+</script>
+</body>
+</html>
