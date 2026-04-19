@@ -48,7 +48,7 @@
         nav {
             position: fixed;
             top: 0; left: 0; right: 0;
-            z-index: 1000;
+            z-index: 1100;
             padding: 22px 64px;
             display: flex;
             align-items: center;
@@ -122,16 +122,17 @@
 
         .hamburger span {
             display: block;
-            width: 22px;
-            height: 1.5px;
+            width: 26px;
+            height: 2px;
             background: var(--floral-white);
-            margin: 5px 0;
+            margin: 6px 0;
+            border-radius: 2px;
             transition: transform 0.3s ease, opacity 0.3s ease;
         }
 
-        .hamburger.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+        .hamburger.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+        .hamburger.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
         .mobile-overlay {
             display: none;
@@ -148,6 +149,35 @@
         }
 
         .mobile-overlay.open { display: flex; }
+
+        .mobile-close {
+            position: absolute;
+            top: 22px;
+            right: 24px;
+            width: 44px;
+            height: 44px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2;
+        }
+
+        .mobile-close::before,
+        .mobile-close::after {
+            content: '';
+            position: absolute;
+            width: 26px;
+            height: 2px;
+            background: var(--floral-white);
+            border-radius: 2px;
+        }
+
+        .mobile-close::before { transform: rotate(45deg); }
+        .mobile-close::after { transform: rotate(-45deg); }
 
         .mobile-overlay a {
             font-family: 'Sora', sans-serif;
@@ -745,12 +775,13 @@
             .hero-subheadline { font-size: 1rem; }
             .section-title { font-size: 1.7rem; }
             .btn-primary, .btn-outline, .btn-solid { font-size: 0.78rem; padding: 16px 40px; }
-            .leak-grid { grid-template-columns: 1fr; margin-top: 36px; }
+            .leak-grid { grid-template-columns: 1fr !important; margin-top: 36px; }
             .leak-card { padding: 32px 28px; }
-            .fit-grid { grid-template-columns: 1fr; gap: 36px; }
-            .testimonial-grid { grid-template-columns: 1fr; margin-top: 36px; }
+            .fit-grid { grid-template-columns: 1fr !important; gap: 36px; }
+            .testimonial-grid { grid-template-columns: 1fr !important; margin-top: 36px; }
             .testimonial-card { padding: 32px 28px; }
-            .solution-block { grid-template-columns: 1fr; gap: 20px; padding: 32px 28px; }
+            .solution-block { grid-template-columns: 1fr !important; gap: 20px; padding: 32px 28px; }
+            .solution-grid { grid-template-columns: 1fr !important; }
             .solution-grid { margin-top: 36px; }
             #cta-final { padding: 80px 24px; }
             .cta-frame { padding: 48px 28px; }
@@ -761,6 +792,8 @@
             .section-body p { font-size: 1rem; }
         }
     </style>
+    <!-- Lazaro Tracker (LL EXPERT CRM) -->
+    <script src="lazaro-tracker.js" data-key="llk_23924b3512706ab4b0e4f2452438fead" defer></script>
 </head>
 <body id="top">
 
@@ -778,6 +811,7 @@
 </nav>
 
 <div class="mobile-overlay" id="mobileMenu">
+    <button class="mobile-close" onclick="toggleMobile()" aria-label="Fechar menu"></button>
     <a href="index.html" onclick="toggleMobile()">Para Experts</a>
     <a href="saude-premium.html" onclick="toggleMobile()">Para Cl&iacute;nicas</a>
     <a href="https://wa.me/48991505476" target="_blank" class="mobile-cta" onclick="toggleMobile()">Falar com L&aacute;zaro</a>
