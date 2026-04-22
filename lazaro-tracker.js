@@ -135,6 +135,28 @@
   // ─── Auto-track: pageview ───
   sendEvent('pageview');
 
+  // ─── Helper: gera click_id curto (12 chars hex) ───
+  function makeClickId() {
+    return uuid().replace(/-/g, '').slice(0, 12);
+  }
+
+  // ─── Helper: injeta token [LL:id] no parametro text do link WhatsApp ───
+  function appendTokenToWhatsAppUrl(href, clickId) {
+    var token = '[LL:' + clickId + ']';
+    try {
+      var url = new URL(href, window.location.origin);
+      var existing = url.searchParams.get('text') || '';
+      var newText = existing
+        ? (existing + ' ' + token)
+        : ('Olá! Vi seu site e quero saber mais. ' + token);
+      url.searchParams.set('text', newText);
+      return url.toString();
+    } catch (e) {
+      var sep = href.indexOf('?') >= 0 ? '&' : '?';
+      return href + sep + 'text=' + encodeURIComponent('Olá! Vi seu site e quero saber mais. ' + token);
+    }
+  }
+
   // ─── Auto-track: clicks (links e botoes) ───
   document.addEventListener('click', function (e) {
     var target = e.target.closest('a, button, [data-track]');
@@ -153,7 +175,30 @@
       meta.href = href;
       // Detect WhatsApp links
       if (href.indexOf('wa.me') >= 0 || href.indexOf('whatsapp.com') >= 0) {
+        // Ignora modificadores (ctrl/cmd/middle click abrem em nova aba)
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button === 1) {
+          sendEvent('whatsapp_click', { metadata: meta });
+          return;
+        }
+        e.preventDefault();
+        e.stopPropagation();
+
+        var clickId = makeClickId();
+        meta.click_id = clickId;
+        meta.utms_at_click = getUtms();
+
+        var newHref = appendTokenToWhatsAppUrl(href, clickId);
+
         sendEvent('whatsapp_click', { metadata: meta });
+
+        // Navega apos pequeno delay para dar chance do beacon/fetch sair
+        setTimeout(function () {
+          if (target.getAttribute('target') === '_blank') {
+            window.open(newHref, '_blank');
+          } else {
+            window.location.href = newHref;
+          }
+        }, 60);
         return;
       }
       // External links
