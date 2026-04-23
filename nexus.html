@@ -338,7 +338,7 @@
         .hero-bg {
             position: absolute;
             inset: 0;
-            background: url('hero-fundacao.png') center right / cover no-repeat;
+            background: var(--floral-white);
             z-index: 0;
         }
 
@@ -2611,8 +2611,8 @@
         /* Hero responsive */
         @media (max-width: 980px) {
             #hero .hero-inner { grid-template-columns: 1fr; gap: 32px; }
-            #hero .hero-content { order: 1; text-align: center; }
-            #hero .hero-mockup-wrap { order: 2; min-height: auto; }
+            #hero .hero-content { order: 2; text-align: center; }
+            #hero .hero-mockup-wrap { order: 1; min-height: auto; }
             .command-center { max-width: 420px; }
             .hero-gold-line { margin-left: auto; margin-right: auto; }
         }
@@ -3969,10 +3969,9 @@
 
         /* ─── 768px: Tablet / Small Laptop ─── */
         @media (max-width: 768px) {
-            /* HERO — foto fora, texto primeiro, conteúdo centralizado, botão full-width */
-            .hero-bg { display: none !important; }
-            #hero .hero-content { order: 1 !important; text-align: center; }
-            #hero .hero-mockup-wrap { order: 2 !important; }
+            /* HERO — widget primeiro, texto abaixo, botão full-width */
+            #hero .hero-content { order: 2 !important; text-align: center; }
+            #hero .hero-mockup-wrap { order: 1 !important; }
             #hero .btn-solid-dark { width: 100%; justify-content: center; }
 
             /* HERO COMMAND CENTER — simplify to a clean stack.
