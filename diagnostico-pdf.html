@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico dos 3 Vazamentos da Clínica Premium</title>
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --prussian-blue: #00244A;
+  --goldenrod: #C49A1B;
+  --floral-white: #FFFDF3;
+  --text: #1A2A3A;
+  --text-muted: rgba(26,42,58,0.65);
+  --border: rgba(0,36,74,0.12);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: #f0eee5;
+  color: var(--text);
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+  padding: 40px 20px;
+}
+
+/* Print toolbar (hidden on print) */
+.toolbar {
+  max-width: 800px;
+  margin: 0 auto 24px;
+  padding: 16px 24px;
+  background: var(--prussian-blue);
+  color: var(--floral-white);
+  border-radius: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 13px;
+}
+.toolbar button {
+  font-family: 'Sora', sans-serif;
+  background: var(--goldenrod);
+  color: var(--prussian-blue);
+  border: none;
+  padding: 10px 18px;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Page (A4 simulada) */
+.page {
+  max-width: 800px;
+  margin: 0 auto 32px;
+  background: var(--floral-white);
+  padding: 64px;
+  box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+  page-break-after: always;
+  min-height: 1100px;
+  position: relative;
+}
+.page-num {
+  position: absolute;
+  bottom: 32px;
+  right: 64px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  color: var(--text-muted);
+}
+.page-footer {
+  position: absolute;
+  bottom: 32px;
+  left: 64px;
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  color: var(--text-muted);
+  font-family: 'Sora', sans-serif;
+}
+
+/* Capa */
+.cover {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: var(--prussian-blue);
+  color: var(--floral-white);
+}
+.cover .brand {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  letter-spacing: 4px;
+  color: var(--goldenrod);
+  font-weight: 600;
+}
+.cover-content {
+  margin-top: auto;
+  margin-bottom: auto;
+}
+.cover .eyebrow-cover {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  letter-spacing: 4px;
+  color: var(--goldenrod);
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.cover h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: 48px;
+  font-weight: 700;
+  letter-spacing: -1.2px;
+  line-height: 1.1;
+  margin-bottom: 24px;
+}
+.cover h1 em {
+  font-style: normal;
+  color: var(--goldenrod);
+}
+.cover-sub {
+  font-size: 18px;
+  opacity: 0.85;
+  max-width: 500px;
+  line-height: 1.5;
+}
+.cover-meta {
+  margin-top: 64px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(255,253,243,0.2);
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  opacity: 0.75;
+}
+.cover .page-num, .cover .page-footer { color: rgba(255,253,243,0.6); }
+
+/* Conteúdo padrão */
+.eyebrow {
+  font-family: 'Sora', sans-serif;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--goldenrod);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: -0.7px;
+  color: var(--prussian-blue);
+  line-height: 1.15;
+  margin-bottom: 24px;
+}
+h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--prussian-blue);
+  margin-bottom: 12px;
+  margin-top: 32px;
+  letter-spacing: -0.3px;
+}
+p {
+  font-size: 15px;
+  color: var(--text);
+  margin-bottom: 16px;
+  line-height: 1.7;
+}
+p.lead {
+  font-size: 17px;
+  color: var(--text-muted);
+  margin-bottom: 32px;
+  line-height: 1.6;
+}
+.divider-gold {
+  width: 48px;
+  height: 2px;
+  background: var(--goldenrod);
+  margin: 32px 0;
+}
+
+/* Vazamento card */
+.vaz-num-big {
+  font-family: 'Sora', sans-serif;
+  font-size: 96px;
+  font-weight: 700;
+  color: var(--goldenrod);
+  line-height: 0.9;
+  opacity: 0.9;
+  margin-bottom: 16px;
+}
+.vaz-tag {
+  font-family: 'Sora', sans-serif;
+  font-size: 12px;
+  letter-spacing: 3px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+/* Checklist */
+.checklist {
+  background: rgba(196, 154, 27, 0.06);
+  border-left: 3px solid var(--goldenrod);
+  padding: 24px 28px;
+  border-radius: 6px;
+  margin: 24px 0;
+}
+.checklist h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 14px;
+  letter-spacing: 1.5px;
+  color: var(--prussian-blue);
+  text-transform: uppercase;
+  margin-bottom: 16px;
+  font-weight: 600;
+}
+.checklist ul {
+  list-style: none;
+  padding: 0;
+}
+.checklist li {
+  padding: 10px 0 10px 28px;
+  font-size: 14px;
+  color: var(--text);
+  position: relative;
+  border-bottom: 1px solid rgba(0,36,74,0.06);
+}
+.checklist li:last-child { border-bottom: none; }
+.checklist li::before {
+  content: '☐';
+  position: absolute;
+  left: 0;
+  top: 9px;
+  color: var(--goldenrod);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+/* Stat box */
+.stat-box {
+  background: var(--prussian-blue);
+  color: var(--floral-white);
+  padding: 28px 32px;
+  border-radius: 8px;
+  margin: 24px 0;
+}
+.stat-box .stat-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--goldenrod);
+  letter-spacing: -0.8px;
+  display: block;
+  margin-bottom: 8px;
+}
+.stat-box .stat-label {
+  font-size: 14px;
+  opacity: 0.85;
+  line-height: 1.5;
+}
+
+/* CTA page */
+.cta-page {
+  background: var(--prussian-blue);
+  color: var(--floral-white);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cta-page .eyebrow { color: var(--goldenrod); }
+.cta-page h2 { color: var(--floral-white); margin-bottom: 16px; }
+.cta-page p { color: rgba(255,253,243,0.85); font-size: 16px; max-width: 500px; margin-left: auto; margin-right: auto; }
+.cta-btn {
+  display: inline-block;
+  margin-top: 32px;
+  padding: 16px 40px;
+  background: var(--goldenrod);
+  color: var(--prussian-blue);
+  text-decoration: none;
+  border-radius: 8px;
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+.cta-page .page-num, .cta-page .page-footer { color: rgba(255,253,243,0.5); }
+
+/* Print */
+@media print {
+  body { background: white; padding: 0; }
+  .toolbar { display: none; }
+  .page { box-shadow: none; margin: 0; max-width: none; min-height: 100vh; padding: 48px; }
+  .page-num, .page-footer { position: fixed; }
+}
+
+@media (max-width: 768px) {
+  body { padding: 16px 12px; }
+  .page { padding: 40px 32px; min-height: auto; padding-bottom: 80px; }
+  .cover h1 { font-size: 32px; }
+  h2 { font-size: 24px; }
+  .vaz-num-big { font-size: 72px; }
+  .toolbar { flex-direction: column; gap: 12px; text-align: center; }
+}
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span>📄 Diagnóstico dos 3 Vazamentos . LL'EXPERT</span>
+  <button onclick="window.print()">Salvar como PDF</button>
+</div>
+
+<!-- CAPA -->
+<div class="page cover">
+  <div class="brand">LL'EXPERT . SAÚDE</div>
+  <div class="cover-content">
+    <div class="eyebrow-cover">DIAGNÓSTICO PARA CLÍNICAS PREMIUM</div>
+    <h1>Os 3 vazamentos <em>invisíveis</em> que toda clínica premium tem.</h1>
+    <p class="cover-sub">Onde sua clínica perde faturamento todo mês sem você perceber. E o que fazer pra fechar cada um.</p>
+  </div>
+  <div class="cover-meta">
+    <span>EDIÇÃO 2026</span>
+    <span>SAUDE.LAZAROLEON.COM.BR</span>
+  </div>
+</div>
+
+<!-- INTRO -->
+<div class="page">
+  <div class="eyebrow">APRESENTAÇÃO</div>
+  <h2>Esse PDF não é teoria. É auditoria.</h2>
+  <p class="lead">Se você fatura acima de R$ 100k por mês na sua clínica, esse documento foi feito pra você. Em 5 minutos de leitura você vai ter clareza de onde tá vazando dinheiro.</p>
+
+  <p>Toda clínica que cresceu rápido carrega 3 vazamentos quase invisíveis. São buracos que não aparecem no relatório financeiro, mas comem 20%, 30%, às vezes 40% do potencial real do negócio.</p>
+
+  <p>Esses vazamentos não são culpa sua. Eles aparecem exatamente porque a clínica deu certo. Quando você passou de "alguns pacientes por mês" pra "agenda lotada", a operação não acompanhou. E onde a operação não acompanhou, o dinheiro escorre.</p>
+
+  <p>Esse diagnóstico é o ponto de partida pra você ver onde fechar.</p>
+
+  <div class="divider-gold"></div>
+
+  <h3>Como usar esse documento</h3>
+  <p>Cada vazamento tem uma página com a explicação e um checklist auto-aplicável. Marque honestamente. Se marcou 2 ou mais em qualquer um deles, esse vazamento tá ativo na sua clínica.</p>
+
+  <p>No final, você vê o que fazer com o resultado.</p>
+
+  <div class="page-footer">LL'EXPERT . DIAGNÓSTICO</div>
+  <div class="page-num">02</div>
+</div>
+
+<!-- VAZAMENTO 1 -->
+<div class="page">
+  <div class="vaz-tag">VAZAMENTO Nº 1</div>
+  <div class="vaz-num-big">01</div>
+  <h2>O lead que entra e não é respondido em 3 minutos.</h2>
+
+  <p class="lead">Estudo da Harvard Business Review com 2.241 empresas: leads respondidos em até 5 minutos têm <strong>9x mais chance de virar venda</strong> do que leads respondidos em 1 hora.</p>
+
+  <p>Sua clínica recebe lead pelo Instagram, pelo Direct, pelo WhatsApp, pelo formulário do site. Mas quem responde? E em quanto tempo?</p>
+
+  <p>Na maioria das clínicas premium, a resposta é "a recepcionista, quando dá tempo". Em horário comercial. Sem padrão de qualificação. Lead de domingo à noite só vai ser visto na segunda às 9h, quando a paciente já tá conversando com a concorrência.</p>
+
+  <div class="stat-box">
+    <span class="stat-num">80%</span>
+    <span class="stat-label">É a queda na conversão quando o lead não é respondido em até 5 minutos. Toda hora a mais que passa, você perde mais.</span>
+  </div>
+
+  <div class="checklist">
+    <h4>CHECKLIST . MARQUE O QUE SE APLICA</h4>
+    <ul>
+      <li>Não sabemos exatamente quanto tempo leva pra responder um lead novo</li>
+      <li>Não temos plantão de atendimento aos finais de semana e à noite</li>
+      <li>A recepcionista responde quando "dá uma folga" entre os pacientes presenciais</li>
+      <li>Não temos um script ou padrão de qualificação inicial do lead</li>
+      <li>Já aconteceu de um lead reclamar que demoramos pra responder</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">LL'EXPERT . VAZAMENTO 01</div>
+  <div class="page-num">03</div>
+</div>
+
+<!-- VAZAMENTO 2 -->
+<div class="page">
+  <div class="vaz-tag">VAZAMENTO Nº 2</div>
+  <div class="vaz-num-big">02</div>
+  <h2>O paciente que sumiu e ninguém reativou.</h2>
+
+  <p class="lead">Custa em média <strong>5x menos reativar uma paciente antiga</strong> do que captar uma nova. E mesmo assim quase nenhuma clínica tem processo formal pra isso.</p>
+
+  <p>Sua paciente fez 3 sessões. Adorou o resultado. Voltou pra mais 2. E sumiu. Por que? Você não sabe. Não tem follow-up estruturado, não tem alerta automático quando o intervalo entre sessões cresce demais, não tem protocolo de "paciente fria".</p>
+
+  <p>Ela não sumiu porque parou de gostar de você. Ela sumiu porque a vida dela seguiu, e ninguém lembrou ela de voltar. Enquanto isso, ela vê o anúncio da concorrente e marca lá.</p>
+
+  <div class="stat-box">
+    <span class="stat-num">5x</span>
+    <span class="stat-label">Mais barato reativar uma paciente que já te conhece do que captar uma nova. Esse é o vazamento mais silencioso e o mais fácil de fechar.</span>
+  </div>
+
+  <div class="checklist">
+    <h4>CHECKLIST . MARQUE O QUE SE APLICA</h4>
+    <ul>
+      <li>Não temos uma lista atualizada de pacientes que não voltam há mais de 60 dias</li>
+      <li>Não fazemos follow-up sistemático com pacientes que sumiram</li>
+      <li>Quando uma paciente cancela, não há protocolo de remarcação</li>
+      <li>Não medimos a "taxa de retorno" das pacientes mês a mês</li>
+      <li>A reativação acontece só quando lembramos manualmente</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">LL'EXPERT . VAZAMENTO 02</div>
+  <div class="page-num">04</div>
+</div>
+
+<!-- VAZAMENTO 3 -->
+<div class="page">
+  <div class="vaz-tag">VAZAMENTO Nº 3</div>
+  <div class="vaz-num-big">03</div>
+  <h2>A indicação que se perde sem rastreio.</h2>
+
+  <p class="lead">Suas pacientes te indicam o tempo todo. Mas <strong>quantas dessas indicações viram paciente novo?</strong> Você sabe responder com número?</p>
+
+  <p>Indicação é o canal mais barato e o de maior conversão. Em clínica premium representa de 40% a 60% dos pacientes novos. E mesmo assim quase nenhuma clínica rastreia isso direito.</p>
+
+  <p>A paciente fala da sua clínica num jantar. A amiga interessa. Mas ninguém pediu o nome dela, ninguém entregou um cartão, ninguém criou um motivo pra ela vir. A indicação evapora antes de chegar na sua porta.</p>
+
+  <p>Pior: quando ela chega, a recepção pergunta "como conheceu?" e ela responde "uma amiga". Ninguém anota qual amiga. A paciente que indicou não recebe nenhum reconhecimento. E o ciclo de indicação morre.</p>
+
+  <div class="stat-box">
+    <span class="stat-num">40 a 60%</span>
+    <span class="stat-label">Dos pacientes novos de uma clínica premium vêm de indicação. É seu maior canal. E provavelmente o que você menos rastreia.</span>
+  </div>
+
+  <div class="checklist">
+    <h4>CHECKLIST . MARQUE O QUE SE APLICA</h4>
+    <ul>
+      <li>Não temos um programa formal de indicação pra pacientes ativos</li>
+      <li>Não rastreamos qual paciente indicou cada novo paciente</li>
+      <li>Pacientes que indicam não recebem nenhum reconhecimento</li>
+      <li>Não temos campanhas pra estimular indicação ativa</li>
+      <li>Não sabemos qual nossa taxa de indicação por paciente ativo</li>
+    </ul>
+  </div>
+
+  <div class="page-footer">LL'EXPERT . VAZAMENTO 03</div>
+  <div class="page-num">05</div>
+</div>
+
+<!-- O QUE FAZER -->
+<div class="page">
+  <div class="eyebrow">PRÓXIMOS PASSOS</div>
+  <h2>O que fazer com esse diagnóstico.</h2>
+
+  <p class="lead">Se você marcou 2 ou mais itens em pelo menos um dos vazamentos, ele tá ativo na sua clínica. Se marcou em 2 ou 3 vazamentos, a urgência é maior.</p>
+
+  <h3>Você tem 3 caminhos:</h3>
+
+  <p><strong>1. Resolver internamente.</strong> Contratar mais gente, montar processos manuais, tentar disciplinar a equipe. Funciona, mas leva meses, depende de você puxar todo dia, e quando você sai de férias, o processo cai.</p>
+
+  <p><strong>2. Contratar ferramentas avulsas.</strong> Um chatbot pra responder, um CRM pra gestão, uma planilha pra indicação. Funciona em pedaços, mas cria mais caos do que resolve. Cada ferramenta vira um sistema separado pra você gerenciar.</p>
+
+  <p><strong>3. Implementar uma arquitetura integrada.</strong> Um sistema único que faz tudo conversar entre si: atende lead 24h, faz follow-up automático, rastreia indicação, te entrega painel único. É o que a gente faz na LL'EXPERT.</p>
+
+  <div class="divider-gold"></div>
+
+  <h3>Quando faz sentido conversar com a gente</h3>
+
+  <p>Se sua clínica fatura acima de R$ 100k/mês, marcou itens em pelo menos 2 vazamentos, e você sente que tá refém da operação, vale uma conversa. Sem script de vendas, sem pressão. A primeira call é só pra entender se a gente consegue ajudar.</p>
+
+  <div class="page-footer">LL'EXPERT . PRÓXIMOS PASSOS</div>
+  <div class="page-num">06</div>
+</div>
+
+<!-- CTA FINAL -->
+<div class="page cta-page">
+  <div class="eyebrow">CONVERSAR COM LAZARO</div>
+  <h2>Pronto pra fechar os vazamentos?</h2>
+  <p>Marque uma conversa de 30 minutos. Você fala da sua clínica, eu te mostro como uma arquitetura integrada resolveria os 3 vazamentos juntos. Sem custo, sem compromisso.</p>
+
+  <a href="https://wa.me/5548991505476?text=Oi%20Lazaro%2C%20li%20o%20PDF%20dos%203%20vazamentos%20e%20quero%20conversar" class="cta-btn">Falar no WhatsApp →</a>
+
+  <div class="page-footer">LAZARO LEON . LL'EXPERT</div>
+  <div class="page-num">07</div>
+</div>
+
+</body>
+</html>

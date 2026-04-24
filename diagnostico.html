@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Diagnóstico dos 3 Vazamentos | LL'EXPERT Saúde</title>
+<meta name="description" content="Diagnóstico gratuito em PDF dos 3 vazamentos invisíveis que toda clínica premium tem. Para clínicas que faturam acima de R$ 100k/mês.">
+<meta name="robots" content="index, follow">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Diagnóstico dos 3 Vazamentos da Clínica Premium">
+<meta property="og:description" content="PDF gratuito. Identifique onde sua clínica está perdendo faturamento sem perceber.">
+<meta property="og:image" content="https://saude.lazaroleon.com.br/og-image.svg">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --prussian-blue: #00244A;
+  --goldenrod: #C49A1B;
+  --floral-white: #FFFDF3;
+  --text: #1A2A3A;
+  --text-muted: rgba(26,42,58,0.6);
+  --border: rgba(0,36,74,0.12);
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.04);
+  --shadow-md: 0 6px 16px rgba(0,0,0,0.06);
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'Inter', system-ui, sans-serif;
+  background: var(--floral-white);
+  color: var(--text);
+  line-height: 1.65;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+}
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* Hero */
+.hero {
+  padding: 80px 0 60px;
+  text-align: center;
+}
+.eyebrow {
+  display: inline-block;
+  font-size: 11px;
+  letter-spacing: 3px;
+  color: var(--goldenrod);
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+.hero h1 {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(32px, 5vw, 48px);
+  font-weight: 700;
+  letter-spacing: -1px;
+  color: var(--prussian-blue);
+  line-height: 1.1;
+  max-width: 780px;
+  margin: 0 auto 24px;
+}
+.hero h1 em {
+  font-style: normal;
+  color: var(--goldenrod);
+}
+.hero-sub {
+  font-size: 18px;
+  color: var(--text-muted);
+  max-width: 620px;
+  margin: 0 auto 8px;
+}
+.hero-target {
+  font-size: 13px;
+  color: var(--prussian-blue);
+  font-weight: 500;
+  margin-top: 16px;
+  letter-spacing: 0.5px;
+}
+
+/* Vazamentos preview */
+.vazamentos {
+  padding: 60px 0;
+}
+.vaz-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  margin-top: 40px;
+}
+.vaz-card {
+  background: #fff;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 32px 28px;
+  position: relative;
+}
+.vaz-num {
+  font-family: 'Sora', sans-serif;
+  font-size: 42px;
+  font-weight: 700;
+  color: var(--goldenrod);
+  line-height: 1;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
+.vaz-card h3 {
+  font-family: 'Sora', sans-serif;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--prussian-blue);
+  margin-bottom: 12px;
+  letter-spacing: -0.3px;
+}
+.vaz-card p {
+  font-size: 14px;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
+
+/* Form section */
+.form-section {
+  padding: 80px 0 100px;
+  background: #fff;
+  border-top: 1px solid var(--border);
+}
+.form-wrap {
+  max-width: 540px;
+  margin: 0 auto;
+  text-align: center;
+}
+.form-wrap h2 {
+  font-family: 'Sora', sans-serif;
+  font-size: 28px;
+  font-weight: 600;
+  color: var(--prussian-blue);
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+.form-wrap > p {
+  color: var(--text-muted);
+  font-size: 15px;
+  margin-bottom: 40px;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  text-align: left;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.field label {
+  font-size: 12px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text);
+  font-weight: 600;
+  opacity: 0.7;
+}
+.field input {
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  padding: 14px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--floral-white);
+  color: var(--text);
+  transition: border-color 0.2s;
+}
+.field input:focus {
+  outline: none;
+  border-color: var(--goldenrod);
+}
+.btn-submit {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 600;
+  padding: 16px 24px;
+  background: var(--prussian-blue);
+  color: var(--floral-white);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  letter-spacing: 0.3px;
+  transition: background 0.2s;
+  margin-top: 8px;
+}
+.btn-submit:hover { background: #001a36; }
+.btn-submit:disabled { opacity: 0.6; cursor: not-allowed; }
+.consent {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 8px;
+  line-height: 1.5;
+}
+.consent a { color: var(--prussian-blue); text-decoration: underline; }
+.error-msg {
+  background: #fef0f0;
+  color: #c44;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-size: 14px;
+  display: none;
+}
+.error-msg.show { display: block; }
+
+/* Footer minimal */
+.footer-mini {
+  padding: 32px 0;
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 60px 0 40px; }
+  .vaz-grid { grid-template-columns: 1fr; gap: 16px; }
+  .vaz-card { padding: 24px 20px; }
+  .form-section { padding: 60px 0 80px; }
+}
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <div class="container">
+    <div class="eyebrow">DIAGNÓSTICO GRATUITO . PDF</div>
+    <h1>Os <em>3 vazamentos invisíveis</em> que toda clínica premium tem.</h1>
+    <p class="hero-sub">Identifique exatamente onde sua clínica está perdendo faturamento todo mês sem perceber. E o que fazer pra fechar cada um.</p>
+    <p class="hero-target">Para clínicas que faturam acima de R$ 100k/mês</p>
+  </div>
+</section>
+
+<section class="vazamentos">
+  <div class="container">
+    <div class="vaz-grid">
+      <div class="vaz-card">
+        <div class="vaz-num">01</div>
+        <h3>O lead que entra e não é respondido em 3 minutos</h3>
+        <p>Estudo do Harvard mostra que após 5 minutos a chance de conversão cai 80%. E sua clínica responde em quanto tempo?</p>
+      </div>
+      <div class="vaz-card">
+        <div class="vaz-num">02</div>
+        <h3>O paciente que sumiu e ninguém reativou</h3>
+        <p>Custa 5x menos reativar do que captar. Mas você tem processo pra isso, ou só espera ele voltar sozinho?</p>
+      </div>
+      <div class="vaz-card">
+        <div class="vaz-num">03</div>
+        <h3>A indicação que se perde sem rastreio</h3>
+        <p>Suas pacientes indicam você o tempo todo. Quantas dessas indicações viram paciente novo? Você sabe?</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="form-section">
+  <div class="container">
+    <div class="form-wrap">
+      <h2>Receba o diagnóstico completo</h2>
+      <p>PDF de 8 páginas com checklist auto-aplicável. Chega no seu WhatsApp em segundos.</p>
+
+      <div class="error-msg" id="errorMsg"></div>
+
+      <form id="leadForm">
+        <div class="field">
+          <label for="nome">Seu nome</label>
+          <input type="text" id="nome" name="nome" required placeholder="Como você quer ser chamada">
+        </div>
+        <div class="field">
+          <label for="email">Melhor email</label>
+          <input type="email" id="email" name="email" required placeholder="email@suaclinica.com.br">
+        </div>
+        <div class="field">
+          <label for="whatsapp">WhatsApp (com DDD)</label>
+          <input type="tel" id="whatsapp" name="whatsapp" required placeholder="(48) 99999-9999">
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Receber diagnóstico no WhatsApp →</button>
+        <p class="consent">
+          Ao enviar, você concorda em receber o material e o contato da nossa equipe.
+          <br>Veja nossa <a href="privacidade.html">política de privacidade</a>.
+        </p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer class="footer-mini">
+  <div class="container">
+    LL'EXPERT . Tecnologia para clínicas premium . lazaroleon.com.br
+  </div>
+</footer>
+
+<script>
+const ENDPOINT = 'https://boupwxtuhhdoguwoymbd.supabase.co/functions/v1/lead-capture';
+const API_KEY = 'llexp_0d823e79ddfc42d6b2d57e57fc3cffa5';
+
+const form = document.getElementById('leadForm');
+const errorMsg = document.getElementById('errorMsg');
+const submitBtn = document.getElementById('submitBtn');
+
+function getUtmParams() {
+  const params = new URLSearchParams(window.location.search);
+  return {
+    utm_source: params.get('utm_source') || 'pdf_diagnostico_saude',
+    utm_medium: params.get('utm_medium') || 'lead_magnet',
+    utm_campaign: params.get('utm_campaign') || 'diagnostico_3_vazamentos',
+  };
+}
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  errorMsg.classList.remove('show');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Enviando...';
+
+  const payload = {
+    nome: document.getElementById('nome').value.trim(),
+    email: document.getElementById('email').value.trim(),
+    whatsapp: document.getElementById('whatsapp').value.trim(),
+    notes: 'Lead via PDF Diagnóstico dos 3 Vazamentos',
+    ...getUtmParams(),
+  };
+
+  try {
+    const res = await fetch(ENDPOINT, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'x-api-key': API_KEY,
+      },
+      body: JSON.stringify(payload),
+    });
+    const data = await res.json();
+
+    if (res.ok && data.success) {
+      window.location.href = 'obrigado.html?nome=' + encodeURIComponent(payload.nome);
+    } else {
+      throw new Error(data.error || 'Não foi possível enviar. Tente novamente.');
+    }
+  } catch (err) {
+    errorMsg.textContent = err.message;
+    errorMsg.classList.add('show');
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Receber diagnóstico no WhatsApp →';
+  }
+});
+</script>
+
+<script src="lazaro-tracker.js"></script>
+</body>
+</html>
