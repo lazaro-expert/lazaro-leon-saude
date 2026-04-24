@@ -5430,62 +5430,93 @@
     <div class="diag-wrap reveal">
         <div class="diag-head">
             <p class="eyebrow">DIAGNÓSTICO GRATUITO</p>
-            <h2 class="diag-title">Onde a sua clínica está vazando dinheiro?</h2>
-            <p class="diag-subtitle">Preencha o formulário. Lázaro analisa sua operação e retorna em até 24h com o mapa dos vazamentos específicos da sua clínica.</p>
+            <h2 class="diag-title">Receba o mapa dos 3 vazamentos da sua clínica.</h2>
+            <p class="diag-subtitle">PDF de 8 páginas com checklist auto-aplicável. Chega no seu WhatsApp em segundos. Depois, nossa equipe entra em contato pra entender o seu cenário específico.</p>
         </div>
 
         <div class="diag-card">
-            <form action="https://formsubmit.co/contato@lazaroleon.com.br" method="POST" class="diag-form">
-                <input type="hidden" name="_next" value="#diagnostico-ok">
-                <input type="hidden" name="_subject" value="Novo diagnóstico - Nexus Saúde">
-                <input type="hidden" name="_captcha" value="false">
-                <input type="text" name="_honey" style="display:none">
+            <div class="diag-error" id="diagError" style="display:none;background:#fef0f0;color:#c44;padding:12px 16px;border-radius:8px;font-size:14px;margin-bottom:16px;"></div>
 
+            <form id="diagForm" class="diag-form">
                 <div class="diag-grid">
                     <div class="diag-field">
                         <label class="diag-label" for="diag-nome">Nome</label>
                         <input class="diag-input" type="text" id="diag-nome" name="nome" placeholder="Seu nome" required>
                     </div>
                     <div class="diag-field">
-                        <label class="diag-label" for="diag-clinica">Clínica</label>
-                        <input class="diag-input" type="text" id="diag-clinica" name="clinica" placeholder="Nome da clínica" required>
-                    </div>
-                </div>
-
-                <div class="diag-grid">
-                    <div class="diag-field">
-                        <label class="diag-label" for="diag-whatsapp">WhatsApp</label>
-                        <input class="diag-input" type="tel" id="diag-whatsapp" name="whatsapp" placeholder="(11) 00000-0000" required>
-                    </div>
-                    <div class="diag-field">
-                        <label class="diag-label" for="diag-especialidade">Especialidade</label>
-                        <select class="diag-select" id="diag-especialidade" name="especialidade" required>
-                            <option value="" disabled selected>Selecione</option>
-                            <option value="Dermatologia">Dermatologia</option>
-                            <option value="Cirurgia Plástica">Cirurgia Plástica</option>
-                            <option value="Nutrição">Nutrição</option>
-                            <option value="Estética">Estética</option>
-                            <option value="Ginecologia">Ginecologia</option>
-                            <option value="Outra">Outra</option>
-                        </select>
+                        <label class="diag-label" for="diag-email">Email</label>
+                        <input class="diag-input" type="email" id="diag-email" name="email" placeholder="email@suaclinica.com.br" required>
                     </div>
                 </div>
 
                 <div class="diag-field">
-                    <label class="diag-label" for="diag-vazamento">Qual o maior vazamento que você percebe hoje?</label>
-                    <textarea class="diag-textarea" id="diag-vazamento" name="vazamento" rows="3" placeholder="Conte em poucas linhas..." required></textarea>
+                    <label class="diag-label" for="diag-whatsapp">WhatsApp (com DDD)</label>
+                    <input class="diag-input" type="tel" id="diag-whatsapp" name="whatsapp" placeholder="(11) 00000-0000" required>
                 </div>
 
                 <div class="diag-submit-wrap">
-                    <button type="submit" class="diag-submit">Receber meu diagnóstico &rarr;</button>
+                    <button type="submit" class="diag-submit" id="diagSubmit">Receber diagnóstico no WhatsApp &rarr;</button>
                 </div>
 
                 <div class="diag-fine-print">
                     <span>Sem compromisso. Sem script de vendas. Sem spam.</span>
-                    <span>Resposta em até 24h via WhatsApp.</span>
+                    <span>PDF disponível imediatamente após envio.</span>
                 </div>
             </form>
         </div>
+
+        <script>
+        (function() {
+            const ENDPOINT = 'https://boupwxtuhhdoguwoymbd.supabase.co/functions/v1/lead-capture';
+            const API_KEY = 'llexp_0d823e79ddfc42d6b2d57e57fc3cffa5';
+            const form = document.getElementById('diagForm');
+            const errorMsg = document.getElementById('diagError');
+            const submitBtn = document.getElementById('diagSubmit');
+
+            function getUtmParams() {
+                const params = new URLSearchParams(window.location.search);
+                return {
+                    utm_source: params.get('utm_source') || 'nexus_page_saude',
+                    utm_medium: params.get('utm_medium') || 'inline_form',
+                    utm_campaign: params.get('utm_campaign') || 'diagnostico_3_vazamentos',
+                };
+            }
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                errorMsg.style.display = 'none';
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Enviando...';
+
+                const payload = {
+                    nome: document.getElementById('diag-nome').value.trim(),
+                    email: document.getElementById('diag-email').value.trim(),
+                    whatsapp: document.getElementById('diag-whatsapp').value.trim(),
+                    notes: 'Lead via form inline da página Nexus Saúde',
+                    ...getUtmParams(),
+                };
+
+                try {
+                    const res = await fetch(ENDPOINT, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'x-api-key': API_KEY },
+                        body: JSON.stringify(payload),
+                    });
+                    const data = await res.json();
+                    if (res.ok && data.success) {
+                        window.location.href = 'obrigado.html?nome=' + encodeURIComponent(payload.nome);
+                    } else {
+                        throw new Error(data.error || 'Não foi possível enviar. Tente novamente.');
+                    }
+                } catch (err) {
+                    errorMsg.textContent = err.message;
+                    errorMsg.style.display = 'block';
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = 'Receber diagnóstico no WhatsApp →';
+                }
+            });
+        })();
+        </script>
     </div>
 </section>
 
